@@ -22,3 +22,7 @@ Thumbs.db
 # MkDocs (gerados no build)
 docs/
 site/
+
+# gerados pelo exemplo de metrica (aula 9)
+exemplos/aula09-metrica/cena.avi
+exemplos/aula09-metrica/rotulos.csv

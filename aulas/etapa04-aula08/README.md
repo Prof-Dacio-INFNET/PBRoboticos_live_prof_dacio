@@ -284,7 +284,7 @@ No resto do semestre, ação deixa de ser assunto e vira infraestrutura. O `Navi
 
 ## Para a próxima aula (15/09)
 
-**Percepção veicular: detecção treinada e métrica declarada** (gate **G2.4**, vence 19/09) e **clínica de URDF e TF** (gate **G2.5**, vence 22/09).
+**[Aula 9 — Detecção treinada e métrica declarada](../etapa05-aula09/index.md)** (gate **G2.4**, vence 19/09) e **clínica de URDF e TF** (gate **G2.5**, vence 22/09).
 
 A Aula 9 carrega dois gates, então parte dela virou leitura prévia. **Faça o tutorial [URDF, TF e RViz2](../../tutoriais/urdf-tf-rviz2.md) antes de 15/09** — ele começa na instalação e termina com a árvore de TF validada. Quem chegar sem ele vai gastar a aula instalando pacote em vez de resolvendo o próprio modelo.
 

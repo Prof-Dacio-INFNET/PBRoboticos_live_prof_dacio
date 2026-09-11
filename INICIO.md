@@ -54,21 +54,20 @@ Aulas às **terças, 07h00–09h30, sala SJ205** · Prof. Dácio Moreira de Souz
 
 ## Aula mais recente
 
-**Aula 8 — terça, 08/09/2026 — Ações a fundo: o ciclo de vida de um objetivo** <span class="pb-tag next">atual</span>
+**Aula 9 — terça, 15/09/2026 — Detecção treinada e métrica declarada** <span class="pb-tag next">atual</span>
 
-Um objetivo não é uma mensagem: é uma **entidade**, com identidade e com estado. Dessa diferença decorre tudo o mais — o feedback, o cancelamento, e a distinção entre *falhou* e *foi interrompido*.
+**"Ficou bom" deixa de ser resposta aceitável.** Afirmar que um detector melhorou passa a exigir um número, produzido sobre dado fixo, por uma régua declarada **antes** de rodar. A segunda metade da aula é clínica de URDF e TF.
 
-[Conteúdo e slides da aula](aulas/etapa04-aula08/index.md){ .md-button .md-button--primary }
-[Exemplo executável](exemplos/aula07-acoes/index.md){ .md-button }
-[Tarefa da semana](tutoriais/tarefa-aula07-acoes.md){ .md-button }
+[Conteúdo e slides da aula](aulas/etapa05-aula09/index.md){ .md-button .md-button--primary }
+[Banco de provas de detectores](exemplos/aula09-metrica/index.md){ .md-button }
+[Tutorial de URDF e TF](tutoriais/urdf-tf-rviz2.md){ .md-button }
 
-!!! warning "Os dois gates mais reprovadores do TP2 fecham nesta semana"
-    **G2.2** vence em 12/09 e **G2.3** em 16/09. O G2.3 não pede código de cancelamento escrito — pede cancelamento **demonstrado**. Um servidor que não pode ser parado no meio compila, roda, entrega o resultado certo, e não passa.
+!!! warning "TP2 vence em 25/09 — dois gates fecham nesta semana"
+    **G2.4** (métrica declarada) vence 19/09 e **G2.5** (URDF com TF coerente) vence 22/09.
 
-    O [mapa de cobertura](aulas/index.md#mapa-de-cobertura-o-que-cada-aula-entrega) mostra onde cada gate é ensinado e quanta folga sobra até vencer.
+    O G2.4 não pede um modelo específico: pede uma **métrica escolhida a partir do seu domínio**, medida sobre **dado fixo**, com o modo de falha descrito. Um HSV medido honestamente vale mais que um YOLO sem régua.
 
-!!! tip "Leitura prévia para 15/09: URDF, TF e RViz2"
-    O gate **G2.5** virou tutorial, para a Aula 9 ser clínica e não primeira exposição: **[URDF, TF e RViz2 — do zero ao robô na tela](tutoriais/urdf-tf-rviz2.md)**, começando na instalação. Faça antes de 15/09 e chegue com o robô aparecendo no RViz2.
+    A parte de instalação do G2.5 já está publicada: **[URDF, TF e RViz2](tutoriais/urdf-tf-rviz2.md)**. Faça antes de 15/09 — a aula é clínica, não primeira exposição.
 
 ## Calendário de entregas
 
