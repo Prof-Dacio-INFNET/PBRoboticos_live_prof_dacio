@@ -6,7 +6,7 @@
 aula09-metrica/
 ├── gerar_video.py    # cria cena.avi + rotulos.csv (rótulo perfeito, de graça)
 ├── detectores.py     # três detectores com a MESMA assinatura
-└── avaliar.py        # roda, mede, e imprime a métrica declarada
+└── avaliar.py        # roda, mede, imprime — e, com --video, anota a saída
 ```
 
 ## Rodar
@@ -57,6 +57,44 @@ Não é um detector que erra um pouco em todo lugar: é um detector que **funcio
 **Não existe almoço grátis.** Repare que o `hsv_adaptativo` acha o alvo sempre **e inventa mais**: o falso positivo subiu de 6,7% para 10,0%. Um detector mais sensível enxerga mais coisa — inclusive coisa que não existe. Esse par sobe junto, e escolher onde ficar no par é decisão de projeto, não de programação.
 
 Para um robô que **freia** ao ver obstáculo, falso positivo é freada fantasma e talvez seja pior que perder o alvo. Para um robô que **conta** frutos, perder o alvo é subcontagem e falso positivo é superestimativa. **O mesmo número significa coisas opostas em domínios diferentes** — e é por isso que a métrica tem que ser declarada junto com o domínio.
+
+## Ver o que o detector viu
+
+```bash
+python3 avaliar.py --video                    # gera saida_<detector>.avi
+python3 avaliar.py hsv_ingenuo --video        # um só
+```
+
+Cada quadro sai anotado com a **caixa da verdade** em âmbar, a **caixa detectada** em verde (quando valeu) ou vermelho (quando não), o IoU do quadro, o trecho da cena, o veredito — `ACERTO`, `PERDA`, `FALSO POSITIVO`, `ausente (ok)` — e a métrica **acumulada até aquele quadro** na faixa de baixo.
+
+É a forma mais rápida de responder à pergunta que o número agregado não responde: *em que ele estava olhando quando errou?* Abra o vídeo do `hsv_ingenuo` e vá até o quadro 90: dá para ver o instante exato em que ele troca o alvo pelo distrator maior e não volta mais.
+
+### Por que isso é um parâmetro, e não o comportamento padrão
+
+Porque desenhar custa — e custa mais do que se imagina. Medido nesta máquina:
+
+| | por quadro |
+|---|---|
+| a detecção (`hsv_com_area`) | 1,65 ms |
+| desenhar o OSD | **2,07 ms** |
+| se os dois entrassem na mesma conta | 3,72 ms |
+
+**O custo de observar é maior que o custo do que se observa.** Se o desenho estivesse dentro da janela cronometrada, 56% do número reportado seria o OSD, e a comparação entre detectores mediria principalmente quem desenha mais rápido.
+
+Por isso o `avaliar.py` faz duas coisas: põe o vídeo atrás de um parâmetro **e** desenha fora da janela cronometrada. O efeito é verificável — ligar o `--video` mexe no tempo reportado em ~0,07 ms, dentro do ruído entre execuções, contra os 56% que mexeria se estivesse dentro.
+
+```python
+# ---------- JANELA CRONOMETRADA: so o detector ----------
+t0 = time.perf_counter()
+caixa = fn(img)
+tempos.append((time.perf_counter() - t0) * 1000.0)
+# ---------- fim da janela. Nada abaixo entra na conta. ----------
+```
+
+!!! tip "A regra geral, que vale para o seu nó ROS 2"
+    **O que você mede não pode incluir o custo de observar.** Vale para o OSD, para o `print` de depuração dentro do laço, para o log em nível DEBUG e para qualquer visualização que você acrescente. Instrumentação que entra na medição transforma o instrumento em parte do experimento.
+
+    É o mesmo erro do aquecimento: medir a coisa errada com precisão.
 
 ## O que a cena tem, de propósito
 

@@ -108,6 +108,21 @@ O resultado dos três detectores:
 
 As duas primeiras colunas são **determinísticas**: rodando de novo, saem idênticas. A terceira não — e por que ela não sai é o assunto da próxima seção.
 
+### Ver o que o detector viu
+
+```bash
+python3 avaliar.py --video        # gera saida_<detector>.avi
+```
+
+Cada quadro sai anotado: a **caixa da verdade** em âmbar, a **detecção** em verde ou vermelho, o IoU do quadro, o veredito (`ACERTO`, `PERDA`, `FALSO POSITIVO`, `ausente (ok)`) e a métrica acumulada até ali.
+
+Abra o vídeo do `hsv_ingenuo` e vá ao quadro 90: dá para **ver** o instante em que ele troca o alvo pelo distrator maior e não volta mais. O número diz que errou; o vídeo diz em que ele estava olhando.
+
+!!! warning "Por que o vídeo é um parâmetro, e por que ele fica fora do cronômetro"
+    Desenhar custa mais que detectar. Medido: a detecção leva **1,65 ms** por quadro e o OSD leva **2,07 ms**. Se o desenho entrasse na janela cronometrada, **56% do número reportado seria o OSD** — e a comparação entre detectores passaria a medir quem desenha mais rápido.
+
+    A regra generaliza, e vale para o nó ROS 2 de vocês: **o que você mede não pode incluir o custo de observar.** Vale para OSD, para `print` de depuração dentro do laço e para qualquer visualização acrescentada. Instrumentação que entra na medição transforma o instrumento em parte do experimento.
+
 ## Parte 4 — Ler o resultado: três leituras
 
 ### A média esconde onde falhou
