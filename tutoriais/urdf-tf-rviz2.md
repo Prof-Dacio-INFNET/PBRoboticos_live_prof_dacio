@@ -221,6 +221,15 @@ O exemplo já vem com um `.rviz` salvo, mas você precisa saber montar do zero �
 
 ## Passo 7 — Quando não aparece nada
 
+!!! tip "Antes de caçar o sintoma, pergunte ao script onde você está"
+    ```bash
+    cd ~/projeto-pb-SEU-USUARIO/ros2_ws
+    bash recursos/clinica-urdf.sh
+    ```
+
+    Ele confere, na ordem, o que costuma quebrar: ferramentas instaladas, pacote encontrado, `check_urdf`, `/robot_description` no ar, `/tf_static` publicando, e ambiente gráfico. No fim diz **em que ponto você parou** e qual é o próximo comando — em vez de você tentar cinco coisas ao acaso.
+
+
 Quase todos os casos são um destes cinco, e a ordem de checagem importa:
 
 | Sintoma | Causa provável | Como confirmar |

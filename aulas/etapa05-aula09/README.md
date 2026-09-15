@@ -183,7 +183,13 @@ Essa separação é o ponto arquitetural da aula, e é o mesmo princípio das in
 
 A segunda metade é bancada aberta sobre o [tutorial de URDF, TF e RViz2](../../tutoriais/urdf-tf-rviz2.md), que cobre o **G2.5**.
 
-Rode e traga o que travou:
+**Comece rodando o diagnóstico**, na raiz do seu `ros2_ws` — ele diz em que ponto você parou e qual é o próximo comando:
+
+```bash
+bash recursos/clinica-urdf.sh
+```
+
+Depois, rode o que ele mandar e traga o que travou:
 
 ```bash
 check_urdf src/<seuprojeto>_description/urdf/<seu_robo>.urdf
