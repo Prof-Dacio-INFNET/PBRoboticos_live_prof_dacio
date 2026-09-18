@@ -16,6 +16,7 @@ Pacotes ROS 2 prontos para rodar, usados em aula e pensados para serem **copiado
 | [`aula07-acoes`](aula07-acoes/index.md) | Aula 7 | action com feedback, sucesso antecipado e cancelamento real | gates G2.2 e G2.3 do TP2 |
 | [`aula09-urdf`](aula09-urdf/index.md) | Aula 9 | URDF mínimo com câmera, TF e RViz2 | gate G2.5 do TP2 |
 | [`aula09-metrica`](aula09-metrica/index.md) | Aula 9 | banco de provas de detectores: vídeo rotulado, três detectores, uma régua | gate G2.4 do TP2 |
+| [`aula10-bringup`](aula10-bringup/index.md) | Aula 10 | um comando sobe o sistema inteiro: launch composto, YAML que chega (e que não chega) | gate G3.0 do TP3 |
 
 ## Exemplos por TP
 

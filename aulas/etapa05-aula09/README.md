@@ -168,6 +168,9 @@ Para um robô que freia, 10% de freada fantasma pode ser inaceitável e 6,7% com
 
 ## Parte 5 — Trocar o detector sem trocar a régua
 
+!!! warning "Não trabalhada em 15/09 — recuperada na Aula 10"
+    As Partes 5 e 6 não couberam no encontro. Elas foram para a [Aula 10, de 22/09](../etapa05-aula10/index.md), que abre com a clínica de URDF e recupera este bloco. O texto continua aqui, publicado desde 15/09, para quem quiser chegar lá com ele lido — e o conteúdo abaixo ainda vale para o relatório do TP2, que só vence em 25/09.
+
 O `avaliar.py` não sabe nada sobre como o detector funciona. Ele chama uma função que recebe a imagem e devolve `(x, y, w, h)` ou `None`. Plugar um modelo treinado é escrever outra função com essa assinatura.
 
 Essa separação é o ponto arquitetural da aula, e é o mesmo princípio das interfaces da Aula 6: **o contrato fica, o miolo troca**. A régua sobrevive à troca do detector, e é por isso que os números continuam comparáveis.
@@ -225,4 +228,6 @@ Duas entregas, as duas para o TP2:
 
 ## Para a próxima aula (22/09)
 
-**Navegação autônoma e aterrissagem do TP2.** A entrega é 25/09, três dias depois. Chegue com G2.4 e G2.5 fechados: a última aula é clínica, não recuperação de conteúdo.
+**[Aterrissagem do TP2](../etapa05-aula10/index.md).** A entrega é 25/09, três dias depois. A aula abre com a clínica de URDF e TF, que fecha o G2.5 no dia em que ele vence, recupera o contrato do detector da Parte 5, e termina montando o `bringup.launch.py` que o TP3 vai cobrar.
+
+Navegação autônoma passa para a Aula 11, em 29/09 — nenhum gate de navegação vence antes de 30/10, e o Nav2 se monta sobre ações e TF coerente, que é justamente o que a Aula 10 fecha.

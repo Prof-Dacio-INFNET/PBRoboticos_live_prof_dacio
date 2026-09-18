@@ -1,0 +1,22 @@
+# ARQUIVO DEFEITUOSO DE PROPOSITO -- ele e' o exercicio da Aula 10.
+#
+# A chave "detector:" significa o no "/detector", na raiz. Mas o bringup empurra
+# o no para "/percepcao/detector". Os nomes nao casam, e o ROS 2 NAO RECLAMA:
+# o no sobe com os valores padrao e o seu YAML nunca e' lido.
+#
+# Rode e compare:
+#   ros2 launch aula10_bringup bringup.launch.py \
+#     params:=$(ros2 pkg prefix aula10_bringup)/share/aula10_bringup/config/sistema-armadilha.yaml
+#   ros2 param get /percepcao/detector taxa_hz     # 2.0, o padrao do codigo
+#
+# Duas curas: trocar a chave por "/percepcao/detector:", ou usar "/**:".
+detector:
+  ros__parameters:
+    taxa_hz: 9.0
+    limiar_confianca: 0.10
+    classe: NUNCA_APARECE
+
+supervisor:
+  ros__parameters:
+    janela_s: 2.0
+    taxa_minima_hz: 8.0

@@ -14,8 +14,9 @@ O bloco tem dez etapas de conteúdo distribuídas em dois trimestres (26T3, de 2
 | [Aula 6](etapa03-aula06/index.md) | 25/08/2026 | 3 | Interfaces próprias e detecção inteligente | <span class="pb-tag ok">dada</span> |
 | [Aula 7](etapa04-aula07/index.md) | 01/09/2026 | 4 | Abertura com webcam; ações apresentadas | <span class="pb-tag ok">dada</span> |
 | [Aula 8](etapa04-aula08/index.md) | 08/09/2026 | 4 | Ações a fundo: o ciclo de vida de um objetivo | <span class="pb-tag ok">dada</span> |
-| [Aula 9](etapa05-aula09/index.md) | 15/09/2026 | 5 | Detecção treinada e métrica declarada · clínica de URDF e TF | <span class="pb-tag next">próxima</span> |
-| Aula 10 | 22/09/2026 | 5 | Navegação autônoma + aterrissagem do TP2 | <span class="pb-tag soon">a seguir</span> |
+| [Aula 9](etapa05-aula09/index.md) | 15/09/2026 | 5 | Detecção treinada e métrica declarada | <span class="pb-tag warn">parcial</span> |
+| [Aula 10](etapa05-aula10/index.md) | 22/09/2026 | 5 | Aterrissagem do TP2: clínica de URDF e bringup | <span class="pb-tag next">próxima</span> |
+| Aula 11 | 29/09/2026 | 6 | Navegação autônoma | <span class="pb-tag soon">a seguir</span> |
 
 !!! note "Por que as Aulas 4 e 5 apontam para a página da Aula 3"
     O material da Aula 3 é denso e foi trabalhado ao longo de três encontros — 04, 11 e 18/08 —, com a leitura oficial do TP1 no último deles. As datas do calendário não mudaram; o que mudou foi o ritmo, e isso é normal num bloco prático. As três aulas compartilham a mesma página porque compartilham o mesmo conteúdo.
@@ -54,8 +55,10 @@ Esta tabela existe para uma pergunta específica: **a redistribuição das aulas
 | G2.1 | `.msg`/`.srv` do domínio | Aula 6 · 25/08 | 08/09 | 14 dias |
 | G2.2 | action com servidor respondendo | [Aula 8](etapa04-aula08/index.md) · 08/09 | 12/09 | 4 dias |
 | G2.3 | action com feedback e cancelamento | [Aula 8](etapa04-aula08/index.md) · 08/09 | 16/09 | 8 dias |
-| G2.4 | detecção evoluída com métrica declarada | [Aula 9](etapa05-aula09/index.md) · 15/09 | 19/09 | 4 dias |
-| G2.5 | YAML + URDF no RViz2 com TF coerente | [tutorial](../tutoriais/urdf-tf-rviz2.md) publicado 08/09 + clínica na [Aula 9](etapa05-aula09/index.md) · 15/09 | 22/09 | 14 dias |
+| G2.4 | detecção evoluída com métrica declarada | [Aula 9](etapa05-aula09/index.md) · 15/09 (régua) + [Aula 10](etapa05-aula10/index.md) · 22/09 (contrato) | 19/09 | 4 dias / **−3** |
+| G2.5 | YAML + URDF no RViz2 com TF coerente | [tutorial](../tutoriais/urdf-tf-rviz2.md) publicado 08/09 + clínica na [Aula 10](etapa05-aula10/index.md) · 22/09 | 22/09 | **0 dias** |
+| G2.6 | entrega: branch, tag, relatório, Moodle | [Aula 10](etapa05-aula10/index.md) · 22/09 | 25/09 | 3 dias |
+| G3.0 | `bringup.launch.py` sobe o sistema inteiro | [Aula 10](etapa05-aula10/index.md) · 22/09 | 30/09 | 8 dias |
 
 ### O que a redistribuição custou, dito com todas as letras
 
@@ -76,6 +79,36 @@ O efeito colateral é que a **Aula 9 (15/09) carrega dois gates**: G2.4 (detecç
 **A mitigação foi aplicada: o URDF saiu da aula e virou leitura prévia.** O tutorial [URDF, TF e RViz2](../tutoriais/urdf-tf-rviz2.md) foi publicado em 08/09, cobrindo desde a instalação até a árvore de TF validada, o que devolve ao G2.5 uma folga de catorze dias e deixa a Aula 9 como clínica. Parametrização em YAML a turma já pratica desde a Aula 3 (`ros2 param set`, `config/*.yaml`); o que era realmente novo no G2.5 é URDF e TF, e isso é mecânico o bastante para caber num tutorial.
 
 **As folgas de quatro dias — G2.2 e G2.4 — são o novo ponto a vigiar.** Quatro dias é o suficiente para quem sai da aula com o exemplo rodando, e insuficiente para quem sai com o exemplo quebrado. É por isso que as duas aulas têm bloco de mão na massa com todo mundo executando, e não só demonstração no projetor.
+
+### Terceira correção: a Aula 9 parou na Parte 4
+
+A Aula 9 (15/09) trabalhou as Partes 1 a 4 — por que a cor acaba, a métrica como decisão declarada, o banco de provas na mão de todos, e a leitura dos três resultados. As Partes 5 e 6 não foram trabalhadas.
+
+**O que a Parte 5 carregava** era o contrato do detector: o `avaliar.py` chama uma função que recebe imagem e devolve `(x, y, w, h)` ou `None`, e trocar de detector é escrever outra função com essa assinatura. Junto ia a regra prática do gate — `cv2.dnn` roda ONNX sem `torch`, e **o que se avalia é a métrica e a justificativa, não o modelo**.
+
+A metade do G2.4 que a correção efetivamente verifica — a métrica declarada, com os números e o lugar onde cada versão falha — **foi inteiramente ensinada**. O que ficou de fora foi o caminho barato para a palavra *evoluída*, e a ausência dele tem um custo de direção, não de capacidade: sem essa orientação, a rota mais provável a três dias da entrega é instalar `torch` às pressas e quebrar o ambiente. A Parte 5 é recuperada na Aula 10, e a página da Aula 9 continua publicada com ela desde 15/09.
+
+**O que a Parte 6 carregava** era a clínica de URDF e TF inteira — que já era, ela própria, a mitigação aplicada quando a Aula 9 ficou densa. A clínica passa para a Aula 10, e o G2.5 fica com folga **zero**: é ensinado no mesmo dia em que vence. Isso ainda satisfaz a regra da tabela, mas sem nenhuma margem, e só funciona porque a evidência do gate é produzida dentro da própria clínica.
+
+**O custo maior não é o TP2, é o TP3.** O G3.2 — árvore de TF completa e sem warning — é o gate de verdade daquele TP, e noventa por cento dos problemas de SLAM e de Nav2 são problemas de TF disfarçados. Uma turma que nunca passou pela bancada de URDF não arrisca só o G2.5: ela entra no TP3 com a fundação por testar.
+
+### O padrão por trás das três correções
+
+Nas Aulas 7 e 9, o bloco perdido foi o **último**. Duas vezes em três encontros, e nas duas o bloco final era a prática supervisionada — que é justamente o que não se recupera em casa.
+
+Isso deixou de ser azar e virou característica do desenho: pôr a clínica no fim faz dela a absorvedora de todo o atraso acumulado. A correção aplicada na Aula 10 é estrutural, não de conteúdo — **a aula está ordenada por custo de perda**, com a clínica primeiro e o bloco de folga por último, declarado de antemão como o que cede se o tempo apertar.
+
+O bloco que cede é o de launch, porque o G3.0 vence em 30/09 e a Aula 11 (29/09) ainda o alcança. É a mesma disciplina que a Aula 9 ensina sobre medição, aplicada ao tempo: a régua vem antes da medida, e o corte vem antes do aperto.
+
+### Navegação autônoma passa para a Aula 11
+
+A Aula 10 era "navegação autônoma + aterrissagem do TP2". Navegação sai e vai para a Aula 11 (29/09), na Etapa 6.
+
+A troca é barata porque **nenhum gate de navegação vence antes de 30/10** — o primeiro é o G4.0, do TP4. Navegação era o único conteúdo da Aula 10 sem prazo pressionando, e por isso foi o escolhido para ceder o lugar à clínica e à aterrissagem.
+
+O destino também não é arbitrário: a Etapa 6 é "integração robótica e IA autônoma", e o Nav2 é integração — ele se monta sobre ações (Aula 8) e TF coerente (G2.5), que é exatamente o que a Aula 10 fecha. A sequência melhora em vez de piorar.
+
+Em troca, a Aula 10 recebe o bloco de **launch**, que não estava previsto nela. Isso resolve um problema que a tabela acima já mostrava: o G3.0 vence em 30/09 e a Aula 11 é em 29/09 — um dia de folga, o mesmo aperto do G1.5. Ensinando launch em 22/09, a folga do G3.0 vai de um dia para oito.
 
 ### E o que continua onde estava
 

@@ -120,6 +120,7 @@ nav:
       - "Aula 7 — Ações: tarefas longas, feedback e cancelamento": aulas/etapa04-aula07/index.md
       - "Aula 8 — Ações a fundo: o ciclo de vida de um objetivo": aulas/etapa04-aula08/index.md
       - "Aula 9 — Detecção treinada e métrica declarada": aulas/etapa05-aula09/index.md
+      - "Aula 10 — Aterrissagem do TP2: o sistema sobe com um comando": aulas/etapa05-aula10/index.md
 
   - Tutoriais:
       - tutoriais/index.md
@@ -157,6 +158,7 @@ nav:
       - "Aula 7 — ações": exemplos/aula07-acoes/index.md
       - "Aula 9 — URDF e TF": exemplos/aula09-urdf/index.md
       - "Aula 9 — métrica de detector": exemplos/aula09-metrica/index.md
+      - "Aula 10 — bringup e parâmetros": exemplos/aula10-bringup/index.md
       - TP1: exemplos/tp1/index.md
       - TP2: exemplos/tp2/index.md
       - TP3: exemplos/tp3/index.md

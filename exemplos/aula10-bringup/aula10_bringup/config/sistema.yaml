@@ -1,0 +1,12 @@
+# Parametros do sistema. A chave de cima e' o NOME DO NO, nao o do pacote.
+#
+# "/**" e' curinga: casa com qualquer namespace. E' por isso que este arquivo
+# continua funcionando quando o launch empurra os nos para dentro de
+# /percepcao -- e e' por isso que ele e' o padrao recomendado.
+/**:
+  ros__parameters:
+    taxa_hz: 4.0
+    limiar_confianca: 0.60
+    classe: cone
+    janela_s: 5.0
+    taxa_minima_hz: 1.0
