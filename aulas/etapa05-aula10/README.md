@@ -115,6 +115,9 @@ Essa separação é o ponto arquitetural, e é o mesmo princípio das interfaces
 
 ## Parte 4 — Launch: um comando sobe o sistema inteiro
 
+!!! warning "Não trabalhada em 22/09 — recuperada na Aula 11"
+    Este era o bloco de folga declarado no começo da aula, e foi ele que cedeu quando o tempo apertou — como combinado. Ele abre a [Aula 11, de 29/09](../etapa06-aula11/index.md), a tempo do G3.0, que vence em 30/09. O texto continua aqui para quem quiser chegar lá com ele lido.
+
 Launch vocês usam desde a Aula 2. O que muda agora é a escala: sair de "um launch por exemplo" para **um launch que sobe o projeto todo**, que é o que o G3.0 do TP3 vai cobrar em 30/09.
 
 ```bash
@@ -191,6 +194,8 @@ Se algum gate não fechou, **diga no relatório o que não fechou e por quê**. 
 
 ## Para a próxima aula (29/09)
 
-**Navegação autônoma**, abrindo a Etapa 6. O Nav2 é construído sobre as duas coisas que vocês acabaram de fechar: ações, da Aula 8, e TF coerente, do G2.5. Não é assunto novo — é a montagem do que já está no lugar.
+**[O mundo, a deriva e o mapa que corrige](../etapa06-aula11/index.md)**, abrindo a Etapa 6. A aula começa pelo bloco de launch acima, a tempo do G3.0, e segue para as duas arestas novas da árvore de TF — `map → odom` e `odom → base_link` — que são o que o G3.2 cobra.
+
+A navegação autônoma entra como introdução: o Nav2 é construído sobre ações, da Aula 8, e TF coerente, do G2.5. Não é assunto novo — é a montagem do que já está no lugar, e ela faz sentido depois que existir mapa.
 
 E é por isso que a clínica de hoje importa além do TP2: o **G3.2** do TP3 pede a árvore de TF completa e sem warning, e noventa por cento dos problemas de SLAM e de Nav2 são problemas de TF disfarçados.

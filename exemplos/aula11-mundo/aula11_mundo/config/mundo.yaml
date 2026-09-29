@@ -1,0 +1,19 @@
+# Curinga "/**": casa com qualquer namespace. Foi a licao da Aula 10, e vale
+# aqui tambem -- no dia em que voce empurrar este sistema para dentro de um
+# namespace, este arquivo continua chegando.
+/**:
+  ros__parameters:
+    # --- no `mundo` ---
+    taxa_hz: 20.0
+    taxa_scan_hz: 5.0
+    feixes: 360
+    alcance_max: 6.0
+    deriva_pct: 3.0            # sobrescrito pelo argumento deriva:= do launch
+    raio_robo: 0.20
+    pose_inicial: [2.0, 4.0, 0.0]
+
+    # --- no `piloto` ---
+    velocidade: 0.35
+    giro: 0.9
+    parada_m: 0.75
+    cone_graus: 35.0

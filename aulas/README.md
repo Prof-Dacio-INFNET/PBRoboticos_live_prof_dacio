@@ -15,8 +15,9 @@ O bloco tem dez etapas de conteúdo distribuídas em dois trimestres (26T3, de 2
 | [Aula 7](etapa04-aula07/index.md) | 01/09/2026 | 4 | Abertura com webcam; ações apresentadas | <span class="pb-tag ok">dada</span> |
 | [Aula 8](etapa04-aula08/index.md) | 08/09/2026 | 4 | Ações a fundo: o ciclo de vida de um objetivo | <span class="pb-tag ok">dada</span> |
 | [Aula 9](etapa05-aula09/index.md) | 15/09/2026 | 5 | Detecção treinada e métrica declarada | <span class="pb-tag warn">parcial</span> |
-| [Aula 10](etapa05-aula10/index.md) | 22/09/2026 | 5 | Aterrissagem do TP2: clínica de URDF e bringup | <span class="pb-tag next">próxima</span> |
-| Aula 11 | 29/09/2026 | 6 | Navegação autônoma | <span class="pb-tag soon">a seguir</span> |
+| [Aula 10](etapa05-aula10/index.md) | 22/09/2026 | 5 | Aterrissagem do TP2: clínica de URDF e bringup | <span class="pb-tag warn">parcial</span> |
+| [Aula 11](etapa06-aula11/index.md) | 29/09/2026 | 6 | O mundo, a deriva e o mapa que corrige | <span class="pb-tag next">próxima</span> |
+| Aula 12 | 06/10/2026 | 6 | SLAM Toolbox: a correção publicada | <span class="pb-tag soon">a seguir</span> |
 
 !!! note "Por que as Aulas 4 e 5 apontam para a página da Aula 3"
     O material da Aula 3 é denso e foi trabalhado ao longo de três encontros — 04, 11 e 18/08 —, com a leitura oficial do TP1 no último deles. As datas do calendário não mudaram; o que mudou foi o ritmo, e isso é normal num bloco prático. As três aulas compartilham a mesma página porque compartilham o mesmo conteúdo.
@@ -58,7 +59,10 @@ Esta tabela existe para uma pergunta específica: **a redistribuição das aulas
 | G2.4 | detecção evoluída com métrica declarada | [Aula 9](etapa05-aula09/index.md) · 15/09 (régua) + [Aula 10](etapa05-aula10/index.md) · 22/09 (contrato) | 19/09 | 4 dias / **−3** |
 | G2.5 | YAML + URDF no RViz2 com TF coerente | [tutorial](../tutoriais/urdf-tf-rviz2.md) publicado 08/09 + clínica na [Aula 10](etapa05-aula10/index.md) · 22/09 | 22/09 | **0 dias** |
 | G2.6 | entrega: branch, tag, relatório, Moodle | [Aula 10](etapa05-aula10/index.md) · 22/09 | 25/09 | 3 dias |
-| G3.0 | `bringup.launch.py` sobe o sistema inteiro | [Aula 10](etapa05-aula10/index.md) · 22/09 | 30/09 | 8 dias |
+| G3.0 | `bringup.launch.py` sobe o sistema inteiro | [Aula 11](etapa06-aula11/index.md) · 29/09 | 30/09 | **1 dia** |
+| G3.1 | mundo de simulação com robô e câmera | [Aula 11](etapa06-aula11/index.md) · 29/09 | 06/10 | 7 dias |
+| G3.2 | árvore `map → odom → base_link → sensores` | [Aula 11](etapa06-aula11/index.md) · 29/09 | 10/10 | 11 dias |
+| G3.3 | SLAM Toolbox com mapa persistido | Aula 12 · 06/10 | 15/10 | 9 dias |
 
 ### O que a redistribuição custou, dito com todas as letras
 
@@ -109,6 +113,30 @@ A troca é barata porque **nenhum gate de navegação vence antes de 30/10** —
 O destino também não é arbitrário: a Etapa 6 é "integração robótica e IA autônoma", e o Nav2 é integração — ele se monta sobre ações (Aula 8) e TF coerente (G2.5), que é exatamente o que a Aula 10 fecha. A sequência melhora em vez de piorar.
 
 Em troca, a Aula 10 recebe o bloco de **launch**, que não estava previsto nela. Isso resolve um problema que a tabela acima já mostrava: o G3.0 vence em 30/09 e a Aula 11 é em 29/09 — um dia de folga, o mesmo aperto do G1.5. Ensinando launch em 22/09, a folga do G3.0 vai de um dia para oito.
+
+### Quarta correção: a Aula 10 parou no slide 20, e o corte declarado funcionou
+
+A Aula 10 trabalhou até o slide 20 — clínica de URDF completa, aterrissagem do TP2 completa, e o contrato do detector até a frase "o contrato fica, o miolo troca". O que ficou de fora foi o **bloco de launch** (Parte 4) e as duas últimas telas da Parte 3.
+
+**Isto é diferente das três correções anteriores, e a diferença importa.** Nas Aulas 7 e 9 o bloco perdido foi uma surpresa. Aqui ele foi escolhido antes: a aula estava ordenada por custo de perda, launch era o bloco de folga, e a turma foi avisada disso no primeiro minuto. O plano previu a perda e escolheu onde ela cairia — então o que se perdeu foi o mais barato, e não o mais próximo do fim.
+
+A consequência é que **o G3.0 passa a ser ensinado com um dia de folga** — 29/09 para vencer em 30/09. É apertado, e era o preço combinado. Launch abre a Aula 11.
+
+**O que se perdeu junto, e não estava no combinado**, foram os slides 21 e 22: a regra prática do gate (`cv2.dnn` roda ONNX sem `torch`) e o fecho "o que se avalia é a métrica e a justificativa, não o modelo". Como o TP2 entregou em 25/09, isso deixou de valer para o G2.4 — mas volta a valer para o G3.4, o G3.5 e o G4.6, e precisa ser dito antes do primeiro deles, em 18/10.
+
+### A Aula 11 recebe três gates, e por isso o mundo entra leve
+
+Com launch recuperado, a Aula 11 carrega **G3.0** (30/09), **G3.1** (06/10) e **G3.2** (10/10). O G3.1 é o que pesa: ele pede cenário de simulação, e o caminho óbvio é o Gazebo — que é justamente a peça mais frágil na pilha gráfica desta turma, como a clínica de URDF já mostrou.
+
+A decisão foi tratar o mundo como **produtor de dados, e não como janela**. O que o sistema consome é `/scan`, `/odom` e uma árvore de TF; o exemplo [`aula11-mundo`](../exemplos/aula11-mundo/index.md) produz os três com ray-casting em numpy, sem física, sem render e sem janela. O Gazebo entra como upgrade — mesmo contrato, produtor mais pesado —, e quem trocar mantém launch, frames, SLAM e Nav2 intactos.
+
+É a terceira vez que o mesmo movimento resolve um aperto de calendário: o G2.5 sem depender do RViz2, o detector atrás de uma assinatura, e agora o simulador atrás de dois tópicos. **O contrato fica, o miolo troca** deixou de ser tema de uma aula e virou o método do bloco.
+
+### Navegação autônoma desce mais um degrau, e continua sem custo
+
+Prevista para a Aula 11, a navegação vira o bloco de folga desta vez — introduzida como "o que o Nav2 acrescenta ao piloto reativo", e trabalhada de fato quando o mapa existir.
+
+O custo continua sendo zero: **nenhum gate de navegação vence antes de 30/10** (G4.0, do TP4). E a sequência melhora de novo, porque Nav2 sobre mapa inexistente é exposição, não prática: o SLAM do G3.3 entrega o mapa em 15/10, e é depois dele que navegar quer dizer alguma coisa.
 
 ### E o que continua onde estava
 
