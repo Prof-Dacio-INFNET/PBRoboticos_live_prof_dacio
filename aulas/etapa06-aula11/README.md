@@ -125,6 +125,8 @@ O [`aula11-mundo`](../../exemplos/aula11-mundo/index.md) tem 12 × 8 metros, dua
 
     É o mesmo movimento das Aulas 6, 9 e 10 — o contrato fica, o miolo troca. O simulador é um detalhe de implementação atrás de uma interface, e quem monta o sistema na ordem certa pode trocar de simulador numa tarde.
 
+    Quando quiser fazer a troca, o caminho está no tutorial [Gazebo para o TP3](../../tutoriais/gazebo-para-o-tp3.md) — que começa pela armadilha da versão (**Humble pareia com Fortress, não com Harmonic**) e termina com um critério de desistência de trinta minutos.
+
 ### Quem publica cada aresta
 
 Saber isto é metade do G3.2:
@@ -171,6 +173,19 @@ Ruído você combate com repetição, porque ele se cancela; foi por isso que a 
 Daí a conclusão que a aula quer: **nenhum filtro sobre `/odom` resolve.** O conserto não está em medir melhor a roda; está em medir contra outra coisa — algo que não se mexe. As paredes.
 
 O SLAM faz exatamente isso: compara o `/scan` de agora com o mapa que vem construindo, calcula quanto a odometria já errou, e publica essa correção como `map → odom`. Enquanto essa aresta for identidade, como hoje, o robô acredita na própria odometria — e no RViz2 você vê o laser deslizar para fora das paredes.
+
+```bash
+ros2 launch aula11_mundo mundo.launch.py rviz:=true
+```
+
+!!! tip "RViz2 aberto e nada desenhado não é defeito do sistema"
+    É ausência de displays. O `rviz2` sem `-d` abre com o Grid e mais nada — quadro fixo `map`, status `Ok`, tela vazia. O launch já passa a configuração pronta; se você abrir o RViz2 na mão, passe também:
+
+    ```bash
+    rviz2 -d $(ros2 pkg prefix aula11_mundo)/share/aula11_mundo/rviz/mundo.rviz
+    ```
+
+    O que você vai ver: as paredes paradas (o tópico `/mundo_real`, que é a verdade e o robô não tem), e o laser — desenhado pela odometria — escorregando para fora delas conforme a deriva cresce.
 
 !!! warning "É por isso que o G3.2 é o gate de verdade do TP3"
     Noventa por cento dos problemas de SLAM e de Nav2 são problemas de TF disfarçados. Se o `view_frames` mostrar árvore quebrada ou dois `odom`, **pare tudo** e conserte antes de tocar no G3.3 — insistir no SLAM com TF errada é queimar uma semana.

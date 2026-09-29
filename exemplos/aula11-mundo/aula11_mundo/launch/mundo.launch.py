@@ -34,6 +34,7 @@ from launch_ros.parameter_descriptions import ParameterValue
 def generate_launch_description():
     pkg = get_package_share_directory('aula11_mundo')
     padrao = os.path.join(pkg, 'config', 'mundo.yaml')
+    config_rviz = os.path.join(pkg, 'rviz', 'mundo.rviz')
 
     params = LaunchConfiguration('params')
     deriva = LaunchConfiguration('deriva')
@@ -54,7 +55,7 @@ def generate_launch_description():
         DeclareLaunchArgument('modelo', default_value='true',
                               description='subir o URDF (precisa de meu_robo_description)'),
         DeclareLaunchArgument('rviz', default_value='false',
-                              description='abrir o RViz2 (opcional: o G3.2 nao depende dele)'),
+                              description='abrir o RViz2 ja configurado (o G3.2 nao depende dele)'),
 
         Node(package='aula11_mundo', executable='mundo', name='mundo',
              output='screen',
@@ -84,8 +85,11 @@ def generate_launch_description():
                  condition=IfCondition(modelo),
                  parameters=[{'robot_description': descricao}]))
 
+    # O "-d" nao e' detalhe: sem ele o rviz2 abre com Grid e mais nada, a
+    # janela parece vazia, e o aluno conclui que o sistema nao subiu.
     acoes.append(
         Node(package='rviz2', executable='rviz2', name='rviz2',
-             condition=IfCondition(rviz), output='screen'))
+             condition=IfCondition(rviz), output='screen',
+             arguments=['-d', config_rviz]))
 
     return LaunchDescription(acoes)

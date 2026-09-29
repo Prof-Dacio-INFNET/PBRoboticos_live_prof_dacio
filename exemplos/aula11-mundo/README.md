@@ -14,8 +14,8 @@ chega no Gazebo com o esqueleto já pronto.
 ```bash
 cd /tmp && rm -rf pb-aula11 && \
   git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio.git pb-aula11 && \
-  cp -r pb-aula11/exemplos/aula11-mundo/aula11_mundo ~/ros2_ws/src/ && \
-  cd ~/ros2_ws && colcon build --packages-select aula11_mundo && \
+  cp -r pb-aula11/exemplos/aula11-mundo/aula11_mundo ~/projeto-pb-SEU-USUARIO/ros2_ws/src/ && \
+  cd ~/projeto-pb-SEU-USUARIO/ros2_ws && colcon build --packages-select aula11_mundo && \
   source install/setup.bash
 ```
 
@@ -36,6 +36,17 @@ ros2 launch aula11_mundo mundo.launch.py modelo:=false   # sem o URDF da Aula 9
 ros2 launch aula11_mundo mundo.launch.py rviz:=true
 ```
 
+!!! tip "Se o RViz2 abrir só com o Grid, não é defeito do sistema"
+    É ausência de **displays**. O `rviz2` sem `-d` abre vazio: quadro fixo `map`, status
+    `Ok`, e nada desenhado — parece que nada subiu, mas o que falta é a configuração.
+
+    O launch passa `-d rviz/mundo.rviz`, que já traz LaserScan, Odometry, RobotModel, TF e o
+    mundo real. Se você abrir o `rviz2` na mão, passe o arquivo:
+
+    ```bash
+    rviz2 -d $(ros2 pkg prefix aula11_mundo)/share/aula11_mundo/rviz/mundo.rviz
+    ```
+
 ## O que tem dentro
 
 | Arquivo | Papel |
@@ -46,6 +57,7 @@ ros2 launch aula11_mundo mundo.launch.py rviz:=true
 | `aula11_mundo/piloto.py` | o nó que dirige — reativo, sem mapa e sem destino |
 | `aula11_mundo/simular.py` | roda tudo offline e desenha as duas trajetórias |
 | `launch/mundo.launch.py` | sobe o sistema inteiro, no formato que o G3.0 cobra |
+| `rviz/mundo.rviz` | os displays já montados — sem isto o RViz2 abre só com o Grid |
 | `config/mundo.yaml` | parâmetros, com o curinga `/**` da Aula 10 |
 | `simular.py` · `testar.py` | rodam da pasta do exemplo, sem ROS 2 e sem compilar |
 
@@ -106,6 +118,18 @@ distância percorrida**. Rodar mais tempo piora.
 É por isso que nenhum filtro sobre `/odom` resolve, e é por isso que o SLAM
 precisa de uma referência **externa** que não se mexe: as paredes.
 
+### O mundo real desenhado, e por que ele está ali
+
+O nó publica também `/mundo_real`, um `OccupancyGrid` com as paredes de verdade, no
+quadro `map`. **O robô não tem acesso a isso** — se tivesse, não precisaria de SLAM.
+
+Ele existe só para você enxergar a deriva: as paredes ficam paradas em `map`, enquanto o
+laser, desenhado a partir da odometria, escorrega para fora delas. Sem as paredes na tela,
+"o laser desliza" é uma frase; com elas, é uma coisa que você vê acontecer.
+
+Quando o SLAM entrar, no TP3, ele vai construir o próprio mapa a partir do `/scan` — e a
+diferença entre esse mapa e este aqui é exatamente o que ele ainda não sabe.
+
 ### Um detalhe que vale medir
 
 Na corrida padrão (`--deriva 3 --segundos 90`, 28,4 m percorridos), o erro de
@@ -127,6 +151,9 @@ do seu sistema continua valendo**: o launch, os frames, o SLAM, o Nav2.
 Essa é a razão de existir deste exemplo. O simulador é um detalhe de
 implementação atrás de uma interface — e trocar o miolo sem trocar o contrato é
 o mesmo movimento da Aula 6, da Aula 9 e da Aula 10.
+
+O passo a passo está em [Gazebo para o TP3](../../tutoriais/gazebo-para-o-tp3.md):
+qual versão (Fortress, não Harmonic), como montar a ponte, e quando parar.
 
 ## Socorro rápido
 

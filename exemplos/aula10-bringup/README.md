@@ -13,8 +13,8 @@ hardware**.
 ```bash
 cd /tmp && rm -rf pb-aula10 && \
   git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio.git pb-aula10 && \
-  cp -r pb-aula10/exemplos/aula10-bringup/aula10_bringup ~/ros2_ws/src/ && \
-  cd ~/ros2_ws && colcon build --packages-select aula10_bringup && \
+  cp -r pb-aula10/exemplos/aula10-bringup/aula10_bringup ~/projeto-pb-SEU-USUARIO/ros2_ws/src/ && \
+  cd ~/projeto-pb-SEU-USUARIO/ros2_ws && colcon build --packages-select aula10_bringup && \
   source install/setup.bash
 ```
 

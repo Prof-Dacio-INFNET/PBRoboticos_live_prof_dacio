@@ -19,8 +19,9 @@ import math
 import numpy as np
 import rclpy
 from geometry_msgs.msg import Twist, TransformStamped
-from nav_msgs.msg import Odometry
+from nav_msgs.msg import OccupancyGrid, Odometry
 from rclpy.node import Node
+from rclpy.qos import DurabilityPolicy, QoSProfile
 from sensor_msgs.msg import LaserScan
 from std_msgs.msg import Float32
 from tf2_ros import TransformBroadcaster
@@ -63,6 +64,14 @@ class NoMundo(Node):
                                    endpoint=False)
         self.v = self.w = 0.0
 
+        # O mundo VERDADEIRO, publicado so' para voce poder ver. O robo nao tem
+        # acesso a isto -- se tivesse, nao precisaria de SLAM. Ele existe no
+        # RViz2 para que a deriva seja visivel: as paredes ficam paradas no
+        # quadro `map` enquanto o laser, desenhado pela odometria, escorrega
+        # para fora delas.
+        qos_fixo = QoSProfile(depth=1, durability=DurabilityPolicy.TRANSIENT_LOCAL)
+        self.pub_verdade = self.create_publisher(OccupancyGrid, 'mundo_real', qos_fixo)
+
         self.pub_scan = self.create_publisher(LaserScan, 'scan', 10)
         self.pub_odom = self.create_publisher(Odometry, 'odom', 10)
         self.pub_deriva = self.create_publisher(Float32, 'deriva', 10)
@@ -75,6 +84,8 @@ class NoMundo(Node):
         self.get_logger().info(
             f'mundo {self.mundo.nx}x{self.mundo.ny} celulas | '
             f'deriva {p("deriva_pct").value}% | pose {self.verdadeira}')
+
+        self.publicar_verdade()
 
     # ------------------------------------------------------------- entradas
     def ouvir_cmd(self, msg: Twist):
@@ -133,6 +144,22 @@ class NoMundo(Node):
          o.pose.pose.orientation.z, o.pose.pose.orientation.w) = qx, qy, qz, qw
         o.twist.twist.linear.x, o.twist.twist.angular.z = self.v, self.w
         self.pub_odom.publish(o)
+
+    def publicar_verdade(self):
+        """A grade de ocupacao como OccupancyGrid, uma vez, em transient local."""
+        g = OccupancyGrid()
+        g.header.stamp = self.get_clock().now().to_msg()
+        g.header.frame_id = 'map'
+        g.info.resolution = float(self.mundo.res)
+        g.info.width = int(self.mundo.nx)
+        g.info.height = int(self.mundo.ny)
+        g.info.origin.position.x = 0.0
+        g.info.origin.position.y = 0.0
+        g.info.origin.orientation.w = 1.0
+        # OccupancyGrid e' row-major a partir da origem (canto inferior
+        # esquerdo) -- a mesma ordem da nossa grade, entao nao ha flip aqui.
+        g.data = [100 if v else 0 for v in self.mundo.grade.ravel()]
+        self.pub_verdade.publish(g)
 
     def varrer(self):
         leituras = self.mundo.medir(*self.verdadeira, self.angulos,

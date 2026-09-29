@@ -136,6 +136,7 @@ nav:
       - "Tarefa da Aula 6 — interfaces próprias": tutoriais/tarefa-aula06-interfaces.md
       - "Tarefa da Aula 7 — ações": tutoriais/tarefa-aula07-acoes.md
       - "URDF, TF e RViz2": tutoriais/urdf-tf-rviz2.md
+      - "Gazebo para o TP3": tutoriais/gazebo-para-o-tp3.md
       - "Checklist de entrega do TP1": tutoriais/checklist-entrega-tp1.md
       - "Uso de IA na disciplina": tutoriais/orientacao-uso-ia.md
 

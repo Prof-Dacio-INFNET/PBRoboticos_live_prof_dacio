@@ -8,6 +8,7 @@ Estes quatro testes existem para que a deriva que a aula discute seja a deriva
 do modelo, e nao um defeito do mapa ou da integracao.
 """
 import math
+import pathlib
 import sys
 
 import numpy as np
@@ -50,6 +51,37 @@ conferir('deriva da 2a metade > da 1a', max(der[len(der) // 2:]) > max(der[:len(
          f'{max(der[:len(der)//2]):.2f} -> {max(der[len(der)//2:]):.2f} m')
 conferir('nenhuma pose verdadeira dentro de parede',
          not any(mundo.ocupado(x, y) for x, y, _ in rv))
+
+print('5. o RViz2 vem configurado, e aponta para o que o pacote publica')
+rviz = pathlib.Path('aula11_mundo/rviz/mundo.rviz')
+conferir('config do RViz2 existe', rviz.exists())
+if rviz.exists():
+    import yaml
+    cfg = yaml.safe_load(rviz.read_text(encoding='utf-8'))
+    vm = cfg['Visualization Manager']
+    nomes = {d['Class'].rsplit('/', 1)[-1] for d in vm['Displays']}
+    conferir('tem Map, LaserScan, Odometry, RobotModel e TF',
+             {'Map', 'LaserScan', 'Odometry', 'RobotModel', 'TF'} <= nomes,
+             ', '.join(sorted(nomes)))
+    conferir('quadro fixo e map (senao a deriva fica invisivel)',
+             vm['Global Options']['Fixed Frame'] == 'map',
+             vm['Global Options']['Fixed Frame'])
+
+    # Os topicos do RViz2 tem de ser os que o no realmente publica.
+    fonte = pathlib.Path('aula11_mundo/aula11_mundo/mundo.py').read_text(encoding='utf-8')
+    publicados = {'/' + n for n in ('scan', 'odom', 'mundo_real', 'deriva')
+                  if f"'{n}'" in fonte}
+    publicados.add('/robot_description')          # do robot_state_publisher
+    usados = set()
+    for d in vm['Displays']:
+        for chave in ('Topic', 'Description Topic'):
+            v = d.get(chave, {}).get('Value')
+            if v:
+                usados.add(v)
+    orfaos = usados - publicados
+    conferir('nenhum display aponta para topico inexistente',
+             not orfaos, ('órfãos: ' + ', '.join(sorted(orfaos))) if orfaos else
+             ', '.join(sorted(usados)))
 
 print()
 if falhas:

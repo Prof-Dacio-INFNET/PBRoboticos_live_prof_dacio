@@ -15,6 +15,8 @@ Todos os guias de setup **validam os pré-requisitos antes de instalar** e fixam
 | [Workspace e colcon](workspace-colcon.md) | criar pacotes, compilar, entender `source install/setup.bash` |
 | [Renomear um pacote ROS 2](renomear-pacote-ros2.md) | adotar um exemplo da aula como seu — os 4 lugares do nome, o `setup.cfg` e o erro de `libexec` |
 | [Câmera USB no WSL2 (usbipd)](camera-wsl2-usbipd.md) | passar a webcam do Windows para o Linux (Etapa 2 em diante) |
+| [URDF, TF e RViz2](urdf-tf-rviz2.md) | modelar o robô e validar a árvore de transformadas (G2.5, e base do G3.2) |
+| [Gazebo para o TP3](gazebo-para-o-tp3.md) | antes de instalar o Gazebo — a armadilha da versão, a ponte, e o critério de desistência |
 
 ## Processo e entregas
 
