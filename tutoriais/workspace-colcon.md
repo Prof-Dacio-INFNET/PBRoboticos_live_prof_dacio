@@ -35,7 +35,12 @@ Um **workspace** é a pasta onde seus pacotes vivem e são compilados: código e
 ## 2. Compilar o workspace do seu projeto
 
 ```bash
-cd ~/projeto-pb-SEU-USUARIO/ros2_ws
+# ── uma vez por terminal ──────────────────────────────
+export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
+export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_WS="$PB_DIR/ros2_ws"
+
+cd "$PB_WS"
 colcon build
 source install/setup.bash
 ```
@@ -45,7 +50,7 @@ source install/setup.bash
 ## 3. Criar o seu primeiro pacote
 
 ```bash
-cd ~/projeto-pb-SEU-USUARIO/ros2_ws/src
+cd "$PB_WS/src"
 ros2 pkg create --build-type ament_python --node-name meu_no meu_pacote
 cd .. && colcon build && source install/setup.bash
 ros2 run meu_pacote meu_no    # "Hi from meu_pacote."

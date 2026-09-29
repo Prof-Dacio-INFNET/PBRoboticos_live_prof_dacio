@@ -1,7 +1,12 @@
 # ⭐ Colcon — workspace e build
 
 ```bash
-cd ~/projeto-pb-SEU-USUARIO/ros2_ws        # sempre compile na RAIZ do workspace
+# ── uma vez por terminal ──────────────────────────────
+export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
+export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_WS="$PB_DIR/ros2_ws"
+
+cd "$PB_WS"        # sempre compile na RAIZ do workspace
 colcon build                        # compila tudo
 colcon build --packages-select PKG  # compila 1 pacote (mais rápido)
 colcon build --symlink-install      # edita Python sem recompilar

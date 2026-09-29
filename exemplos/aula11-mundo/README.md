@@ -12,10 +12,15 @@ chega no Gazebo com o esqueleto já pronto.
 ## Baixar
 
 ```bash
+# ── uma vez por terminal ──────────────────────────────
+export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
+export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_WS="$PB_DIR/ros2_ws"
+
 cd /tmp && rm -rf pb-aula11 && \
   git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio.git pb-aula11 && \
-  cp -r pb-aula11/exemplos/aula11-mundo/aula11_mundo ~/projeto-pb-SEU-USUARIO/ros2_ws/src/ && \
-  cd ~/projeto-pb-SEU-USUARIO/ros2_ws && colcon build --packages-select aula11_mundo && \
+  cp -r pb-aula11/exemplos/aula11-mundo/aula11_mundo "$PB_WS/src/" && \
+  cd "$PB_WS" && colcon build --packages-select aula11_mundo && \
   source install/setup.bash
 ```
 

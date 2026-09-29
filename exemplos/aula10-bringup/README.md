@@ -11,10 +11,15 @@ hardware**.
 ## Baixar
 
 ```bash
+# ── uma vez por terminal ──────────────────────────────
+export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
+export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_WS="$PB_DIR/ros2_ws"
+
 cd /tmp && rm -rf pb-aula10 && \
   git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio.git pb-aula10 && \
-  cp -r pb-aula10/exemplos/aula10-bringup/aula10_bringup ~/projeto-pb-SEU-USUARIO/ros2_ws/src/ && \
-  cd ~/projeto-pb-SEU-USUARIO/ros2_ws && colcon build --packages-select aula10_bringup && \
+  cp -r pb-aula10/exemplos/aula10-bringup/aula10_bringup "$PB_WS/src/" && \
+  cd "$PB_WS" && colcon build --packages-select aula10_bringup && \
   source install/setup.bash
 ```
 

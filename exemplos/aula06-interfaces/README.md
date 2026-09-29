@@ -20,6 +20,11 @@ aula06-interfaces/
 A ordem importa: interface compilada e `source` **antes** do nó que a importa.
 
 ```bash
+# ── uma vez por terminal ──────────────────────────────
+export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
+export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_WS="$PB_DIR/ros2_ws"
+
 # 1) baixar o material (pode repetir sempre)
 rm -rf /tmp/PBRoboticos_prof_dacio
 cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio.git
@@ -27,10 +32,10 @@ cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_
 # 2) copiar os DOIS pacotes para dentro do SEU projeto
 cp -r /tmp/PBRoboticos_prof_dacio/exemplos/aula06-interfaces/pb_interfaces \
       /tmp/PBRoboticos_prof_dacio/exemplos/aula06-interfaces/aula06_percepcao \
-      ~/projeto-pb-SEU-USUARIO/ros2_ws/src/
+      "$PB_WS/src/"
 
 # 3) compilar -- a ORDEM importa
-cd ~/projeto-pb-SEU-USUARIO/ros2_ws
+cd "$PB_WS"
 
 colcon build --packages-select pb_interfaces
 source install/setup.bash

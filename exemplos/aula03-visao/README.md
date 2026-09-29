@@ -12,14 +12,19 @@ publicador_camera  --/camera/image_raw-->  segmentador_hsv  --/vision/segmented-
 ## Rodar (5 comandos)
 
 ```bash
+# ── uma vez por terminal ──────────────────────────────
+export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
+export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_WS="$PB_DIR/ros2_ws"
+
 # 1) baixar o material (pode repetir sempre -- o rm evita o erro de pasta ja existente)
 rm -rf /tmp/PBRoboticos_prof_dacio
 cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio.git
 
 # 2) copiar o pacote para dentro do SEU projeto
 cp -r /tmp/PBRoboticos_prof_dacio/exemplos/aula03-visao/aula03_visao \
-      ~/projeto-pb-SEU-USUARIO/ros2_ws/src/
-cd ~/projeto-pb-SEU-USUARIO/ros2_ws && colcon build --symlink-install && source install/setup.bash
+      "$PB_WS/src/"
+cd "$PB_WS" && colcon build --symlink-install && source install/setup.bash
 ros2 launch aula03_visao visao.launch.py            # fonte sintética: não precisa de webcam
 ros2 topic echo /vision/contagem                    # noutro terminal
 ros2 service call /vision/status std_srvs/srv/Trigger "{}"
@@ -99,7 +104,7 @@ Depois de copiar o pacote para `~/projeto-pb-SEU-USUARIO/ros2_ws/src/`, **toda**
 ## Sequência de comandos recomendada
 
 ```bash
-cd ~/projeto-pb-SEU-USUARIO/ros2_ws
+cd "$PB_WS"
 
 # opcional, quando houver muita sujeira de build anterior
 rm -rf build/aula03_visao install/aula03_visao log/latest_build

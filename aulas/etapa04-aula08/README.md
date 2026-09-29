@@ -26,6 +26,11 @@ Ao final da aula você deve conseguir explicar por que um objetivo tem identidad
 ## Baixar o material desta aula
 
 ```bash
+# ── uma vez por terminal ──────────────────────────────
+export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
+export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_WS="$PB_DIR/ros2_ws"
+
 # 1) baixar o material (pode repetir sempre — a linha do rm evita o erro de pasta já existente)
 rm -rf /tmp/PBRoboticos_prof_dacio
 cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio.git
@@ -34,10 +39,10 @@ cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_
 cp -r /tmp/PBRoboticos_prof_dacio/exemplos/aula06-interfaces/pb_interfaces \
       /tmp/PBRoboticos_prof_dacio/exemplos/aula06-interfaces/aula06_percepcao \
       /tmp/PBRoboticos_prof_dacio/exemplos/aula07-acoes/aula07_acoes \
-      ~/projeto-pb-SEU-USUARIO/ros2_ws/src/
+      "$PB_WS/src/"
 
 # 3) compilar no SEU workspace — interfaces primeiro, sempre
-cd ~/projeto-pb-SEU-USUARIO/ros2_ws
+cd "$PB_WS"
 colcon build --packages-select pb_interfaces
 source install/setup.bash
 colcon build --packages-select aula06_percepcao aula07_acoes --symlink-install

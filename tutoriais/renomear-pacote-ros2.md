@@ -47,7 +47,12 @@ Além dos arquivos, confira também as referências **dentro** do código e dos 
 Depois de trocar os nomes, compile do jeito previsível. O passo do `rm -rf` é opcional: use quando houver sujeira de build anterior — que é exatamente o caso depois de uma renomeação, porque os artefatos com o nome velho continuam em `build/` e `install/`.
 
 ```bash
-cd ~/projeto-pb-SEU-USUARIO/ros2_ws
+# ── uma vez por terminal ──────────────────────────────
+export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
+export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_WS="$PB_DIR/ros2_ws"
+
+cd "$PB_WS"
 
 # opcional, quando houver muita sujeira de build anterior
 rm -rf build/<nome_do_pacote> install/<nome_do_pacote> log/latest_build

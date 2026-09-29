@@ -10,7 +10,12 @@ Tudo ✓? Siga. Faltou algo? Volte ao tutorial da **sua** rota de ambiente: [WSL
 
 ## 1. Trabalhe na branch dev, dentro do seu repositório (no terminal do Ubuntu)
 ```bash
-cd ~/projeto-pb-SEU-USUARIO      # onde você clonou (nunca em /mnt/c)
+# ── uma vez por terminal ──────────────────────────────
+export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
+export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_WS="$PB_DIR/ros2_ws"
+
+cd "$PB_DIR"      # onde você clonou (nunca em /mnt/c)
 git checkout dev
 ```
 
@@ -18,8 +23,8 @@ git checkout dev
 Baixe o exemplo do repositório de material e copie o pacote para `ros2_ws/src/`:
 ```bash
 cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio.git
-cp -r /tmp/PBRoboticos_prof_dacio/exemplos/aula02-comunicacao/aula02_comunicacao ~/projeto-pb-SEU-USUARIO/ros2_ws/src/
-cd ~/projeto-pb-SEU-USUARIO
+cp -r /tmp/PBRoboticos_prof_dacio/exemplos/aula02-comunicacao/aula02_comunicacao "$PB_WS/src/"
+cd "$PB_DIR"
 ```
 
 ## 3. Compile e rode

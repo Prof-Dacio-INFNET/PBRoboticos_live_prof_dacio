@@ -24,19 +24,24 @@ Ao final da aula você deve conseguir declarar uma métrica adequada ao seu dom�
 ## Baixar o material desta aula
 
 ```bash
+# ── uma vez por terminal ──────────────────────────────
+export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
+export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_WS="$PB_DIR/ros2_ws"
+
 # 1) baixar o material (pode repetir sempre — a linha do rm evita o erro de pasta já existente)
 rm -rf /tmp/PBRoboticos_prof_dacio
 cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio.git
 
 # 2) o banco de provas de detectores (não precisa de ROS 2 nem de câmera)
 cp -r /tmp/PBRoboticos_prof_dacio/exemplos/aula09-metrica \
-      ~/projeto-pb-SEU-USUARIO/
+      "$PB_DIR/"
 
 # 3) o modelo do robô, para a clínica de URDF da segunda metade
 cp -r /tmp/PBRoboticos_prof_dacio/exemplos/aula09-urdf/meu_robo_description \
-      ~/projeto-pb-SEU-USUARIO/ros2_ws/src/
+      "$PB_WS/src/"
 
-cd ~/projeto-pb-SEU-USUARIO/aula09-metrica
+cd "$PB_DIR/aula09-metrica"
 python3 gerar_video.py
 python3 avaliar.py
 ```
@@ -84,7 +89,7 @@ Isso não substitui dado real. Substitui a falta dele no dia em que você precis
 ## Parte 3 — Mão na massa: o banco de provas
 
 ```bash
-cd ~/projeto-pb-SEU-USUARIO/aula09-metrica
+cd "$PB_DIR/aula09-metrica"
 python3 gerar_video.py      # cena.avi + rotulos.csv
 python3 avaliar.py
 ```

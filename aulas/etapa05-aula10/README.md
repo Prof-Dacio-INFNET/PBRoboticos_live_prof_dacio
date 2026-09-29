@@ -37,15 +37,20 @@ Ao final da aula você deve conseguir provar que o seu URDF carrega com TF coere
 ## Baixar o material desta aula
 
 ```bash
+# ── uma vez por terminal ──────────────────────────────
+export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
+export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_WS="$PB_DIR/ros2_ws"
+
 # 1) baixar o material (pode repetir sempre — a linha do rm evita o erro de pasta já existente)
 rm -rf /tmp/PBRoboticos_prof_dacio
 cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio.git
 
 # 2) o pacote de bringup, para a segunda metade
 cp -r /tmp/PBRoboticos_prof_dacio/exemplos/aula10-bringup/aula10_bringup \
-      ~/projeto-pb-SEU-USUARIO/ros2_ws/src/
+      "$PB_WS/src/"
 
-cd ~/projeto-pb-SEU-USUARIO/ros2_ws
+cd "$PB_WS"
 colcon build --packages-select aula10_bringup
 source install/setup.bash
 ```

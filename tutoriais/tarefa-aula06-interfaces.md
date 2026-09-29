@@ -17,7 +17,12 @@ O objetivo é dar ao seu projeto um vocabulário próprio, e o critério de pron
 ## 1. Crie o seu pacote de interfaces
 
 ```bash
-cd ~/projeto-pb-SEU-USUARIO/ros2_ws/src
+# ── uma vez por terminal ──────────────────────────────
+export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
+export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_WS="$PB_DIR/ros2_ws"
+
+cd "$PB_WS/src"
 ros2 pkg create --build-type ament_cmake <seuprojeto>_interfaces
 ```
 

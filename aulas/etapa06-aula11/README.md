@@ -6,10 +6,20 @@
 [:material-code-tags: Exemplo `aula11-mundo`](../../exemplos/aula11-mundo/index.md){ .md-button }
 [:material-code-tags: Exemplo `aula10-bringup`](../../exemplos/aula10-bringup/index.md){ .md-button }
 
-!!! danger "O G3.0 vence amanhã, 30/09"
-    O bloco de launch não coube na Aula 10 — estava previsto que ele cederia se o tempo apertasse, e cedeu. Ele abre esta aula, e o **G3.0** (`bringup.launch.py` subindo o sistema inteiro) vence no dia seguinte.
+## Cenas dos últimos episódios
 
-    Logo atrás vêm o **G3.1** (mundo de simulação, 06/10) e o **G3.2** (árvore de TF completa, 10/10) — que é o gate de verdade do TP3.
+**Na Aula 10** vocês fecharam o TP2: a clínica de URDF validou o modelo do robô e a árvore de transformadas, e a aterrissagem cobriu branch, tag e relatório. O bloco de launch estava previsto como o que cederia se o tempo apertasse — e cedeu. Ele abre hoje.
+
+Quatro coisas de antes voltam agora, e vale ter as quatro na cabeça antes de começar:
+
+| De onde vem | O que era | Onde entra hoje |
+|---|---|---|
+| **Aula 2** — launch | um arquivo sobe vários nós com um comando | hoje ele passa a subir o **projeto inteiro**, não um exemplo |
+| **Aula 6** — interfaces | o contrato fica, o miolo troca | é o que permite trocar o simulador sem mexer no resto |
+| **Aula 8** — ações | objetivo longo, com feedback e cancelamento | o objetivo do Nav2 é uma ação; voltamos a isso no fim |
+| **Aula 10** — URDF e TF | `base_footprint → ... → camera_link`, validada | hoje a árvore ganha **duas arestas acima**: `odom` e `map` |
+
+E uma ideia da Aula 9 que reaparece em outro assunto: **ruído se combate com repetição, porque ele se cancela** — foi por isso que a métrica usou mediana em vez de uma medida só. Hoje aparece o erro que **não** se cancela, e a diferença entre os dois é o que a aula toda gira em torno.
 
 ## A ideia da aula em uma frase
 
@@ -21,12 +31,14 @@ Por isso nenhum filtro sobre `/odom` conserta um robô perdido, e por isso exist
 
 Ordenada por **custo de perda**, como a anterior. O que vence antes vem primeiro; o que tem folga vem por último, e fica declarado de antemão.
 
-| Bloco | Serve a | Vence | Se faltar tempo |
+| Bloco | O que você sai sabendo fazer | Prazo da entrega | Se faltar tempo |
 |---|---|---|---|
-| 1. Launch do sistema inteiro | G3.0 | **amanhã** | não pode cair |
-| 2. O mundo é um produtor de dados | G3.1 | 06/10 | não pode cair |
-| 3. `map → odom` e a deriva | G3.2 | 10/10 | não pode cair |
-| 4. O que o Nav2 acrescenta | TP4 | 30/10 | **volta na Aula 12** |
+| 1. Launch do sistema inteiro | subir o projeto todo com um comando, e provar que subiu | **amanhã** | não pode cair |
+| 2. O mundo é um produtor de dados | produzir `/scan` e `/odom` sem depender do simulador | 06/10 | não pode cair |
+| 3. `map → odom` e a deriva | medir o erro da odometria e explicar de onde ele vem | 10/10 | não pode cair |
+| 4. O que o Nav2 acrescenta | dizer o que falta a um robô que só reage | 30/10 | **volta na Aula 12** |
+
+As datas da coluna do meio são as do TP3, e estão todas em [gates e entregas](../../recursos/gates-tps.md) — aqui elas aparecem só para explicar a ordem da aula.
 
 ## Objetivos
 
@@ -35,19 +47,24 @@ Ao final da aula você deve conseguir subir o seu projeto inteiro com um `ros2 l
 ## Baixar o material desta aula
 
 ```bash
+# ── uma vez por terminal ──────────────────────────────
+export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
+export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_WS="$PB_DIR/ros2_ws"
+
 # 1) baixar o material (pode repetir sempre — a linha do rm evita o erro de pasta já existente)
 rm -rf /tmp/PBRoboticos_prof_dacio
 cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio.git
 
 # 2) o mundo mínimo desta aula
 cp -r /tmp/PBRoboticos_prof_dacio/exemplos/aula11-mundo/aula11_mundo \
-      ~/projeto-pb-SEU-USUARIO/ros2_ws/src/
+      "$PB_WS/src/"
 
 # 3) o bringup da Aula 10, se você ainda não tem
 cp -r /tmp/PBRoboticos_prof_dacio/exemplos/aula10-bringup/aula10_bringup \
-      ~/projeto-pb-SEU-USUARIO/ros2_ws/src/
+      "$PB_WS/src/"
 
-cd ~/projeto-pb-SEU-USUARIO/ros2_ws
+cd "$PB_WS"
 colcon build --packages-select aula11_mundo aula10_bringup
 source install/setup.bash
 ```
@@ -207,11 +224,73 @@ A segunda linha é a que fecha o semestre até aqui: **o objetivo do Nav2 é uma
 
 ## Tarefa da semana
 
-**G3.0** — o seu `bringup.launch.py` subindo o sistema inteiro com um comando. Evidência: `ros2 launch <projeto> bringup.launch.py` e a saída de `ros2 node list` com todos os nós, em `docs/evidencias/tp3/`. Vence **30/09**.
+### O que fazer
 
-**G3.1** — o seu cenário carregando com o robô e a câmera no lugar. Vence 06/10. Se o Gazebo rodar na sua máquina, use-o; se não rodar, o mundo mínimo desta aula conta — **e você documenta a escolha no relatório**, que é o que a disciplina pede em qualquer decisão de escopo.
+Fazer o **seu** projeto subir inteiro com um comando, produzindo dado de sensor e uma árvore de transformadas completa — de `map` até os seus sensores.
 
-**G3.2** — a árvore `map → odom → base_link → sensores` completa e sem warning. Evidência: `docs/evidencias/tp3/frames.pdf`. Vence 10/10.
+Ao terminar, três coisas têm de ser verdade ao mesmo tempo, com um único `ros2 launch` rodando: os seus nós todos no ar, `/scan` e `/odom` publicando, e `view_frames` desenhando **uma árvore só**, sem frames órfãos.
+
+### O que usar
+
+| Para | Use |
+|---|---|
+| a estrutura do launch | [`aula10-bringup`](../../exemplos/aula10-bringup/index.md) — compor, parametrizar, condicionar |
+| o produtor de dados | [`aula11-mundo`](../../exemplos/aula11-mundo/index.md) — `/scan`, `/odom` e as arestas de TF |
+| conferir o YAML | `conferir-params.py`, do `aula10-bringup` |
+| conferir o mundo | `testar.py`, do `aula11-mundo` |
+| se for de Gazebo | [Gazebo para o TP3](../../tutoriais/gazebo-para-o-tp3.md) — leia a seção 1 antes de instalar |
+
+### Como adequar ao seu projeto
+
+O exemplo é genérico; o seu projeto não é. Três traduções, e elas são o trabalho de verdade:
+
+**O nome.** O `bringup.launch.py` mora no **seu** pacote e sobe **os seus** nós — o detector do seu domínio, o servidor de ação do TP2, a sua parametrização. O exemplo mostra a forma, não o conteúdo.
+
+**O cenário.** O mundo mínimo tem duas salas e três obstáculos. O seu deve parecer com o ambiente onde o seu robô trabalharia: um armazém tem corredores longos; uma estufa tem fileiras; uma garagem tem colunas. Edite `mapa.py` — as paredes são retângulos e círculos, e mudar o cenário é mudar as linhas de `_construir`.
+
+**Os quadros.** Os seus sensores precisam de frames com os nomes que os seus nós usam. Se o seu projeto tem câmera, o `camera_link` já veio do URDF; se ganhou laser, ele precisa de uma transformada estática até `base_footprint`, como a do exemplo.
+
+### Como saber que terminou
+
+Rode isto, com o seu launch no ar, e guarde a saída em `docs/evidencias/tp3/`:
+
+```bash
+# ── herda PB_USER, PB_DIR e PB_WS do bloco de download, no começo da página ──
+cd "$PB_WS" && source install/setup.bash
+
+ros2 launch <seu_pacote> bringup.launch.py &     # aba 1, deixe rodando
+sleep 5
+
+ros2 node list                    # todos os seus nós aparecem?
+ros2 topic hz /scan               # o sensor publica, e a que taxa?
+ros2 run tf2_tools view_frames    # gera frames.pdf: UMA árvore, sem órfãos
+```
+
+Se `view_frames` gerar um PDF vazio, o launch não está rodando — TF é fluxo, não arquivo. Se aparecerem duas árvores, falta uma aresta ligando as partes.
+
+## Desafio — qual é o orçamento de deriva do seu projeto?
+
+Opcional, para quem terminou a tarefa. Ele não completa nada: explora.
+
+A Aula 9 estabeleceu que **uma métrica é uma decisão, e vem antes**. Aqui a decisão é outra: **quanto erro de posição o seu projeto tolera antes de fazer besteira?**
+
+Um robô que desvia de obstáculos tolera bem mais que um que encosta numa prateleira; um que conta frutos numa fileira tolera bem menos, porque a 30 cm de erro ele conta a fileira errada. Decida o seu número — e **decida antes de medir**.
+
+Depois meça quanto o seu robô pode andar até estourar esse orçamento:
+
+```bash
+# ── herda as variáveis do bloco de download ──
+cd "$PB_DIR/aula11-mundo" 2>/dev/null || cd /tmp/PBRoboticos_prof_dacio/exemplos/aula11-mundo
+
+for d in 0.5 1 2 3 5; do
+  echo "--- deriva $d% ---"
+  python3 simular.py --deriva "$d" --segundos 120 --quieto --saida "deriva-$d.png" | grep deriva
+done
+```
+
+Entregue, em `docs/evidencias/tp3/orcamento-deriva.md`: o número que você escolheu, **a justificativa a partir do seu domínio**, a distância que o robô percorre até estourá-lo, e o que você faria se precisasse do dobro dessa distância.
+
+A última pergunta é a interessante, e tem mais de uma resposta defensável. Uma delas você já viu hoje.
 
 ## Socorro rápido
 

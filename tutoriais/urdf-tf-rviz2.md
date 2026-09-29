@@ -58,16 +58,21 @@ ros2 pkg list | grep joint_state_publisher_gui
 ## Passo 2 — Baixar o exemplo
 
 ```bash
+# ── uma vez por terminal ──────────────────────────────
+export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
+export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_WS="$PB_DIR/ros2_ws"
+
 # 1) baixar o material (pode repetir sempre — a linha do rm evita o erro de pasta já existente)
 rm -rf /tmp/PBRoboticos_prof_dacio
 cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio.git
 
 # 2) copiar para dentro do SEU projeto
 cp -r /tmp/PBRoboticos_prof_dacio/exemplos/aula09-urdf/meu_robo_description \
-      ~/projeto-pb-SEU-USUARIO/ros2_ws/src/
+      "$PB_WS/src/"
 
 # 3) compilar
-cd ~/projeto-pb-SEU-USUARIO/ros2_ws
+cd "$PB_WS"
 colcon build --packages-select meu_robo_description --symlink-install
 source install/setup.bash
 ```
@@ -77,7 +82,7 @@ source install/setup.bash
 Este passo economiza a tarde. O `check_urdf` lê o arquivo e imprime a árvore:
 
 ```bash
-check_urdf ~/projeto-pb-SEU-USUARIO/ros2_ws/src/meu_robo_description/urdf/meu_robo.urdf
+check_urdf "$PB_WS/src/meu_robo_description/urdf/meu_robo.urdf"
 ```
 
 Esperado: `robot name is: meu_robo`, seguido da hierarquia começando em `base_footprint`. Se ele reclamar, **pare aqui** — um URDF inválido produz, mais adiante, sintomas que não parecem ter relação com o arquivo.

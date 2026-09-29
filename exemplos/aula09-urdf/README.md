@@ -15,16 +15,21 @@ aula09-urdf/
 ## Baixar e rodar
 
 ```bash
+# ── uma vez por terminal ──────────────────────────────
+export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
+export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_WS="$PB_DIR/ros2_ws"
+
 # 1) baixar o material (pode repetir sempre -- o rm evita o erro de pasta ja existente)
 rm -rf /tmp/PBRoboticos_prof_dacio
 cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio.git
 
 # 2) copiar para dentro do SEU projeto
 cp -r /tmp/PBRoboticos_prof_dacio/exemplos/aula09-urdf/meu_robo_description \
-      ~/projeto-pb-SEU-USUARIO/ros2_ws/src/
+      "$PB_WS/src/"
 
 # 3) compilar e rodar
-cd ~/projeto-pb-SEU-USUARIO/ros2_ws
+cd "$PB_WS"
 colcon build --packages-select meu_robo_description --symlink-install
 source install/setup.bash
 ros2 launch meu_robo_description ver_robo.launch.py

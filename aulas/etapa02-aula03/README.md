@@ -90,16 +90,21 @@ O exemplo desenha dois círculos vermelhos que, em alguns quadros, se sobrepõem
 Os exemplos vivem no repositório da disciplina. Você **não** trabalha dentro dele: copia o pacote para dentro do **seu** projeto e compila lá. Troque `SEU-USUARIO` pelo seu usuário do GitHub.
 
 ```bash
+# ── uma vez por terminal ──────────────────────────────
+export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
+export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_WS="$PB_DIR/ros2_ws"
+
 # 1) baixar o material (pode repetir sempre — a linha do rm evita o erro de pasta já existente)
 rm -rf /tmp/PBRoboticos_prof_dacio
 cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio.git
 
 # 2) copiar o pacote desta aula para dentro do SEU projeto
 cp -r /tmp/PBRoboticos_prof_dacio/exemplos/aula03-visao/aula03_visao \
-      ~/projeto-pb-SEU-USUARIO/ros2_ws/src/
+      "$PB_WS/src/"
 
 # 3) compilar no SEU workspace
-cd ~/projeto-pb-SEU-USUARIO/ros2_ws
+cd "$PB_WS"
 colcon build --packages-select aula03_visao --symlink-install
 source install/setup.bash
 ```
