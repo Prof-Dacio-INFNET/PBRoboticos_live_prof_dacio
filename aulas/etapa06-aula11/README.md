@@ -1,5 +1,9 @@
 # Aula 11 — O mundo, a deriva e o mapa que corrige
 
+!!! info "Página herdada da turma presencial — será adaptada antes da aula correspondente da turma live"
+    O conteúdo técnico, os exemplos e as tarefas valem. As **datas, os nomes de sala e as referências a laboratório** são da turma presencial 2026.2; o calendário da turma live está em [Aulas](../index.md). Quando esta página for adaptada, este aviso some.
+
+
 **Terça, 29/09/2026 · sala SJ205 · Etapa 6 (28/09–10/10)**
 
 [:material-file-pdf-box: Slides da Aula 11 (PDF)](apresentacao-aula11.pdf){ .md-button .md-button--primary }
@@ -49,19 +53,19 @@ Ao final da aula você deve conseguir subir o seu projeto inteiro com um `ros2 l
 ```bash
 # ── uma vez por terminal ──────────────────────────────
 export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
-export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_DIR="$HOME/pb-live-$PB_USER"
 export PB_WS="$PB_DIR/ros2_ws"
 
 # 1) baixar o material (pode repetir sempre — a linha do rm evita o erro de pasta já existente)
-rm -rf /tmp/PBRoboticos_prof_dacio
-cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio.git
+rm -rf /tmp/PBRoboticos_live_prof_dacio
+cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_live_prof_dacio.git
 
 # 2) o mundo mínimo desta aula
-cp -r /tmp/PBRoboticos_prof_dacio/exemplos/aula11-mundo/aula11_mundo \
+cp -r /tmp/PBRoboticos_live_prof_dacio/exemplos/aula11-mundo/aula11_mundo \
       "$PB_WS/src/"
 
 # 3) o bringup da Aula 10, se você ainda não tem
-cp -r /tmp/PBRoboticos_prof_dacio/exemplos/aula10-bringup/aula10_bringup \
+cp -r /tmp/PBRoboticos_live_prof_dacio/exemplos/aula10-bringup/aula10_bringup \
       "$PB_WS/src/"
 
 cd "$PB_WS"
@@ -72,7 +76,7 @@ source install/setup.bash
 Sem compilar e sem ROS 2, o mundo roda e se testa sozinho:
 
 ```bash
-cd /tmp/PBRoboticos_prof_dacio/exemplos/aula11-mundo
+cd /tmp/PBRoboticos_live_prof_dacio/exemplos/aula11-mundo
 python3 testar.py
 python3 simular.py --segundos 90
 ```
@@ -280,7 +284,7 @@ Depois meça quanto o seu robô pode andar até estourar esse orçamento:
 
 ```bash
 # ── herda as variáveis do bloco de download ──
-cd "$PB_DIR/aula11-mundo" 2>/dev/null || cd /tmp/PBRoboticos_prof_dacio/exemplos/aula11-mundo
+cd "$PB_DIR/aula11-mundo" 2>/dev/null || cd /tmp/PBRoboticos_live_prof_dacio/exemplos/aula11-mundo
 
 for d in 0.5 1 2 3 5; do
   echo "--- deriva $d% ---"

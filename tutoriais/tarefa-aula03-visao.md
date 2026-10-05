@@ -18,7 +18,7 @@ O exemplo da aula caça círculos vermelhos desenhados em código. Seu trabalho 
 
 ## O que você vai entregar
 
-Um pacote ROS 2 no seu repositório `projeto-pb-<usuario>`, na branch `dev`, com o pipeline rodando sobre o seu objeto, mais quatro evidências commitadas. Nada disso precisa estar bonito. Precisa estar **verificável**.
+Um pacote ROS 2 no seu repositório `pb-live-<usuario>`, na branch `dev`, com o pipeline rodando sobre o seu objeto, mais quatro evidências commitadas. Nada disso precisa estar bonito. Precisa estar **verificável**.
 
 <!-- PB:TAREFA-A03 -->
 - [ ] T3.1 pacote próprio compilando (`colcon build --symlink-install` limpo)
@@ -35,7 +35,7 @@ Copie, renomeie, compile, rode **antes** de mudar qualquer coisa. Rodar o exempl
 ```bash
 # ── uma vez por terminal ──────────────────────────────
 export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
-export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_DIR="$HOME/pb-live-$PB_USER"
 export PB_WS="$PB_DIR/ros2_ws"
 
 cp -r aula03-visao/aula03_visao "$PB_WS/src/percepcao_meu_projeto"
@@ -181,7 +181,7 @@ Ela **não** fecha o G1.1 — declarar domínio, usuário, classes, trilha e pla
 |---|---|
 | `Package not found` depois de renomear | `package.xml` e `resource/<nome>`; ver [renomear pacote](renomear-pacote-ros2.md) |
 | `libexec directory .../lib/<pacote> does not exist` | o `setup.cfg` ficou com o nome antigo (`script_dir`/`install_scripts`) |
-| `KeyError: 16` na conversão (com ou sem `AttributeError: _ARRAY_API not found` antes) | o `cv_bridge` do apt está com uma biblioteca trocada por baixo — NumPy 2 ou OpenCV 5, os dois vindos de pip. O exemplo cai sozinho na conversão manual e a tarefa pode ser feita assim. Para curar: os nós rodam com o `python3` **do sistema**, então mexer no venv não adianta. Rode `python3 -c "import numpy, cv2; print(numpy.__file__); print(cv2.__file__)"`; se algum apontar para `~/.local` ou `/usr/local`, `python3 -m pip uninstall -y numpy opencv-python opencv-contrib-python opencv-python-headless` e `sudo apt install --reinstall python3-opencv python3-numpy`. Detalhes no [README do exemplo](https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio/tree/main/exemplos/aula03-visao#curando-o-keyerror-16-de-vez) |
+| `KeyError: 16` na conversão (com ou sem `AttributeError: _ARRAY_API not found` antes) | o `cv_bridge` do apt está com uma biblioteca trocada por baixo — NumPy 2 ou OpenCV 5, os dois vindos de pip. O exemplo cai sozinho na conversão manual e a tarefa pode ser feita assim. Para curar: os nós rodam com o `python3` **do sistema**, então mexer no venv não adianta. Rode `python3 -c "import numpy, cv2; print(numpy.__file__); print(cv2.__file__)"`; se algum apontar para `~/.local` ou `/usr/local`, `python3 -m pip uninstall -y numpy opencv-python opencv-contrib-python opencv-python-headless` e `sudo apt install --reinstall python3-opencv python3-numpy`. Detalhes no [README do exemplo](https://github.com/Prof-Dacio-INFNET/PBRoboticos_live_prof_dacio/tree/main/exemplos/aula03-visao#curando-o-keyerror-16-de-vez) |
 | `rcl_shutdown already called` ao sair com `Ctrl+C` | ruído de encerramento, não quebra nada; feche com `if rclpy.ok(): rclpy.shutdown()` |
 | `Exception ignored in: <function Future.__del__ …>` / `'Task' object has no attribute '_exception'` ao sair | também é ruído — e o próprio Python avisa: `Exception ignored in:` quer dizer que ele descartou a exceção, porque ela veio de um `__del__` durante o desligamento. Detalhe conhecido do `rclpy` do Humble. O que vale ler é o `process has finished cleanly` logo abaixo |
 | máscara toda preta | `s_min`/`v_min` altos demais; comece frouxo (S≥60, V≥40) e aperte |

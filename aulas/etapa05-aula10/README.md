@@ -1,5 +1,9 @@
 # Aula 10 — Aterrissagem do TP2: o sistema sobe com um comando
 
+!!! info "Página herdada da turma presencial — será adaptada antes da aula correspondente da turma live"
+    O conteúdo técnico, os exemplos e as tarefas valem. As **datas, os nomes de sala e as referências a laboratório** são da turma presencial 2026.2; o calendário da turma live está em [Aulas](../index.md). Quando esta página for adaptada, este aviso some.
+
+
 **Terça, 22/09/2026 · sala SJ205 · Etapa 5 (14/09–26/09)**
 
 [:material-file-pdf-box: Slides da Aula 10 (PDF)](apresentacao-aula10.pdf){ .md-button .md-button--primary }
@@ -39,15 +43,15 @@ Ao final da aula você deve conseguir provar que o seu URDF carrega com TF coere
 ```bash
 # ── uma vez por terminal ──────────────────────────────
 export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
-export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_DIR="$HOME/pb-live-$PB_USER"
 export PB_WS="$PB_DIR/ros2_ws"
 
 # 1) baixar o material (pode repetir sempre — a linha do rm evita o erro de pasta já existente)
-rm -rf /tmp/PBRoboticos_prof_dacio
-cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio.git
+rm -rf /tmp/PBRoboticos_live_prof_dacio
+cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_live_prof_dacio.git
 
 # 2) o pacote de bringup, para a segunda metade
-cp -r /tmp/PBRoboticos_prof_dacio/exemplos/aula10-bringup/aula10_bringup \
+cp -r /tmp/PBRoboticos_live_prof_dacio/exemplos/aula10-bringup/aula10_bringup \
       "$PB_WS/src/"
 
 cd "$PB_WS"
@@ -58,7 +62,7 @@ source install/setup.bash
 O conferidor de parâmetros roda solto, sem compilar e sem ROS 2:
 
 ```bash
-python3 /tmp/PBRoboticos_prof_dacio/exemplos/aula10-bringup/conferir-params.py
+python3 /tmp/PBRoboticos_live_prof_dacio/exemplos/aula10-bringup/conferir-params.py
 ```
 
 ## Parte 1 — Clínica de URDF e TF

@@ -9,7 +9,7 @@ alvo: "Ubuntu 22.04 · ROS 2 Humble"
 
 **Publicada em 25/08/2026 · trazer pronta para a Aula 7, em 01/09/2026**
 
-!!! danger "Antes de sexta, 28/08, existe uma coisa só: entregar o TP1"
+!!! danger "Antes de sexta, 13/11, existe uma coisa só: entregar o TP1"
     Esta tarefa é do TP2. Se o seu TP1 ainda não está fechado, o [checklist de entrega](checklist-entrega-tp1.md) vem primeiro — sem discussão. Volte aqui no fim de semana.
 
 O objetivo é dar ao seu projeto um vocabulário próprio, e o critério de pronto é simples: **um colega consegue entender o que o seu robô percebe lendo só os seus `.msg`**, sem abrir o seu código.
@@ -19,7 +19,7 @@ O objetivo é dar ao seu projeto um vocabulário próprio, e o critério de pron
 ```bash
 # ── uma vez por terminal ──────────────────────────────
 export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
-export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_DIR="$HOME/pb-live-$PB_USER"
 export PB_WS="$PB_DIR/ros2_ws"
 
 cd "$PB_WS/src"

@@ -56,7 +56,7 @@ bash recursos/clinica-urdf.sh
 
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio/main/recursos/check-ambiente.sh | bash
+curl -sSL https://raw.githubusercontent.com/Prof-Dacio-INFNET/PBRoboticos_live_prof_dacio/main/recursos/check-ambiente.sh | bash
 ```
 
 !!! note "Sobre executar scripts da internet"

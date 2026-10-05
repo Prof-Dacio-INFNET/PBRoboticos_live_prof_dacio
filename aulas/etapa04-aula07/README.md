@@ -1,5 +1,9 @@
 # Aula 7 — Ações: tarefas longas, feedback e cancelamento
 
+!!! info "Página herdada da turma presencial — será adaptada antes da aula correspondente da turma live"
+    O conteúdo técnico, os exemplos e as tarefas valem. As **datas, os nomes de sala e as referências a laboratório** são da turma presencial 2026.2; o calendário da turma live está em [Aulas](../index.md). Quando esta página for adaptada, este aviso some.
+
+
 **Terça, 01/09/2026 · sala SJ205 · Etapa 4 (31/08–12/09)**
 
 [:material-file-pdf-box: Slides da Aula 7 (PDF)](apresentacao-aula07.pdf){ .md-button .md-button--primary }
@@ -99,18 +103,18 @@ Os exemplos vivem no repositório da disciplina. Você **não** trabalha dentro 
 ```bash
 # ── uma vez por terminal ──────────────────────────────
 export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
-export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_DIR="$HOME/pb-live-$PB_USER"
 export PB_WS="$PB_DIR/ros2_ws"
 
 # 1) baixar o material (pode repetir sempre — a linha do rm evita o erro de pasta já existente)
-rm -rf /tmp/PBRoboticos_prof_dacio
-cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio.git
+rm -rf /tmp/PBRoboticos_live_prof_dacio
+cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_live_prof_dacio.git
 
 # 2) copiar. O pb_interfaces vem DE NOVO porque ele mudou: ganhou a action
-cp -r /tmp/PBRoboticos_prof_dacio/exemplos/aula06-interfaces/pb_interfaces \
-      /tmp/PBRoboticos_prof_dacio/exemplos/aula06-interfaces/aula06_percepcao \
-      /tmp/PBRoboticos_prof_dacio/exemplos/aula07-demo-visual/demo_visual \
-      /tmp/PBRoboticos_prof_dacio/exemplos/aula07-acoes/aula07_acoes \
+cp -r /tmp/PBRoboticos_live_prof_dacio/exemplos/aula06-interfaces/pb_interfaces \
+      /tmp/PBRoboticos_live_prof_dacio/exemplos/aula06-interfaces/aula06_percepcao \
+      /tmp/PBRoboticos_live_prof_dacio/exemplos/aula07-demo-visual/demo_visual \
+      /tmp/PBRoboticos_live_prof_dacio/exemplos/aula07-acoes/aula07_acoes \
       "$PB_WS/src/"
 
 # 3) compilar no SEU workspace — interfaces primeiro, sempre

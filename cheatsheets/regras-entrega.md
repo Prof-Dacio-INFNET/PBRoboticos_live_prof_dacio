@@ -8,12 +8,12 @@ Não é apoio dispensável: o professor corrige o **código** no estado da sua e
 
 | TP | Branch/Tag | Prazo (sexta, 23h59) |
 |---|---|---|
-| TP1 | `entrega-tp1` / `tp1` | 28/08 |
-| TP2 | `entrega-tp2` / `tp2` | 25/09 |
-| TP3 | `entrega-tp3` / `tp3` | 23/10 |
-| TP4 | `entrega-tp4` / `tp4` | **21/11 (sáb) 12h00** — 20/11 é feriado |
-| TP5 | `entrega-tp5` / `tp5` | 27/11 |
-| Final | `entrega-final` / `final` | 04/12 |
+| TP1 | `entrega-tp1` / `tp1` | **13/11** |
+| TP2 | `entrega-tp2` / `tp2` | **11/12** |
+| TP3 | `entrega-tp3` / `tp3` | **12/02** (2027) |
+| TP4 | `entrega-tp4` / `tp4` | **12/03** (2027) |
+| TP5 | `entrega-tp5` / `tp5` | **19/03** (2027) |
+| Final | `entrega-final` / `final` | **26/03** (2027) ⚠️ Sexta-feira Santa — regra do prazo será confirmada no enunciado |
 
 ## 3. Vídeos e links — responsabilidade sua
 Vídeo comumente no **YouTube** ("público" ou "não listado", nunca "privado") **ou** por **link de drive** (Google Drive/OneDrive com "qualquer pessoa com o link"). **Em qualquer caso, é obrigação do aluno garantir que o link esteja acessível** — teste em aba anônima. Inacessível = inexistente para a correção.

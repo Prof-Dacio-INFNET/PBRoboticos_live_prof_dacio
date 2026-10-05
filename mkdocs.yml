@@ -10,12 +10,12 @@
 #   2. acrescente uma linha em nav: -> Aulas
 # Sem o passo 2 a página existe e é indexada na busca, mas não aparece no menu.
 
-site_name: PB Sistemas Robóticos — INFNET 2026.2
-site_description: Material da disciplina Projeto de Bloco - Sistemas Robóticos, Prof. Dácio Moreira de Souza (Instituto INFNET).
+site_name: PB Sistemas Robóticos — INFNET · Turma Live 26T4/27T1
+site_description: Material da disciplina Projeto de Bloco - Sistemas Robóticos, turma live (26T4/27T1), Prof. Dácio Moreira de Souza (Instituto INFNET).
 site_author: Dácio Moreira de Souza
-site_url: https://prof-dacio-infnet.github.io/PBRoboticos_prof_dacio/
-repo_url: https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio
-repo_name: PBRoboticos_prof_dacio
+site_url: https://prof-dacio-infnet.github.io/PBRoboticos_live_prof_dacio/
+repo_url: https://github.com/Prof-Dacio-INFNET/PBRoboticos_live_prof_dacio
+repo_name: PBRoboticos_live_prof_dacio
 edit_uri: ""
 copyright: "© 2026 Dácio Moreira de Souza — material CC BY-NC-ND 4.0 · exemplos MIT"
 
@@ -68,7 +68,7 @@ extra:
       link: https://github.com/Prof-Dacio-INFNET
       name: GitHub do professor
     - icon: material/web
-      link: https://daciosouza.com.br/PB_sistRoboticos/
+      link: https://daciosouza.com.br/PB_sistRoboticos_live/
       name: Espelho e arquivos grandes
   generator: false
 
@@ -114,7 +114,7 @@ nav:
   - Aulas:
       - aulas/index.md
       - "Aula 1 — Abertura, ROS 2 e o projeto": aulas/etapa01-aula01/index.md
-      - "Aula 2 — Primeiros nós: tópicos e serviços": aulas/etapa01-aula02/index.md
+      - "Aula 2 — Ambiente conferido; primeiros nós": aulas/etapa02-aula02/index.md
       - "Aula 3 — Comunicação e visão computacional": aulas/etapa02-aula03/index.md
       - "Aula 6 — Interfaces próprias e detecção inteligente": aulas/etapa03-aula06/index.md
       - "Aula 7 — Ações: tarefas longas, feedback e cancelamento": aulas/etapa04-aula07/index.md
@@ -131,6 +131,7 @@ nav:
       - "Renomear um pacote ROS 2": tutoriais/renomear-pacote-ros2.md
       - "Câmera USB no WSL2 (usbipd)": tutoriais/camera-wsl2-usbipd.md
       - "Manual do aluno: GitHub e entregas": tutoriais/manual-do-aluno-github.md
+      - "Tarefa da semana 1 — ambiente e repositório": tutoriais/tarefa-semana01-ambiente-e-repositorio.md
       - "Tarefa da Aula 2 — primeiros nós": tutoriais/tarefa-aula02-primeiros-nos.md
       - "Tarefa da Aula 3 — pipeline de visão": tutoriais/tarefa-aula03-visao.md
       - "Tarefa da Aula 6 — interfaces próprias": tutoriais/tarefa-aula06-interfaces.md

@@ -4,7 +4,7 @@ Este é o "esqueleto do seu TP1": um publisher, um subscriber e um serviço, no 
 
 ## 0. Confirme o ambiente
 ```bash
-curl -sSL https://raw.githubusercontent.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio/main/recursos/check-ambiente.sh | bash
+curl -sSL https://raw.githubusercontent.com/Prof-Dacio-INFNET/PBRoboticos_live_prof_dacio/main/recursos/check-ambiente.sh | bash
 ```
 Tudo ✓? Siga. Faltou algo? Volte ao tutorial da **sua** rota de ambiente: [WSL2](setup-ros2-humble-wsl2.md) ou [VirtualBox](setup-ros2-humble-virtualbox.md). O script diz na primeira linha qual rota ele detectou — se estiver errada, você está no terminal errado.
 
@@ -12,7 +12,7 @@ Tudo ✓? Siga. Faltou algo? Volte ao tutorial da **sua** rota de ambiente: [WSL
 ```bash
 # ── uma vez por terminal ──────────────────────────────
 export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
-export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_DIR="$HOME/pb-live-$PB_USER"
 export PB_WS="$PB_DIR/ros2_ws"
 
 cd "$PB_DIR"      # onde você clonou (nunca em /mnt/c)
@@ -22,8 +22,8 @@ git checkout dev
 ## 2. Copie o pacote de exemplo para o seu workspace
 Baixe o exemplo do repositório de material e copie o pacote para `ros2_ws/src/`:
 ```bash
-cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio.git
-cp -r /tmp/PBRoboticos_prof_dacio/exemplos/aula02-comunicacao/aula02_comunicacao "$PB_WS/src/"
+cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_live_prof_dacio.git
+cp -r /tmp/PBRoboticos_live_prof_dacio/exemplos/aula02-comunicacao/aula02_comunicacao "$PB_WS/src/"
 cd "$PB_DIR"
 ```
 

@@ -6,7 +6,7 @@
 >
 > **A entrega oficial de TODO TP — e do projeto final — é feita no MOODLE**, obrigatoriamente com: **ZIP com os códigos**, **PDF do relatório**, **link do repositório**, **link do vídeo** e tudo mais que o enunciado pedir, **registrado por lá**. O Moodle é a fonte da verdade da entrega: **o que não está no Moodle não foi entregue**, mesmo que esteja no GitHub.
 >
-> O GitHub é **complementar e obrigatório** (não é apoio dispensável): é onde você desenvolve, versiona, sincroniza laboratório↔casa e onde o professor **corrige o seu código** (no estado da sua branch/tag de entrega) — e a **qualidade do repositório é critério de avaliação** em todos os TPs. Moodle **e** GitHub, sempre os dois.
+> O GitHub é **complementar e obrigatório** (não é apoio dispensável): é onde você desenvolve, versiona, sincroniza entre máquinas e onde o professor **corrige o seu código** (no estado da sua branch/tag de entrega) — e a **qualidade do repositório é critério de avaliação** em todos os TPs. Moodle **e** GitHub, sempre os dois.
 
 ## Parte A — Semana 1: prepare sua conta
 
@@ -16,9 +16,9 @@
 2. Use um e-mail que você **acessa de verdade** (você vai precisar dele na Parte B) e ative a **autenticação em dois fatores** (Settings → Password and authentication).
 3. (Recomendado) Solicite o [Student Developer Pack](https://education.github.com/pack) com o e-mail institucional — Copilot e outros benefícios grátis.
 
-### A2. Git e GitHub CLI (5 min — faça no laboratório E em casa)
+### A2. Git e GitHub CLI (5 min — na sua máquina)
 
-No terminal do Ubuntu — do WSL2, da VM do VirtualBox ou nativo, tanto faz (ver o tutorial da sua rota de ambiente):
+No terminal do Ubuntu — do WSL2, nativo ou da VM, tanto faz (ver o tutorial da sua rota de ambiente):
 
 ```bash
 sudo apt update && sudo apt install -y git gh
@@ -27,22 +27,23 @@ git config --global user.email "seu-email@exemplo.com"
 gh auth login    # GitHub.com → HTTPS → Login with a web browser
 ```
 
-Repita em **cada máquina** que usar (computador do laboratório, notebook, PC de casa).
+Repita em **cada máquina** que usar (notebook e PC, por exemplo).
 
-## Parte B — Aceitar o assignment (quando o professor liberar o link)
+## Parte B — Receber o seu repositório (sem Classroom)
 
-1. Abra o **link de convite** (Moodle / projetado em aula) e faça login no GitHub.
-2. **Selecione o SEU NOME na lista da turma** (roster) — é isso que vincula sua conta a você na correção. Não pule; não escolha o nome do colega.
-3. Clique em **Accept this assignment**.
-4. **📧 PASSO QUE A DOCUMENTAÇÃO DO GITHUB NÃO DESTACA:** abra o **e-mail** cadastrado na sua conta GitHub e **aceite o convite** ("You've been invited to Prof-Dacio-INFNET…"). **Sem aceitar o convite, o repositório dá erro 404.** Alternativa se o e-mail não chegar: [github.com/orgs/Prof-Dacio-INFNET/invitation](https://github.com/orgs/Prof-Dacio-INFNET/invitation) (e confira o spam).
-5. Recarregue a página do assignment: aparecerá o link do seu repositório **privado** — ex.: `projeto-pb-capitao-gambiarra`. Só você e o professor têm acesso.
+Nesta turma **não existe link de assignment**: o professor cria o seu repositório e te convida.
+
+1. **Preencha o formulário de cadastro da turma** (link no Infnet.Online e no Moodle) com o seu **usuário do GitHub exatamente como está no seu perfil** (ex.: `capitao-gambiarra`, não o e-mail). É esse dado que vira o nome do seu repositório.
+2. O professor roda o script que cria **`pb-live-<seu-usuario>`** na organização `Prof-Dacio-INFNET` (privado, só você e ele) e te **convida como colaborador**. Rodadas de criação: **quarta 07/10**, **sábado 10/10** e, para quem ficou de fora, **ao vivo na Aula 2 (19/10)**.
+3. **📧 Aceite o convite.** Chega por e-mail ("*dacioms invited you to collaborate on Prof-Dacio-INFNET/pb-live-…*") e também em [github.com/notifications](https://github.com/notifications). Abrir a URL do repositório logado também mostra o botão de aceitar. **Sem aceitar, o repositório dá erro 404.** Confira o spam.
+4. Confirme: abra `https://github.com/Prof-Dacio-INFNET/pb-live-SEU-USUARIO` — se a página carrega, está pronto para a Parte C.
 
 ## Parte C — Clonar e conhecer o repositório
 
 ```bash
 cd ~
-gh repo clone Prof-Dacio-INFNET/projeto-pb-SEU-USUARIO   # ex.: projeto-pb-dacioms
-cd projeto-pb-SEU-USUARIO
+gh repo clone Prof-Dacio-INFNET/pb-live-SEU-USUARIO   # ex.: pb-live-dacioms
+cd pb-live-SEU-USUARIO
 ```
 
 | Pasta/arquivo | O que vai aí |
@@ -61,17 +62,17 @@ cd projeto-pb-SEU-USUARIO
 
 **O que você pode e não pode mudar:** pode **adicionar** qualquer estrutura útil ao seu desenvolvimento; **não pode alterar nem remover** as estruturas de referência de entrega (README, PROJETO, ARTEFATOS, scripts/, docs/, consulta/, .github/). Um verificador automático acusa (X vermelho no commit) se algo protegido sumir. Os `exemplos/` são seus: adapte à vontade.
 
-## Parte D — O ciclo laboratório ↔ casa e as branches
+## Parte D — Commits, push e as branches
 
-**O repositório é a sua mochila** — nada fica só na máquina do laboratório:
+**O repositório é a sua mochila** — nada fica só no seu disco:
 
 ```bash
-git pull          # AO COMEÇAR (lab ou casa)
+git pull          # AO COMEÇAR (indispensável se você usa mais de uma máquina)
 git add . && git commit -m "Implementa publisher de câmera em /camera/image_raw"
-git push          # AO TERMINAR (especialmente no fim da aula!)
+git push          # AO TERMINAR (e no fim de cada aula ao vivo!)
 ```
 
-Commits **pequenos e frequentes**, mensagens que dizem o que a mudança faz. O histórico é critério de avaliação — um commit gigante na véspera conta contra você. Trabalho perdido por falta de push no laboratório é responsabilidade sua.
+Commits **pequenos e frequentes**, mensagens que dizem o que a mudança faz. O histórico é critério de avaliação — um commit gigante na véspera conta contra você. Trabalho perdido por falta de push (disco que falha, WSL reinstalado) é responsabilidade sua.
 
 **Branches:** use à vontade para desenvolver com segurança (`git checkout -b feat/deteccao-faixas`), **mas a correção e as entregas olham exclusivamente a `main`**: antes da tag do TP, faça merge de tudo que conta (`git checkout main && git merge feat/deteccao-faixas && git push`). Branch não mergeada = trabalho invisível para a correção. Mantenha a `main` sempre compilável.
 
@@ -111,14 +112,14 @@ git tag tpN && git push origin tpN                          # 3) tag imutável
 git checkout dev                                            # 4) volte a trabalhar
 ```
 
-| TP | Branch / Tag | Prazo (sexta, 23h59) |
+| TP | Branch / Tag | Prazo (sexta, 23h59) — turma live |
 |---|---|---|
-| TP1 | `entrega-tp1` / `tp1` | 28/08 |
-| TP2 | `entrega-tp2` / `tp2` | 25/09 |
-| TP3 | `entrega-tp3` / `tp3` | 23/10 |
-| TP4 | `entrega-tp4` / `tp4` | **21/11 (sáb) 12h00** (20/11 é feriado) |
-| TP5 | `entrega-tp5` / `tp5` | 27/11 |
-| Final | `entrega-final` / `final` | 04/12 |
+| TP1 | `entrega-tp1` / `tp1` | **13/11** |
+| TP2 | `entrega-tp2` / `tp2` | **11/12** |
+| TP3 | `entrega-tp3` / `tp3` | **12/02** (2027) |
+| TP4 | `entrega-tp4` / `tp4` | **12/03** (2027) |
+| TP5 | `entrega-tp5` / `tp5` | **19/03** (2027) |
+| Final | `entrega-final` / `final` | **26/03** (2027) ⚠️ Sexta-feira Santa — regra do prazo será confirmada no enunciado |
 
 > ⚠️ **Depois de entregar, NÃO altere a branch `entrega-tpN` nem a tag `tpN`** — elas são a fotografia da entrega e **vale a data da última alteração**. Continue evoluindo o projeto na `dev`/`main`.
 
@@ -130,15 +131,15 @@ git checkout dev                                            # 4) volte a trabalh
 
 | Sintoma | Causa/solução |
 |---|---|
-| **Aceitei, mas o repositório dá 404** | **Convite pendente no e-mail** (Parte B, passo 4). Aceite pelo link do e-mail ou em `github.com/orgs/Prof-Dacio-INFNET/invitation`; confira o spam |
-| Aceitei sem escolher meu nome na lista | Registre a ocorrência no Infnet.Online com o seu usuário do GitHub; o vínculo com o roster é feito depois |
-| `Permission denied` no clone/push | `gh auth login` nesta máquina; confirme que é o **seu** `projeto-pb-…` |
+| **O repositório dá 404** | **Convite pendente** (Parte B, passo 3): aceite pelo e-mail ou em `github.com/notifications`; confira o spam. Se não há convite, o seu usuário no formulário pode estar errado — avise no Infnet.Online |
+| Não preenchi o formulário / mudei de usuário | Preencha ou avise no Infnet.Online com o usuário correto; o repositório sai na rodada seguinte |
+| `Permission denied` no clone/push | `gh auth login` nesta máquina; confirme que é o **seu** `pb-live-…` |
 | `rejected: fetch first` no push | Você editou em outra máquina sem pull. `git pull`, resolva, `git push` |
 | "Meu trabalho não apareceu na correção" | Estava numa branch não mergeada na `main` — merge antes da tag |
-| Trabalho do lab não está em casa | Faltou `git push` no lab. Crie o hábito da Parte D |
+| Trabalho de uma máquina não está na outra | Faltou `git push` numa e `git pull` na outra. Crie o hábito da Parte D |
 | X vermelho no commit (estrutura) | Você alterou/removeu algo protegido — restaure (Parte C) |
 | Professor disse que meu link/vídeo "não existe" | Estava privado/restrito. Teste em aba anônima; corrija o compartilhamento |
-| Não acho meu repositório | github.com → seu avatar → *Your organizations* → `Prof-Dacio-INFNET` |
+| Não acho meu repositório | A barra lateral esquerda do github.com lista os repositórios em que você colabora; ou vá direto em `github.com/Prof-Dacio-INFNET/pb-live-SEU-USUARIO` |
 
 ## Regras importantes
 

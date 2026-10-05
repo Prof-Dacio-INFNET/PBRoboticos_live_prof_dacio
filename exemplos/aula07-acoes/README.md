@@ -16,17 +16,17 @@ A action em si — `VarrerCena.action` — mora no **mesmo** `pb_interfaces` da 
 ```bash
 # ── uma vez por terminal ──────────────────────────────
 export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
-export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_DIR="$HOME/pb-live-$PB_USER"
 export PB_WS="$PB_DIR/ros2_ws"
 
 # 1) baixar o material (pode repetir sempre -- o rm evita o erro de pasta ja existente)
-rm -rf /tmp/PBRoboticos_prof_dacio
-cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio.git
+rm -rf /tmp/PBRoboticos_live_prof_dacio
+cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_live_prof_dacio.git
 
 # 2) copiar. pb_interfaces vem de novo porque ele MUDOU: ganhou a action
-cp -r /tmp/PBRoboticos_prof_dacio/exemplos/aula06-interfaces/pb_interfaces \
-      /tmp/PBRoboticos_prof_dacio/exemplos/aula06-interfaces/aula06_percepcao \
-      /tmp/PBRoboticos_prof_dacio/exemplos/aula07-acoes/aula07_acoes \
+cp -r /tmp/PBRoboticos_live_prof_dacio/exemplos/aula06-interfaces/pb_interfaces \
+      /tmp/PBRoboticos_live_prof_dacio/exemplos/aula06-interfaces/aula06_percepcao \
+      /tmp/PBRoboticos_live_prof_dacio/exemplos/aula07-acoes/aula07_acoes \
       "$PB_WS/src/"
 
 # 3) compilar -- interfaces primeiro, sempre

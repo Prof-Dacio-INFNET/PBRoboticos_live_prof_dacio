@@ -2,7 +2,7 @@
 """Confere convenções de caminho e de instalação no material publicado.
 
 Existe porque o mesmo erro apareceu duas vezes: `~/ros2_ws` no lugar de
-`~/projeto-pb-SEU-USUARIO/ros2_ws`. Um erro que reincide não se corrige
+`~/pb-live-SEU-USUARIO/ros2_ws`. Um erro que reincide não se corrige
 relendo com mais cuidado — se corrige com uma verificação que falha sozinha.
 
 Por que o caminho importa: o workspace do aluno mora DENTRO do repositório do
@@ -28,8 +28,8 @@ EXTENSOES = {'.md', '.py', '.sh', '.yaml', '.yml', '.txt'}
 # Valem em qualquer lugar: prosa, comentário ou comando.
 REGRAS_SEMPRE = [
     (re.compile(r'~/ros2_ws'),
-     'workspace fora do repositório do projeto; use ~/projeto-pb-SEU-USUARIO/ros2_ws'),
-    (re.compile(r'~/projeto-pb-(?!SEU-USUARIO\b)[A-Za-z0-9._-]+'),
+     'workspace fora do repositório do projeto; use ~/pb-live-SEU-USUARIO/ros2_ws'),
+    (re.compile(r'~/pb-live-(?!SEU-USUARIO\b)[A-Za-z0-9._-]+'),
      'caminho com usuário real no material do aluno; use SEU-USUARIO'),
 ]
 

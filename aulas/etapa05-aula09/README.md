@@ -1,5 +1,9 @@
 # Aula 9 — Detecção treinada e métrica declarada
 
+!!! info "Página herdada da turma presencial — será adaptada antes da aula correspondente da turma live"
+    O conteúdo técnico, os exemplos e as tarefas valem. As **datas, os nomes de sala e as referências a laboratório** são da turma presencial 2026.2; o calendário da turma live está em [Aulas](../index.md). Quando esta página for adaptada, este aviso some.
+
+
 **Terça, 15/09/2026 · sala SJ205 · Etapa 5 (14/09–26/09)**
 
 [:material-file-pdf-box: Slides da Aula 9 (PDF)](apresentacao-aula09.pdf){ .md-button .md-button--primary }
@@ -26,19 +30,19 @@ Ao final da aula você deve conseguir declarar uma métrica adequada ao seu dom�
 ```bash
 # ── uma vez por terminal ──────────────────────────────
 export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
-export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_DIR="$HOME/pb-live-$PB_USER"
 export PB_WS="$PB_DIR/ros2_ws"
 
 # 1) baixar o material (pode repetir sempre — a linha do rm evita o erro de pasta já existente)
-rm -rf /tmp/PBRoboticos_prof_dacio
-cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio.git
+rm -rf /tmp/PBRoboticos_live_prof_dacio
+cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_live_prof_dacio.git
 
 # 2) o banco de provas de detectores (não precisa de ROS 2 nem de câmera)
-cp -r /tmp/PBRoboticos_prof_dacio/exemplos/aula09-metrica \
+cp -r /tmp/PBRoboticos_live_prof_dacio/exemplos/aula09-metrica \
       "$PB_DIR/"
 
 # 3) o modelo do robô, para a clínica de URDF da segunda metade
-cp -r /tmp/PBRoboticos_prof_dacio/exemplos/aula09-urdf/meu_robo_description \
+cp -r /tmp/PBRoboticos_live_prof_dacio/exemplos/aula09-urdf/meu_robo_description \
       "$PB_WS/src/"
 
 cd "$PB_DIR/aula09-metrica"

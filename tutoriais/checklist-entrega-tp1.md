@@ -2,12 +2,12 @@
 titulo: "Checklist de entrega do TP1"
 tipo: entrega
 etapa: 2
-prazo: "sexta, 28/08/2026"
+prazo: "sexta, 13/11/2026"
 ---
 
 # Checklist de entrega do TP1
 
-**Prazo: sexta, 28/08/2026.** A entrega **oficial e formal** é no **Moodle** — ZIP dos códigos, PDF do relatório e os links. É ela que gera registro acadêmico, e sem ela não há nota. O **GitHub é complementar e obrigatório**, e é critério de avaliação: é onde o processo fica visível.
+**Prazo: sexta, 13/11/2026.** A entrega **oficial e formal** é no **Moodle** — ZIP dos códigos, PDF do relatório e os links. É ela que gera registro acadêmico, e sem ela não há nota. O **GitHub é complementar e obrigatório**, e é critério de avaliação: é onde o processo fica visível.
 
 Faça este checklist **de cima para baixo, num dia em que ainda dá tempo de consertar**. Cada item tem um comando que responde sim ou não.
 
@@ -16,7 +16,7 @@ Faça este checklist **de cima para baixo, num dia em que ainda dá tempo de con
 ```bash
 # ── uma vez por terminal ──────────────────────────────
 export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
-export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_DIR="$HOME/pb-live-$PB_USER"
 export PB_WS="$PB_DIR/ros2_ws"
 
 cd "$PB_DIR"

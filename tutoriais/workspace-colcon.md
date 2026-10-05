@@ -5,11 +5,11 @@
 
 ## 0. Onde clonar o repositório (importante!)
 
-Quando o seu repositório `projeto-pb-<usuario>` existir (a partir da aula 2), **clone-o DENTRO do filesystem do Linux**, na sua home do Ubuntu — **não** numa pasta que na verdade mora no Windows:
+Quando o seu repositório `pb-live-<usuario>` existir (a partir da aula 2), **clone-o DENTRO do filesystem do Linux**, na sua home do Ubuntu — **não** numa pasta que na verdade mora no Windows:
 
 ```bash
 cd ~                                      # home do Ubuntu — o lugar certo
-gh repo clone Prof-Dacio-INFNET/projeto-pb-SEU-USUARIO
+gh repo clone Prof-Dacio-INFNET/pb-live-SEU-USUARIO
 ```
 
 Por quê: compilar com colcon numa pasta do Windows é **muito mais lento** (todo acesso a disco atravessa uma camada de tradução) e causa problemas de permissões e de fins de linha — o `git status` passa a acusar arquivos modificados que você não tocou. O repositório sincroniza pelo **GitHub** (push/pull), então ele não precisa — e não deve — ficar em pasta do Windows/OneDrive.
@@ -37,7 +37,7 @@ Um **workspace** é a pasta onde seus pacotes vivem e são compilados: código e
 ```bash
 # ── uma vez por terminal ──────────────────────────────
 export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
-export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_DIR="$HOME/pb-live-$PB_USER"
 export PB_WS="$PB_DIR/ros2_ws"
 
 cd "$PB_WS"

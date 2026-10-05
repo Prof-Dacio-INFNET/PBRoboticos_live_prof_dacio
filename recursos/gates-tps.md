@@ -1,5 +1,8 @@
 # Gates de cada TP — o mapa de checkpoints da implementação
 
+!!! warning "Datas: versão da turma presencial"
+    Os gates e seus prazos abaixo são os da turma presencial 2026.2. A versão da **turma live** (TP1 entrega 13/11, TP2 11/12, TP3 12/02, TP4 12/03, TP5 19/03, final 26/03) é publicada junto com cada enunciado — a do TP1 até **26/10**. Os *conteúdos* dos gates não mudam.
+
 Um **gate** é um ponto de controle: um estado do projeto que ou **é verdade** ou **não é**, verificável por um comando e provado por um artefato no repositório. Não é uma etapa de cronograma ("estudar SLAM"), não é uma intenção ("começar o mapa"). É uma porta: você passou, ou você ainda não passou.
 
 Este documento existe porque a causa nº 1 de TP entregue pela metade não é falta de capacidade — é descobrir na quinta-feira que a coisa que deveria estar de pé desde a semana anterior nunca ficou. Os gates deslocam essa descoberta para o dia em que ela ainda é barata.

@@ -3,34 +3,34 @@ hide:
   - navigation
 ---
 
-# PB Sistemas Robóticos — INFNET 2026.2
+# PB Sistemas Robóticos — INFNET · Turma Live 26T4/27T1
 
-Material da disciplina **Projeto de Bloco: Sistemas Robóticos**, turma GRPEDCR3C1-M1-P1.
-Aulas às **terças, 07h00–09h30, sala SJ205** · Prof. Dácio Moreira de Souza.
+Material da disciplina **Projeto de Bloco: Sistemas Robóticos**, turma **GRLEDCR3C2-N2-L1** (live).
+Aulas às **segundas-feiras à noite, pelo Zoom** (gravadas) · Prof. Dácio Moreira de Souza · comunicação pelo **Infnet.Online** · entregas e conceitos no **Moodle**.
 
 <div class="pb-hero" markdown>
-**Ao longo do semestre você vai construir um sistema robótico seu, do zero até a demonstração.** Não são cinco trabalhos avulsos: são cinco cortes do *mesmo* projeto, que cresce de um nó publicando imagem (TP1) até um robô que percebe, mapeia, navega, manipula e aprende (TP5). Escolher bem o projeto na primeira semana é a decisão mais barata e mais valiosa do bloco.
+**Ao longo de dois trimestres você vai construir um sistema robótico seu, do zero até a demonstração.** Não são cinco trabalhos avulsos: são cinco cortes do *mesmo* projeto, que cresce de um nó publicando imagem (TP1) até um robô que percebe, mapeia, navega, manipula e aprende (TP5). Escolher bem o projeto na primeira semana é a decisão mais barata e mais valiosa do bloco.
 </div>
 
 ## Comece por aqui
 
 <div class="grid cards" markdown>
 
--   :material-console:{ .lg .middle } **1. Monte o ambiente**
+-   :material-console:{ .lg .middle } **1. Monte o ambiente — na sua máquina**
 
     ---
 
-    Ubuntu 22.04 + ROS 2 Humble + Python 3.10. **Escolha uma rota por máquina:** WSL2 (padrão, Windows 10/11), VirtualBox (laboratório, Windows Home, política corporativa) ou Ubuntu nativo. Do ROS 2 em diante é tudo igual nas três. Os tutoriais validam cada pré-requisito antes de instalar.
+    Ubuntu 22.04 + ROS 2 Humble + Python 3.10. Nesta turma **não há laboratório**: o seu computador é o único ambiente. **Escolha uma rota:** WSL2 (padrão, Windows 10/11), Ubuntu 22.04 nativo, ou VirtualBox (quem não consegue WSL2). Mac com chip Apple: rota *best-effort* (UTM arm64) — avise no formulário. Os tutoriais validam cada pré-requisito antes de instalar.
 
     [:octicons-arrow-right-24: Setup ROS 2 Humble no WSL2](tutoriais/setup-ros2-humble-wsl2.md)
 
     [:octicons-arrow-right-24: Rota alternativa: VirtualBox](tutoriais/setup-ros2-humble-virtualbox.md)
 
--   :material-github:{ .lg .middle } **2. Prepare o seu repositório**
+-   :material-github:{ .lg .middle } **2. Receba e prepare o seu repositório**
 
     ---
 
-    Aceite o convite do GitHub Classroom, clone **dentro do Linux** (na home do Ubuntu — nunca numa pasta do Windows) e rode `init-branches.sh`. O repositório é parte da entrega, não um anexo dela.
+    Preencha o **formulário de cadastro** com o seu usuário do GitHub; o professor cria o seu `pb-live-<usuario>` e te convida. **Aceite o convite por e-mail**, clone **dentro do Linux** (na home do Ubuntu — nunca numa pasta do Windows) e rode `init-branches.sh`. O repositório é parte da entrega, não um anexo dela.
 
     [:octicons-arrow-right-24: Manual do aluno: GitHub e entregas](tutoriais/manual-do-aluno-github.md)
 
@@ -38,15 +38,17 @@ Aulas às **terças, 07h00–09h30, sala SJ205** · Prof. Dácio Moreira de Souz
 
     ---
 
-    Sete famílias no catálogo, dezenas de derivações possíveis. Escolha o domínio que te interessa — o esqueleto técnico é o mesmo.
+    Sete famílias no catálogo, dezenas de derivações possíveis. Escolha o domínio que te interessa — o esqueleto técnico é o mesmo. **Projetos com montagem em hardware são bem-vindos e recomendados** — leia antes *simulação × hardware real*: as mesmas reflexões valem para esta turma.
 
     [:octicons-arrow-right-24: Catálogo de projetos](recursos/catalogo-projetos.md)
+
+    [:octicons-arrow-right-24: Simulação × hardware real](recursos/simulado-vs-hardware.md)
 
 -   :material-flag-checkered:{ .lg .middle } **4. Marque os seus gates**
 
     ---
 
-    Cada TP tem checkpoints verificáveis por comando, com data. Copie o checklist para o seu `PROJETO.md` e faça um commit por gate.
+    Cada TP tem checkpoints verificáveis por comando, com data. Copie o checklist para o seu `PROJETO.md` e faça um commit por gate. A versão com as datas desta turma sai com cada enunciado.
 
     [:octicons-arrow-right-24: Gates de cada TP](recursos/gates-tps.md)
 
@@ -54,20 +56,15 @@ Aulas às **terças, 07h00–09h30, sala SJ205** · Prof. Dácio Moreira de Souz
 
 ## Aula mais recente
 
-**Aula 9 — terça, 15/09/2026 — Detecção treinada e métrica declarada** <span class="pb-tag next">atual</span>
+**Aula 1 — segunda, 05/10/2026 — Abertura, ROS 2 e o projeto do semestre** <span class="pb-tag next">atual</span>
 
-**"Ficou bom" deixa de ser resposta aceitável.** Afirmar que um detector melhorou passa a exigir um número, produzido sobre dado fixo, por uma régua declarada **antes** de rodar. A segunda metade da aula é clínica de URDF e TF.
+**Um robô é um ciclo sentir → pensar → agir, e o ROS 2 é quem leva as mensagens.** A aula apresentou o bloco, o contrato da disciplina, o ROS 2 ao vivo (talker/listener, turtlesim, `rqt_graph`) e o catálogo de projetos. **A segunda-feira 12/10 é feriado**: a próxima aula ao vivo é **19/10**, e a semana de 12/10 tem uma tarefa guiada.
 
-[Conteúdo e slides da aula](aulas/etapa05-aula09/index.md){ .md-button .md-button--primary }
-[Banco de provas de detectores](exemplos/aula09-metrica/index.md){ .md-button }
-[Tutorial de URDF e TF](tutoriais/urdf-tf-rviz2.md){ .md-button }
+[Conteúdo e slides da aula](aulas/etapa01-aula01/index.md){ .md-button .md-button--primary }
+[Tarefa da semana 1 — ambiente e repositório](tutoriais/tarefa-semana01-ambiente-e-repositorio.md){ .md-button }
 
-!!! warning "TP2 vence em 25/09 — dois gates fecham nesta semana"
-    **G2.4** (métrica declarada) vence 19/09 e **G2.5** (URDF com TF coerente) vence 22/09.
-
-    O G2.4 não pede um modelo específico: pede uma **métrica escolhida a partir do seu domínio**, medida sobre **dado fixo**, com o modo de falha descrito. Um HSV medido honestamente vale mais que um YOLO sem régua.
-
-    A parte de instalação do G2.5 já está publicada: **[URDF, TF e RViz2](tutoriais/urdf-tf-rviz2.md)**. Faça antes de 15/09 — a aula é clínica, não primeira exposição.
+!!! warning "Até domingo 18/10: ambiente pronto e repositório no ar"
+    Quatro missões, nesta ordem: **formulário de cadastro** (hoje) → **conta GitHub** → **ambiente** (`check-ambiente.sh` passando) → **convite aceito, clone, `init-branches.sh` e a evidência da semana 1 no Moodle**. Travou? Plantão no Zoom na semana de 12/10 (data no Infnet.Online) e o canal da turma. Tudo isso é o **G1.0** do TP1.
 
 ## Calendário de entregas
 
@@ -75,15 +72,15 @@ Todas as entregas são no **Moodle**, na sexta-feira indicada, com o repositóri
 
 | Entrega | Data | Tema |
 |---|---|---|
-| **TP1** | sexta, 28/08/2026 | ambiente, comunicação básica e pipeline inicial de visão |
-| **TP2** | sexta, 25/09/2026 | interfaces próprias, ações e parametrização |
-| **TP3** | sexta, 23/10/2026 | integração, mapeamento (SLAM) e percepção avançada |
-| **TP4** | **sábado, 21/11/2026 até 12h** | navegação autônoma, registro e percepção veicular |
-| **TP5** | sexta, 27/11/2026 | manipulação, aprendizado e validação |
-| **Entrega final** | sexta, 04/12/2026 | sistema integrado, vídeo e relatório |
-| Apresentações | terças, 08/12 e 15/12/2026 | banca e arguição |
+| **TP1** | sexta, 13/11/2026 | ambiente, comunicação básica e pipeline inicial de visão |
+| **TP2** | sexta, 11/12/2026 | interfaces próprias, ações e parametrização |
+| **TP3** | sexta, 12/02/2027 | integração, mapeamento (SLAM) e percepção avançada |
+| **TP4** | sexta, 12/03/2027 | navegação autônoma, registro e percepção veicular |
+| **TP5** | sexta, 19/03/2027 | manipulação, aprendizado e validação |
+| **Entrega final** | sexta, 26/03/2027 ⚠️ | sistema integrado, vídeo e relatório |
+| Apresentações | segundas, 29/03 e 05/04/2027 | banca e arguição (remotas) |
 
-Prazo que cai em feriado passa para **meio-dia do dia seguinte** — foi o que aconteceu com o TP4.
+Prazo que cai em feriado passa para **meio-dia do dia seguinte** — regra da disciplina. ⚠️ 26/03/2027 é Sexta-feira Santa: a regra aplicada à entrega final será confirmada no enunciado.
 
 ## Como as entregas funcionam
 
@@ -95,14 +92,17 @@ Arquivos grandes (vídeos, datasets, bags, pesos de modelo) **não** vão para o
 
 ## Onde encontrar cada coisa
 
-O material está organizado por uso, não por data. Em **[Aulas](aulas/index.md)** ficam o roteiro e os slides de cada encontro. Em **[Tutoriais](tutoriais/index.md)** ficam os guias que você segue passo a passo, de setup a tarefa da semana. Em **[Projeto](recursos/index.md)** ficam as decisões estruturais: catálogo, derivações, simulação × hardware e os gates. Em **[Exemplos](exemplos/index.md)** ficam os pacotes ROS 2 prontos para rodar e adaptar (licença MIT — pode copiar). E em **[Consulta rápida](cheatsheets/index.md)** ficam as referências de comando para o dia a dia.
+O material está organizado por uso, não por data. Em **[Aulas](aulas/index.md)** ficam o roteiro e os slides de cada encontro — e o calendário completo da turma. Em **[Tutoriais](tutoriais/index.md)** ficam os guias que você segue passo a passo, de setup a tarefa da semana. Em **[Projeto](recursos/index.md)** ficam as decisões estruturais: catálogo, derivações, simulação × hardware e os gates. Em **[Exemplos](exemplos/index.md)** ficam os pacotes ROS 2 prontos para rodar e adaptar (licença MIT — pode copiar). E em **[Consulta rápida](cheatsheets/index.md)** ficam as referências de comando para o dia a dia.
+
+!!! info "Este material nasceu da turma presencial 2026.2"
+    As páginas marcadas como *herdadas* ainda trazem datas e referências daquela turma; cada uma é adaptada antes da aula correspondente. O conteúdo técnico vale desde já.
 
 !!! tip "Este site é atualizado a cada aula"
     Se preferir trabalhar offline, clone o repositório e rode `git pull` toda semana:
     ```bash
-    gh repo clone Prof-Dacio-INFNET/PBRoboticos_prof_dacio
+    gh repo clone Prof-Dacio-INFNET/PBRoboticos_live_prof_dacio
     ```
-    Espelho e arquivos grandes: [daciosouza.com.br/PB_sistRoboticos](https://daciosouza.com.br/PB_sistRoboticos/).
+    Espelho e arquivos grandes: [daciosouza.com.br/PB_sistRoboticos_live](https://daciosouza.com.br/PB_sistRoboticos_live/).
 
 ## Uso de IA
 

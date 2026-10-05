@@ -1,5 +1,9 @@
 # Aula 3 — Comunicação e visão computacional
 
+!!! info "Página herdada da turma presencial — será adaptada antes da aula correspondente da turma live"
+    O conteúdo técnico, os exemplos e as tarefas valem. As **datas, os nomes de sala e as referências a laboratório** são da turma presencial 2026.2; o calendário da turma live está em [Aulas](../index.md). Quando esta página for adaptada, este aviso some.
+
+
 **Terça, 04/08/2026 · sala SJ205 · Etapa 2 (03/08–15/08)**
 
 [:material-file-pdf-box: Slides da Aula 3 (PDF)](apresentacao-aula03.pdf){ .md-button .md-button--primary }
@@ -92,15 +96,15 @@ Os exemplos vivem no repositório da disciplina. Você **não** trabalha dentro 
 ```bash
 # ── uma vez por terminal ──────────────────────────────
 export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
-export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_DIR="$HOME/pb-live-$PB_USER"
 export PB_WS="$PB_DIR/ros2_ws"
 
 # 1) baixar o material (pode repetir sempre — a linha do rm evita o erro de pasta já existente)
-rm -rf /tmp/PBRoboticos_prof_dacio
-cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio.git
+rm -rf /tmp/PBRoboticos_live_prof_dacio
+cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_live_prof_dacio.git
 
 # 2) copiar o pacote desta aula para dentro do SEU projeto
-cp -r /tmp/PBRoboticos_prof_dacio/exemplos/aula03-visao/aula03_visao \
+cp -r /tmp/PBRoboticos_live_prof_dacio/exemplos/aula03-visao/aula03_visao \
       "$PB_WS/src/"
 
 # 3) compilar no SEU workspace

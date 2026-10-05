@@ -14,15 +14,15 @@ publicador_camera  --/camera/image_raw-->  segmentador_hsv  --/vision/segmented-
 ```bash
 # ── uma vez por terminal ──────────────────────────────
 export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
-export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_DIR="$HOME/pb-live-$PB_USER"
 export PB_WS="$PB_DIR/ros2_ws"
 
 # 1) baixar o material (pode repetir sempre -- o rm evita o erro de pasta ja existente)
-rm -rf /tmp/PBRoboticos_prof_dacio
-cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio.git
+rm -rf /tmp/PBRoboticos_live_prof_dacio
+cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_live_prof_dacio.git
 
 # 2) copiar o pacote para dentro do SEU projeto
-cp -r /tmp/PBRoboticos_prof_dacio/exemplos/aula03-visao/aula03_visao \
+cp -r /tmp/PBRoboticos_live_prof_dacio/exemplos/aula03-visao/aula03_visao \
       "$PB_WS/src/"
 cd "$PB_WS" && colcon build --symlink-install && source install/setup.bash
 ros2 launch aula03_visao visao.launch.py            # fonte sintética: não precisa de webcam
@@ -90,7 +90,7 @@ Em alguns frames a contagem cai de **2 para 1**: os dois círculos vermelhos se 
 
 ## Onde editar o quê
 
-Depois de copiar o pacote para `~/projeto-pb-SEU-USUARIO/ros2_ws/src/`, **toda** alteração acontece em `src/`. As pastas `build/`, `install/` e `log/` são geradas pelo `colcon build` e sobrescritas a cada compilação — editar ali é trabalho que some no próximo build. Mapa rápido do que fica onde:
+Depois de copiar o pacote para `~/pb-live-SEU-USUARIO/ros2_ws/src/`, **toda** alteração acontece em `src/`. As pastas `build/`, `install/` e `log/` são geradas pelo `colcon build` e sobrescritas a cada compilação — editar ali é trabalho que some no próximo build. Mapa rápido do que fica onde:
 
 | Quero mudar… | Arquivo, dentro de `src/<pacote>/` |
 |---|---|

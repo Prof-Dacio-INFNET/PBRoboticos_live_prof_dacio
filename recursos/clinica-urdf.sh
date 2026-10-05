@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # clinica-urdf.sh — diz em que ponto do G2.5 você está, e o que fazer a seguir.
 # Rode DENTRO do Ubuntu, a partir da raiz do seu ros2_ws. Não altera nada.
-#   cd ~/projeto-pb-SEU-USUARIO/ros2_ws && bash recursos/clinica-urdf.sh
+#   cd ~/pb-live-SEU-USUARIO/ros2_ws && bash recursos/clinica-urdf.sh
 # Sem clonar:
-#   curl -sSL https://raw.githubusercontent.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio/main/recursos/clinica-urdf.sh | bash
+#   curl -sSL https://raw.githubusercontent.com/Prof-Dacio-INFNET/PBRoboticos_live_prof_dacio/main/recursos/clinica-urdf.sh | bash
 ok(){   printf "  \033[32m✓\033[0m %s\n" "$1"; }
 no(){   printf "  \033[31m✗\033[0m %s\n" "$1"; }
 inf(){  printf "  · %s\n" "$1"; }

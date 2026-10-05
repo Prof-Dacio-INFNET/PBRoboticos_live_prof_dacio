@@ -2,7 +2,7 @@
 
 **Disciplina:** PB Sistemas Robóticos · caminho padrão da disciplina (Windows 11). Ubuntu nativo/dual boot também é aceito — pule direto ao Passo 3. Tempo total: ~40–60 min (dependendo da internet).
 
-> **Está numa máquina do laboratório, ou o WSL2 não instala nesta máquina?** Existe uma rota alternativa: [ROS 2 Humble no VirtualBox](setup-ros2-humble-virtualbox.md). Faça os Passos 1–4 de lá e volte para cá **a partir do [Passo 2](#passo-2-preparar-o-ubuntu)** — do preparo do Ubuntu em diante os dois caminhos são idênticos. Escolha **uma rota por máquina**: manter WSL2 e VirtualBox ativos na mesma máquina Windows costuma quebrar os dois (Hyper-V).
+> **O WSL2 não instala nesta máquina?** Existe uma rota alternativa: [ROS 2 Humble no VirtualBox](setup-ros2-humble-virtualbox.md). Faça os Passos 1–4 de lá e volte para cá **a partir do [Passo 2](#passo-2-preparar-o-ubuntu)** — do preparo do Ubuntu em diante os dois caminhos são idênticos. Escolha **uma rota por máquina**: manter WSL2 e VirtualBox ativos na mesma máquina Windows costuma quebrar os dois (Hyper-V).
 
 ## Passo 1 — Instalar o WSL2 com Ubuntu 22.04
 
@@ -89,7 +89,7 @@ echo "export ROS_DOMAIN_ID=SEU_NUMERO" >> ~/.bashrc   # veja o aviso abaixo!
 source ~/.bashrc
 ```
 
-> ⚠️ **ROS_DOMAIN_ID — importante no laboratório:** máquinas na mesma rede com o mesmo domain ID **enxergam os tópicos umas das outras** — na aula, você veria os nós dos colegas misturados aos seus. Use um número único seu (ex.: seu número na lista de chamada, entre 1 e 101) em **todas** as suas máquinas.
+> ⚠️ **ROS_DOMAIN_ID — importante quando há mais de uma máquina com ROS 2 na mesma rede (casa, república, escritório):** máquinas na mesma rede com o mesmo domain ID **enxergam os tópicos umas das outras** — na aula, você veria os nós dos colegas misturados aos seus. Use um número único seu (ex.: seu número na lista de chamada, entre 1 e 101) em **todas** as suas máquinas.
 
 ## Passo 5 — Reiniciar o WSL e testar
 

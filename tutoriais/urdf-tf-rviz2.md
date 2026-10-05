@@ -60,15 +60,15 @@ ros2 pkg list | grep joint_state_publisher_gui
 ```bash
 # ── uma vez por terminal ──────────────────────────────
 export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
-export PB_DIR="$HOME/projeto-pb-$PB_USER"
+export PB_DIR="$HOME/pb-live-$PB_USER"
 export PB_WS="$PB_DIR/ros2_ws"
 
 # 1) baixar o material (pode repetir sempre — a linha do rm evita o erro de pasta já existente)
-rm -rf /tmp/PBRoboticos_prof_dacio
-cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_prof_dacio.git
+rm -rf /tmp/PBRoboticos_live_prof_dacio
+cd /tmp && git clone --depth 1 https://github.com/Prof-Dacio-INFNET/PBRoboticos_live_prof_dacio.git
 
 # 2) copiar para dentro do SEU projeto
-cp -r /tmp/PBRoboticos_prof_dacio/exemplos/aula09-urdf/meu_robo_description \
+cp -r /tmp/PBRoboticos_live_prof_dacio/exemplos/aula09-urdf/meu_robo_description \
       "$PB_WS/src/"
 
 # 3) compilar
@@ -228,7 +228,7 @@ O exemplo já vem com um `.rviz` salvo, mas você precisa saber montar do zero �
 
 !!! tip "Antes de caçar o sintoma, pergunte ao script onde você está"
     ```bash
-    cd ~/projeto-pb-SEU-USUARIO/ros2_ws
+    cd ~/pb-live-SEU-USUARIO/ros2_ws
     bash recursos/clinica-urdf.sh
     ```
 
