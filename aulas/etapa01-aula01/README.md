@@ -34,7 +34,7 @@ A aula terminou apresentando a estrutura dos dois trimestres — cinco TPs que s
 
 Em ordem, e cada passo é pré-requisito do seguinte. O passo a passo com as saídas esperadas está na [tarefa da semana 1](../../tutoriais/tarefa-semana01-ambiente-e-repositorio.md).
 
-1. **Formulário de cadastro** (link no Infnet.Online e no Moodle) — usuário do GitHub, rota de ambiente e hardware da sua máquina. **Hoje**: é dele que sai o seu repositório.
+1. **Formulário de cadastro** ([forms.gle/6Lbq37mhYQWJKGxX7](https://forms.gle/6Lbq37mhYQWJKGxX7) — também fixado no Infnet.Online) — usuário do GitHub, rota de ambiente e hardware da sua máquina. **Hoje**: é dele que sai o seu repositório.
 2. **Conta no GitHub** com nome profissional e 2FA — [manual do aluno, Parte A](../../tutoriais/manual-do-aluno-github.md).
 3. **Ambiente**: Ubuntu 22.04 (jammy) + ROS 2 Humble + git + `gh` + `uv`, numa rota só. [WSL2](../../tutoriais/setup-ros2-humble-wsl2.md) é a padrão; Ubuntu nativo vale; [VirtualBox](../../tutoriais/setup-ros2-humble-virtualbox.md) para quem não consegue WSL2. Se `lsb_release -a` não disser 22.04, pare e corrija antes de qualquer outra coisa.
 4. **Repositório**: aceitar o convite por e-mail, clonar dentro do Linux, rodar `init-branches.sh`, preencher o front-matter do README e commitar a evidência do `check-ambiente.sh` — [manual do aluno, Partes B e C](../../tutoriais/manual-do-aluno-github.md).

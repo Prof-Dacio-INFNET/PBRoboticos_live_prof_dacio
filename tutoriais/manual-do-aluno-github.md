@@ -33,7 +33,7 @@ Repita em **cada máquina** que usar (notebook e PC, por exemplo).
 
 Nesta turma **não existe link de assignment**: o professor cria o seu repositório e te convida.
 
-1. **Preencha o formulário de cadastro da turma** (link no Infnet.Online e no Moodle) com o seu **usuário do GitHub exatamente como está no seu perfil** (ex.: `capitao-gambiarra`, não o e-mail). É esse dado que vira o nome do seu repositório.
+1. **Preencha o formulário de cadastro da turma** ([forms.gle/6Lbq37mhYQWJKGxX7](https://forms.gle/6Lbq37mhYQWJKGxX7) — também fixado no Infnet.Online) com o seu **usuário do GitHub exatamente como está no seu perfil** (ex.: `capitao-gambiarra`, não o e-mail). É esse dado que vira o nome do seu repositório.
 2. O professor roda o script que cria **`pb-live-<seu-usuario>`** na organização `Prof-Dacio-INFNET` (privado, só você e ele) e te **convida como colaborador**. Rodadas de criação: **quarta 07/10**, **sábado 10/10** e, para quem ficou de fora, **ao vivo na Aula 2 (19/10)**.
 3. **📧 Aceite o convite.** Chega por e-mail ("*dacioms invited you to collaborate on Prof-Dacio-INFNET/pb-live-…*") e também em [github.com/notifications](https://github.com/notifications). Abrir a URL do repositório logado também mostra o botão de aceitar. **Sem aceitar, o repositório dá erro 404.** Confira o spam.
 4. Confirme: abra `https://github.com/Prof-Dacio-INFNET/pb-live-SEU-USUARIO` — se a página carrega, está pronto para a Parte C.

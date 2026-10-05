@@ -1,6 +1,6 @@
 # Aulas
 
-Encontros de **segunda-feira à noite, pelo Zoom** (gravados e publicados no Moodle). Cada aula tem uma página com o conteúdo trabalhado, o PDF da apresentação, os exemplos usados e a tarefa da semana.
+Encontros de **segunda-feira à noite, pelo Zoom** (gravados; o link da gravação sai no Infnet.Online). Cada aula tem uma página com o conteúdo trabalhado, o PDF da apresentação, os exemplos usados e a tarefa da semana.
 
 O bloco tem dez etapas de conteúdo distribuídas em dois trimestres (**26T4**, de 05/10 a 19/12/2026, e **27T1**, de 25/01 a 10/04/2027). Cada etapa cobre duas semanas. Esta turma tem **três segundas-feiras de feriado** (12/10, 02/11 e 08/02): nessas semanas não há aula ao vivo, e a etapa correspondente ganha uma **tarefa guiada** no lugar do encontro.
 

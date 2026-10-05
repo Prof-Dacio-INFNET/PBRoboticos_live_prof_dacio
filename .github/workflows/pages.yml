@@ -7,7 +7,7 @@
 # assim que o CSS da identidade visual sumiu do site sem nenhum build reclamar.
 #
 # Para conferir localmente exatamente o que este workflow vai publicar:
-#   ./tools/montar-docs.sh && python3 tools/conferir-nav.py && mkdocs build --strict
+#   bash ./tools/montar-docs.sh && python3 tools/conferir-nav.py && mkdocs build --strict
 name: Publicar site
 on:
   push:
@@ -37,7 +37,9 @@ jobs:
       - run: pip install -r tools/requirements.txt
 
       - name: Montar docs/ a partir da estrutura do repo
-        run: ./tools/montar-docs.sh
+        # 'bash' explicito: um checkout feito no Windows pode perder o bit de execucao
+        # (exit 126 'Permission denied' no runner).
+        run: bash ./tools/montar-docs.sh
 
       - name: Conferir que todo item do nav existe
         run: python3 tools/conferir-nav.py

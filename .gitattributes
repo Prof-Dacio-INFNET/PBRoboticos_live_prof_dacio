@@ -1,0 +1,17 @@
+# Fim de linha: LF no repositório E no checkout. Os scripts .sh rodam no WSL e no
+# runner Linux do CI; com CRLF o shebang vira "bash\r" e nada executa.
+* text=auto eol=lf
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.pptx binary
+*.docx binary
+*.xlsx binary
+*.zip binary
+*.mp4 binary

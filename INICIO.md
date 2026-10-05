@@ -64,7 +64,7 @@ Aulas às **segundas-feiras à noite, pelo Zoom** (gravadas) · Prof. Dácio Mor
 [Tarefa da semana 1 — ambiente e repositório](tutoriais/tarefa-semana01-ambiente-e-repositorio.md){ .md-button }
 
 !!! warning "Até domingo 18/10: ambiente pronto e repositório no ar"
-    Quatro missões, nesta ordem: **formulário de cadastro** (hoje) → **conta GitHub** → **ambiente** (`check-ambiente.sh` passando) → **convite aceito, clone, `init-branches.sh` e a evidência da semana 1 no Moodle**. Travou? Plantão no Zoom na semana de 12/10 (data no Infnet.Online) e o canal da turma. Tudo isso é o **G1.0** do TP1.
+    Quatro missões, nesta ordem: **[formulário de cadastro](https://forms.gle/6Lbq37mhYQWJKGxX7)** (hoje) → **conta GitHub** → **ambiente** (`check-ambiente.sh` passando) → **convite aceito, clone, `init-branches.sh` e o push da evidência da semana 1**. Travou? Poste no canal da turma no Infnet.Online (comando + saída completa + `lsb_release -a`). Tudo isso é o **G1.0** do TP1.
 
 ## Calendário de entregas
 
