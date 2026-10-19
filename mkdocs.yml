@@ -132,6 +132,7 @@ nav:
       - "Câmera USB no WSL2 (usbipd)": tutoriais/camera-wsl2-usbipd.md
       - "Manual do aluno: GitHub e entregas": tutoriais/manual-do-aluno-github.md
       - "Tarefa da semana 1 — ambiente e repositório": tutoriais/tarefa-semana01-ambiente-e-repositorio.md
+      - "Guia de estudo — Aula 2: primeiros nós": tutoriais/estudo-aula02-primeiros-nos.md
       - "Tarefa da Aula 2 — primeiros nós": tutoriais/tarefa-aula02-primeiros-nos.md
       - "Tarefa da Aula 3 — pipeline de visão": tutoriais/tarefa-aula03-visao.md
       - "Tarefa da Aula 6 — interfaces próprias": tutoriais/tarefa-aula06-interfaces.md

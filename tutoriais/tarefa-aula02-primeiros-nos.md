@@ -1,6 +1,6 @@
 # Tarefa da Aula 2 — Seus primeiros nós ROS 2 (passo a passo)
 
-Este é o "esqueleto do seu TP1": um publisher, um subscriber e um serviço, no **seu** repositório. Faça na branch `dev`. Tempo: ~40 min. Pré-requisito: ambiente pronto (rode o [check](../recursos/check-ambiente.sh)).
+Este é o "esqueleto do seu TP1": um publisher, um subscriber e um serviço, no **seu** repositório. Faça na branch `dev`. **Prazo: domingo 25/10, 23h59** (push na `dev`). Tempo: ~40 min **depois** de estudar — o [guia de estudo da Aula 2](estudo-aula02-primeiros-nos.md) explica cada arquivo e cada linha que você vai mexer aqui; comece por ele. Pré-requisito: ambiente pronto (rode o [check](../recursos/check-ambiente.sh)).
 
 ## 0. Confirme o ambiente
 ```bash
