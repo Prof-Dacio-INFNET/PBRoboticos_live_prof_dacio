@@ -6,7 +6,7 @@ hide:
 # PB Sistemas Robóticos — INFNET · Turma Live 26T4/27T1
 
 Material da disciplina **Projeto de Bloco: Sistemas Robóticos**, turma **GRLEDCR3C2-N2-L1** (live).
-Aulas às **segundas-feiras à noite, pelo Zoom** (gravadas) · Prof. Dácio Moreira de Souza · comunicação pelo **Infnet.Online** · entregas e conceitos no **Moodle**.
+Aulas às **segundas-feiras à noite, pelo Zoom** (1h30, gravadas) · Prof. Dácio Moreira de Souza · comunicação pelo **Infnet.Online** · entregas e conceitos no **Moodle**.
 
 <div class="pb-hero" markdown>
 **Ao longo de dois trimestres você vai construir um sistema robótico seu, do zero até a demonstração.** Não são cinco trabalhos avulsos: são cinco cortes do *mesmo* projeto, que cresce de um nó publicando imagem (TP1) até um robô que percebe, mapeia, navega, manipula e aprende (TP5). Escolher bem o projeto na primeira semana é a decisão mais barata e mais valiosa do bloco.
@@ -56,15 +56,19 @@ Aulas às **segundas-feiras à noite, pelo Zoom** (gravadas) · Prof. Dácio Mor
 
 ## Aula mais recente
 
-**Aula 1 — segunda, 05/10/2026 — Abertura, ROS 2 e o projeto do semestre** <span class="pb-tag next">atual</span>
+**Aula 2 — segunda, 19/10/2026 — Primeiros nós: tópicos e serviços** <span class="pb-tag next">atual</span>
 
-**Um robô é um ciclo sentir → pensar → agir, e o ROS 2 é quem leva as mensagens.** A aula apresentou o bloco, o contrato da disciplina, o ROS 2 ao vivo (talker/listener, turtlesim, `rqt_graph`) e o catálogo de projetos. **A segunda-feira 12/10 é feriado**: a próxima aula ao vivo é **19/10**, e a semana de 12/10 tem uma tarefa guiada.
+**A aula ao vivo tem 1h30: ela mostra, o guia de estudo ensina.** A Aula 2 mostrou os três tijolos de comunicação do ROS 2 — publisher, subscriber e serviço — rodando de ponta a ponta no repositório do professor, e quando usar cada um com o TP1 como régua. O aprendizado desta semana acontece no **guia de estudo** (2h30 a 3h30, em duas ou três sessões), guiado pela tarefa e pelo desafio.
 
-[Conteúdo e slides da aula](aulas/etapa01-aula01/index.md){ .md-button .md-button--primary }
-[Tarefa da semana 1 — ambiente e repositório](tutoriais/tarefa-semana01-ambiente-e-repositorio.md){ .md-button }
+[Conteúdo e slides da aula](aulas/etapa02-aula02/index.md){ .md-button .md-button--primary }
+[Guia de estudo da Aula 2](tutoriais/estudo-aula02-primeiros-nos.md){ .md-button }
+[Tarefa da Aula 2](tutoriais/tarefa-aula02-primeiros-nos.md){ .md-button }
 
-!!! warning "Até domingo 18/10: ambiente pronto e repositório no ar"
-    Quatro missões, nesta ordem: **[formulário de cadastro](https://forms.gle/6Lbq37mhYQWJKGxX7)** (hoje) → **conta GitHub** → **ambiente** (`check-ambiente.sh` passando) → **convite aceito, clone, `init-branches.sh` e o push da evidência da semana 1**. Travou? Poste no canal da turma no Infnet.Online (comando + saída completa + `lsb_release -a`). Tudo isso é o **G1.0** do TP1.
+!!! warning "Até domingo 25/10: o esqueleto do seu TP1, no seu repositório"
+    Nesta ordem: **[guia de estudo](tutoriais/estudo-aula02-primeiros-nos.md)** (comece por ele) → **[tarefa da Aula 2](tutoriais/tarefa-aula02-primeiros-nos.md)** (push na `dev` até 25/10, 23h59: pacote com o seu nome, 4 nós, `/contagem` respondendo, `rqt_graph` em `docs/evidencias/aula02/`) → **projeto declarado** no Infnet.Online até 26/10 (a leitura do TP1 é na Aula 3). [Desafio 1](recursos/desafios/desafio-01-comunicacao.md) é opcional. Travou? Seção "Se travar" do guia; depois, o canal da turma (comando + saída completa + `lsb_release -a`).
+
+!!! note "Ainda sem ambiente ou sem repositório?"
+    A [tarefa da semana 1](tutoriais/tarefa-semana01-ambiente-e-repositorio.md) continua valendo — e vem **antes** da desta semana. Primeiro passo: o **[formulário de cadastro](https://forms.gle/6Lbq37mhYQWJKGxX7)** (é dele que sai o seu `pb-live-<usuario>`; o convite chega por e-mail). Sem conta no GitHub ainda? [Manual do aluno, Parte A](tutoriais/manual-do-aluno-github.md).
 
 ## Calendário de entregas
 
