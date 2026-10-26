@@ -13,7 +13,7 @@ dificuldade: "média"
 
 A [tarefa da semana](../../tutoriais/tarefa-aula03-visao.md) pede um pipeline que funciona. Este desafio pede um pipeline que **continua funcionando quando o mundo não colabora** — que é a única coisa que distingue visão computacional de demonstração de visão computacional.
 
-Se você fizer só a tarefa, o TP1 sai. Se fizer este desafio também, o TP1 sai com o parágrafo de análise que costuma separar DL de DML na rubrica, porque você terá números para falar de robustez em vez de adjetivos.
+Se você fizer só a tarefa, o TP1 sai. Se fizer este desafio também, o TP1 sai com um parágrafo de análise sustentado por números — você terá medidas para falar de robustez em vez de adjetivos.
 
 ## O que fazer
 
