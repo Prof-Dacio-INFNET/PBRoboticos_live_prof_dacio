@@ -69,12 +69,13 @@ ros2 launch percepcao_meu_projeto visao.launch.py   # com o SEU nome
 Este passo é o que separa "rodou" de "funciona". Com o pipeline em execução, em outro terminal:
 
 ```bash
-ros2 topic hz /vision/contagem                                       # a régua leve: Int32, barato de medir
-ros2 topic hz /camera/image_raw --qos-reliability best_effort --window 30   # a entrada (pesado: 900 kB por mensagem)
-ros2 topic info /camera/image_raw --verbose                          # os perfis de QoS de cada ponta
+export ROS_LOCALHOST_ONLY=1                   # em TODOS os terminais (e no ~/.bashrc) — e os buffers do kernel: guia de estudo, seção 2.4
+ros2 topic hz /vision/contagem                # a régua leve: Int32, barato de medir — esperado ≈ 15 Hz
+ros2 topic hz /camera/image_raw --window 30   # a entrada (pesado: 900 kB por mensagem)
+ros2 topic info /camera/image_raw --verbose   # os perfis de QoS de cada ponta
 ```
 
-Registre em `docs/evidencias/aula03/taxas.md`: a taxa de entrada, a de saída e a QoS de cada ponta. Depois responda, em duas ou três linhas, à pergunta que importa: **a taxa de saída caiu em relação à de entrada?** Se caiu, o seu processamento não acompanha a câmera, e isso é informação de projeto, não defeito a esconder. Se `hz` em `/camera/image_raw` não imprime nada, é QoS: faltou `--qos-reliability best_effort`. Se o `min:` vier **negativo**, é o relógio do WSL2 saltando — veja o guia, seção 7.
+Registre em `docs/evidencias/aula03/taxas.md`: a taxa de entrada, a de saída e a QoS de cada ponta. Depois responda, em duas ou três linhas, à pergunta que importa: **a taxa de saída caiu em relação à de entrada?** Se caiu, o seu processamento não acompanha a câmera, e isso é informação de projeto, não defeito a esconder. Se `/vision/contagem` ficar em 2–8 Hz com buracos de meio segundo ou mais (ou aparecer `A message was lost!!!`), é fragmentação UDP: aplique as **duas curas** da seção 2.4 do guia (`ROS_LOCALHOST_ONLY=1` e os buffers do kernel via `sysctl`) e reinicie o launch antes de medir — a taxa que você registra tem de ser a taxa do pipeline, não a da perda. Se o `min:` vier **negativo**, é o relógio do WSL2 saltando — veja o guia, seção 7.
 
 Copie o mesmo arquivo para `docs/evidencias/tp1/topic-hz.txt`: é a evidência do G1.2.
 
@@ -187,7 +188,8 @@ Parte A: **G1.1** e **G1.2** (e o G1.0, se ainda não estava). Parte B: **G1.3**
 |---|---|
 | `Package not found` depois de renomear | `package.xml` e `resource/<nome>`; `rm -rf build install log`; ver [renomear pacote](renomear-pacote-ros2.md) |
 | `libexec directory .../lib/<pacote> does not exist` | o `setup.cfg` ficou com o nome antigo (`script_dir`/`install_scripts`) |
-| `ros2 topic hz` sem saída em `/camera/image_raw` | QoS: acrescente `--qos-reliability best_effort`; confira com `ros2 topic info --verbose` |
+| o seu subscriber fica mudo em `/camera/image_raw` | QoS: assine com o perfil de sensor (`QOS_SENSOR`); confira com `ros2 topic info --verbose` |
+| `/vision/contagem` a 2–8 Hz, buracos de 0,5–2 s, `A message was lost!!!` | fragmentação UDP numa máquina só: `ROS_LOCALHOST_ONLY=1` em todos os terminais **e** buffers do kernel (`sysctl`, guia §2.4) + reiniciar o launch |
 | `hz` com `min:` negativo, ou buracos de segundos | relógio do WSL2 saltando — [diagnóstico e cura](setup-ros2-humble-wsl2.md#o-relogio-do-wsl2-pode-saltar-e-isso-estraga-qualquer-medicao) |
 | `KeyError: 16` na conversão (com ou sem `AttributeError: _ARRAY_API not found` antes) | OpenCV ou NumPy de `pip` por baixo do `cv_bridge` do `apt`. O exemplo cai sozinho na conversão manual e a tarefa vale assim. Cura **fora do venv**: `python3 -m pip uninstall -y numpy opencv-python opencv-contrib-python opencv-python-headless` e `sudo apt install --reinstall python3-opencv python3-numpy` |
 | parâmetro `classes` dá erro de tipo | o default não pode ser lista vazia: o rclpy infere o tipo do default — declare com `['a', 'b']` |

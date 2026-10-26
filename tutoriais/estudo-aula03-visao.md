@@ -95,13 +95,30 @@ ros2 service call /vision/status std_srvs/srv/Trigger "{}"
 
 Esperado no `service call`: `success=True, message='2 objeto(s) no ultimo frame (NNN frames processados)'`. Quando os dois círculos se cruzam, `data: 1` — guarde isso para a seção 5.
 
-**2.4 — O sintoma cruel, de propósito.** Rode `ros2 topic echo /camera/image_raw --once` **sem** nenhuma flag: o comando fica mudo (o `echo` padrão é `RELIABLE`; o publicador é `BEST_EFFORT`; perfis incompatíveis não se conectam). Agora com `--qos-reliability best_effort`: o quadro aparece (e é enorme — `Ctrl+C`). Essa é a cura de "o tópico existe mas não chega nada" para o resto do semestre.
+**2.4 — O sintoma cruel, de propósito.** Force um subscriber `RELIABLE` contra o publicador `BEST_EFFORT`: `ros2 topic echo /camera/image_raw --once --qos-reliability reliable`. O comando fica mudo — e o `rclpy` imprime um aviso de QoS incompatível, que é o máximo de erro que você vai ver. Sem a flag, o `echo` do Humble **descobre a QoS do publicador sozinho** e mostra o quadro (enorme — `Ctrl+C`); o seu nó, escrito com o `10` padrão do `create_subscription`, **não descobre nada**: é ele que fica mudo. Por isso o segmentador assina com `QOS_SENSOR`. Essa é a cura de "o tópico existe mas não chega nada" para o resto do semestre.
+
+!!! warning "WSL2 e máquina única: duas curas antes de medir qualquer taxa"
+    Numa máquina só, uma imagem de 640×480 (**900 kB**) viaja fragmentada em UDP, e o buffer de rede padrão do Linux (208 kB) é **menor que uma mensagem**: fragmentos se perdem, e com eles o quadro inteiro. Sintomas: `A message was lost!!!`, `/vision/contagem` a 2–8 Hz em vez de 15, `hz` com buracos de 0,5 a 2 s. Cura 1, em **todos** os terminais e no `~/.bashrc`: `export ROS_LOCALHOST_ONLY=1`. Cura 2, uma vez, com `sudo` (aumenta os buffers do kernel — a recomendação oficial de *DDS tuning* do ROS 2):
+
+    ```bash
+    sudo tee /etc/sysctl.d/60-ros2-imagem.conf >/dev/null <<'EOF'
+    net.core.rmem_max=2147483647
+    net.core.rmem_default=8388608
+    net.core.wmem_max=2147483647
+    net.core.wmem_default=8388608
+    net.ipv4.ipfrag_time=3
+    net.ipv4.ipfrag_high_thresh=134217728
+    EOF
+    sudo sysctl --system >/dev/null && sysctl net.core.rmem_default     # esperado: 8388608
+    ```
+
+    Reinicie o launch e confira `ros2 topic hz /vision/contagem` ≈ 15 Hz. No WSL2, se depois de um `wsl --shutdown` o valor voltar a `212992`, rode `sudo sysctl --system` de novo (ou habilite o systemd em `/etc/wsl.conf`).
 
 **2.5 — Medir a taxa nas duas pontas.**
 
 ```bash
-ros2 topic hz /vision/contagem                                                  # esperado: average rate: ~15.0
-ros2 topic hz /camera/image_raw --qos-reliability best_effort --window 30       # esperado: ~15.0 (ou menos — leia abaixo)
+ros2 topic hz /vision/contagem                       # esperado: average rate: ~15.0
+ros2 topic hz /camera/image_raw --window 30          # esperado: ~15.0 (ou menos — leia abaixo); o hz do Humble já assina com QoS de sensor
 ```
 
 `/vision/contagem` é um `Int32`: medir é barato e o número é fiel. `/camera/image_raw` são ~900 kB por mensagem: o `hz` é um nó Python desserializando tudo isso, e **mede a si mesmo se afogando** — se der menos que a saída, desconfie da régua, não da câmera. No WSL2, `min:` negativo é o relógio saltando (seção 7). Escreva os números e a interpretação em `docs/evidencias/aula03/taxas.md`: é a Parte A da tarefa e o G1.2.
@@ -177,7 +194,7 @@ Deixe `ros2 topic echo /vision/contagem` rodando e espere os dois círculos se c
 Responda sem olhar; depois abra a resposta.
 
 ??? question "1. `ros2 topic list` mostra `/camera/image_raw`, `ros2 node info` mostra publisher e subscriber, e o `echo` não imprime nada. O que é, e qual comando prova?"
-    QoS incompatível: o publicador é `BEST_EFFORT` e o `echo` padrão pede `RELIABLE`; perfis incompatíveis não se conectam e não dão erro. `ros2 topic info /camera/image_raw --verbose` mostra os dois perfis lado a lado; `--qos-reliability best_effort` no `echo`/`hz` resolve.
+    QoS incompatível: o publicador é `BEST_EFFORT` e o subscriber pede `RELIABLE` (o `10` padrão do `create_subscription`); perfis incompatíveis não se conectam e, no máximo, geram um aviso. `ros2 topic info /camera/image_raw --verbose` mostra os dois perfis lado a lado; assinar com o perfil de sensor resolve. (O `echo` e o `hz` da linha de comando do Humble já se adaptam sozinhos — o seu nó, não.)
 
 ??? question "2. Por que a câmera usa `BEST_EFFORT` com profundidade 1, se `RELIABLE` garante entrega?"
     Porque um quadro retransmitido chega velho e atrasa os seguintes: a fila cresce, a latência também. Para sensor, o quadro mais recente vale mais que o quadro completo. `RELIABLE` é para comando e configuração, não para fluxo.
@@ -198,7 +215,7 @@ Responda sem olhar; depois abra a resposta.
 
 | Sintoma | Causa provável | Cura |
 |---|---|---|
-| tópico existe, `echo`/`hz` mudos | QoS incompatível (`BEST_EFFORT` × `RELIABLE`) | `ros2 topic info --verbose`; `--qos-reliability best_effort` |
+| tópico existe, o seu subscriber fica mudo | QoS incompatível (`BEST_EFFORT` × `RELIABLE`) | `ros2 topic info --verbose`; assine com `QOS_SENSOR` (o `echo`/`hz` do Humble se adaptam sozinhos) |
 | `ModuleNotFoundError: cv2` | OpenCV não instalado no python do sistema | `sudo apt install python3-opencv` (apt; **não** `pip install opencv-python` fora de venv) |
 | `ModuleNotFoundError: cv_bridge` | pacote ausente | o exemplo cai no modo manual sozinho; ou `sudo apt install ros-humble-cv-bridge` |
 | `KeyError: 16` (com `AttributeError: _ARRAY_API not found` antes = NumPy 2; sem = OpenCV 5) | OpenCV/NumPy de `pip` em `~/.local` ou `/usr/local` por baixo do `cv_bridge` do `apt` | `python3 -c "import numpy, cv2; print(numpy.__file__, cv2.__file__)"`; se não vier de `/usr/lib/python3/dist-packages`: `python3 -m pip uninstall -y numpy opencv-python opencv-contrib-python opencv-python-headless` e `sudo apt install --reinstall python3-opencv python3-numpy`; confira com `python3 -c "from cv_bridge import CvBridge; print(16 in CvBridge().cvtype_to_name)"` → `True`. **Mexer no venv não resolve** |
@@ -207,7 +224,7 @@ Responda sem olhar; depois abra a resposta.
 | webcam não abre | WSL2: falta `usbipd attach` · VirtualBox: Extension Pack + *Dispositivos → Webcams* | [câmera no WSL2](camera-wsl2-usbipd.md) · [VirtualBox](setup-ros2-humble-virtualbox.md#webcam-extension-pack-nao-usbipd) · enquanto isso `fonte:=sintetico` |
 | webcam abre, 3 fps sem erro | YUYV 1080p pela USB/usbipd | o publicador já pede `MJPG` 640×480; confira a linha `webcam negociada:` no log |
 | `hz` com `min:` negativo ou buracos de segundos | relógio do WSL2 saltando | [diagnóstico e cura](setup-ros2-humble-wsl2.md#o-relogio-do-wsl2-pode-saltar-e-isso-estraga-qualquer-medicao) |
-| `A message was lost!!!` no `echo` de imagem | fragmentação UDP numa máquina só | `export ROS_LOCALHOST_ONLY=1` em todos os terminais; não dê `echo` em tópico de imagem |
+| `A message was lost!!!`, `/vision/contagem` a 2–8 Hz, `hz` com buracos de 0,5–2 s | fragmentação UDP numa máquina só: buffer de rede do kernel (208 kB) menor que uma imagem (900 kB) | as duas curas da seção 2.4: `ROS_LOCALHOST_ONLY=1` em todos os terminais **e** o `sysctl` dos buffers; reinicie o launch; não dê `echo` em tópico de imagem |
 | editou o YAML e nada muda | build sem `--symlink-install` | `colcon build --symlink-install`; edite só em `src/` |
 | `Package not found` / `libexec directory … does not exist` | renomear incompleto (os cinco lugares; `setup.cfg` é o esquecido) | [renomear um pacote ROS 2](renomear-pacote-ros2.md); `rm -rf build install log` |
 | máscara toda preta / toda branca | S/V altos demais · H largo demais ou fundo da cor do objeto | comece frouxo (S≥60, V≥40) e aperte · meça com o amostrador; troque o fundo |

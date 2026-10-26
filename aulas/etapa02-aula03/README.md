@@ -43,7 +43,7 @@ Sobre a trilha (**S**imulada, **H**íbrida, **R**eal): a [régua é assimétrica
 
 **`sensor_msgs/Image` não tem mágica**: é a matriz do OpenCV serializada (`data`, bytes contíguos) mais os metadados de quem vai interpretá-la — `height`, `width`, `step` (bytes de uma linha), `encoding` (`bgr8`, `rgb8`, `mono8`) e o cabeçalho com `stamp` e `frame_id`. Rode `ros2 interface show sensor_msgs/msg/Image`: é mais curto do que parece.
 
-**A QoS padrão está errada para câmera.** O padrão do ROS 2 é `RELIABLE` com fila de 10: se um quadro se perde, retransmite. Para sensor isso é a escolha errada — quando o quadro retransmitido chega, já está velho, e a fila só aumenta a latência. O perfil de sensor é `BEST_EFFORT`, `KEEP_LAST`, profundidade 1: sempre o quadro mais recente, nunca uma fila de quadros vencidos. A consequência que morde: publisher e subscriber precisam de perfis **compatíveis**; `BEST_EFFORT` de um lado e `RELIABLE` do outro simplesmente não se conectam, **sem mensagem de erro** — o tópico aparece no `topic list`, os nós aparecem no `node info`, e o `echo` fica mudo. *Demonstração direta 1:* o `echo` mudo, depois `ros2 topic info /camera/image_raw --verbose` com os dois perfis lado a lado.
+**A QoS padrão está errada para câmera.** O padrão do ROS 2 é `RELIABLE` com fila de 10: se um quadro se perde, retransmite. Para sensor isso é a escolha errada — quando o quadro retransmitido chega, já está velho, e a fila só aumenta a latência. O perfil de sensor é `BEST_EFFORT`, `KEEP_LAST`, profundidade 1: sempre o quadro mais recente, nunca uma fila de quadros vencidos. A consequência que morde: publisher e subscriber precisam de perfis **compatíveis**; `BEST_EFFORT` de um lado e `RELIABLE` do outro simplesmente não se conectam, **sem mensagem de erro** — o tópico aparece no `topic list`, os nós aparecem no `node info`, e o `echo` fica mudo. *Demonstração direta 1:* um subscriber `RELIABLE` apontado para o publicador `BEST_EFFORT` fica mudo, e `ros2 topic info /camera/image_raw --verbose` mostra os dois perfis lado a lado. (O `ros2 topic echo` do Humble descobre a QoS do publicador sozinho — o **seu nó**, com o `10` padrão, não.)
 
 **`cv_bridge` é a ponte canônica** entre `Image` e `numpy.ndarray`, e o exemplo da aula tem um plano B (`ponte.py`) que monta a mensagem à mão se o pacote faltar ou quebrar. Os dois modos estão certos; a linha de log do publicador diz qual está valendo. O detalhe do `KeyError: 16` (OpenCV ou NumPy de `pip` por baixo do `cv_bridge` do `apt`) está no guia de estudo — leia antes de instalar qualquer coisa com `pip`.
 
@@ -85,7 +85,7 @@ ros2 launch aula03_visao visao.launch.py          # fonte sintética: não preci
 Em outro terminal (com `source install/setup.bash`):
 
 ```bash
-ros2 topic hz /vision/contagem                    # a régua leve — não dê hz nem echo em tópico de imagem sem necessidade
+ros2 topic hz /vision/contagem                    # a régua leve — ≈ 15 Hz; se vier 2–4 Hz, leia o aviso abaixo
 ros2 service call /vision/status std_srvs/srv/Trigger "{}"
 ros2 param set /segmentador_hsv h_min 100
 ros2 param set /segmentador_hsv h_max 130         # agora ele caça azul — nada recompilado
@@ -93,6 +93,23 @@ ros2 param set /segmentador_hsv h_max 130         # agora ele caça azul — nad
 
 !!! tip "Rode antes de modificar"
     Compile e rode o exemplo **como ele veio**, antes da sua primeira alteração. Parece perda de tempo e é o contrário: quando algo quebrar depois, você sabe que o problema é seu e não do exemplo.
+
+!!! warning "WSL2 e máquina única: duas curas antes de medir qualquer taxa"
+    Numa máquina só, uma imagem de 640×480 (**900 kB**) viaja fragmentada em UDP, e o buffer de rede padrão do Linux (208 kB) é **menor que uma mensagem**: fragmentos se perdem, e com eles o quadro inteiro. Sintomas: `A message was lost!!!`, `/vision/contagem` a 2–8 Hz em vez de 15, `hz` com buracos de 0,5 a 2 s. Cura 1, em **todos** os terminais e no `~/.bashrc`: `export ROS_LOCALHOST_ONLY=1`. Cura 2, uma vez, com `sudo` (aumenta os buffers do kernel — a recomendação oficial de *DDS tuning* do ROS 2):
+
+    ```bash
+    sudo tee /etc/sysctl.d/60-ros2-imagem.conf >/dev/null <<'EOF'
+    net.core.rmem_max=2147483647
+    net.core.rmem_default=8388608
+    net.core.wmem_max=2147483647
+    net.core.wmem_default=8388608
+    net.ipv4.ipfrag_time=3
+    net.ipv4.ipfrag_high_thresh=134217728
+    EOF
+    sudo sysctl --system >/dev/null && sysctl net.core.rmem_default     # esperado: 8388608
+    ```
+
+    Reinicie o launch e confira `ros2 topic hz /vision/contagem` ≈ 15 Hz. No WSL2, se depois de um `wsl --shutdown` o valor voltar a `212992`, rode `sudo sysctl --system` de novo (ou habilite o systemd em `/etc/wsl.conf`).
 
 ## Esta semana e a próxima: estudo guiado, tarefa em duas partes, desafio
 
@@ -103,7 +120,7 @@ ros2 param set /segmentador_hsv h_max 130         # agora ele caça azul — nad
 
 ## Os erros que mais vão aparecer
 
-**"O tópico existe e não chega nada"** é QoS: `ros2 topic info /camera/image_raw --verbose` mostra os dois perfis; no `echo` e no `hz` use `--qos-reliability best_effort`. **`KeyError: 16`** na conversão é OpenCV ou NumPy de `pip` por baixo do `cv_bridge` — o exemplo não trava (cai no modo manual); a cura está no guia, seção 7, e **não passa pelo venv**. **Vermelho detectado pela metade** é a segunda faixa (170–179) esquecida. **Contagem oscilando** é `area_min` baixo ou falta de `OPEN`; se os objetos se tocam, é oclusão — registre, não "conserte". **Janela do `rqt_image_view` não abre** no WSL2 é WSLg (`wsl --update`); no VirtualBox é aceleração 3D ligada ou Guest Additions ausente. **Webcam não abre**: WSL2 precisa do [usbipd](../../tutoriais/camera-wsl2-usbipd.md); VirtualBox usa o Extension Pack; e enquanto isso `fonte:=sintetico` **vale para a tarefa inteira**.
+**"O tópico existe e não chega nada"** é QoS: `ros2 topic info /camera/image_raw --verbose` mostra os dois perfis; no seu nó, assine com o perfil de sensor (o `QOS_SENSOR` do exemplo). **`A message was lost!!!` / contagem a 2–8 Hz** é fragmentação UDP numa máquina só: `ROS_LOCALHOST_ONLY=1` + buffers do kernel (aviso acima). **`KeyError: 16`** na conversão é OpenCV ou NumPy de `pip` por baixo do `cv_bridge` — o exemplo não trava (cai no modo manual); a cura está no guia, seção 7, e **não passa pelo venv**. **Vermelho detectado pela metade** é a segunda faixa (170–179) esquecida. **Contagem oscilando** é `area_min` baixo ou falta de `OPEN`; se os objetos se tocam, é oclusão — registre, não "conserte". **Janela do `rqt_image_view` não abre** no WSL2 é WSLg (`wsl --update`); no VirtualBox é aceleração 3D ligada ou Guest Additions ausente. **Webcam não abre**: WSL2 precisa do [usbipd](../../tutoriais/camera-wsl2-usbipd.md); VirtualBox usa o Extension Pack; e enquanto isso `fonte:=sintetico` **vale para a tarefa inteira**.
 
 Quem replicou durante a aula: `git add . && git commit -m "Aula 3: pipeline de visão compilando" && git push` antes de sair. Quem não, o push vem com a Parte A — até domingo 01/11.
 
