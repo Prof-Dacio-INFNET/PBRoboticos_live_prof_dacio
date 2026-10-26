@@ -21,7 +21,7 @@ import types
 from unittest.mock import MagicMock
 
 # --- stubs mínimos para importar os nós sem ROS 2 instalado -----------------
-for nome in ('rclpy', 'rclpy.node', 'rclpy.qos', 'sensor_msgs', 'sensor_msgs.msg',
+for nome in ('rclpy', 'rclpy.node', 'rclpy.qos', 'rclpy.clock', 'sensor_msgs', 'sensor_msgs.msg',
              'std_msgs', 'std_msgs.msg', 'std_srvs', 'std_srvs.srv', 'cv_bridge'):
     if nome not in sys.modules:
         mod = types.ModuleType(nome)

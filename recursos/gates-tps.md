@@ -1,7 +1,7 @@
 # Gates de cada TP — o mapa de checkpoints da implementação
 
-!!! warning "Datas: versão da turma presencial"
-    Os gates e seus prazos abaixo são os da turma presencial 2026.2. A versão da **turma live** (TP1 entrega 13/11, TP2 11/12, TP3 12/02, TP4 12/03, TP5 19/03, final 26/03) é publicada junto com cada enunciado — a do TP1 até **26/10**. Os *conteúdos* dos gates não mudam.
+!!! warning "Datas: o TP1 já está na versão da turma live; TP2 em diante ainda são as datas da presencial"
+    O bloco do **TP1** abaixo tem as datas desta turma (entrega **13/11**), publicadas com a [leitura do TP1](tp1.md) em 26/10. Os blocos do TP2 ao TP5 ainda trazem as datas da turma presencial 2026.2; a versão da turma live (TP2 11/12, TP3 12/02, TP4 12/03, TP5 19/03, final 26/03) sai com cada enunciado. Os *conteúdos* dos gates não mudam.
 
 Um **gate** é um ponto de controle: um estado do projeto que ou **é verdade** ou **não é**, verificável por um comando e provado por um artefato no repositório. Não é uma etapa de cronograma ("estudar SLAM"), não é uma intenção ("começar o mapa"). É uma porta: você passou, ou você ainda não passou.
 
@@ -33,17 +33,17 @@ Um `[!]` não é vergonha nem perda de nota — é informação. O que custa not
 
 ## TP1 — Ambiente, Comunicação Básica e Pipeline Inicial de Visão
 
-**Entrega: sexta, 28/08/2026** · Etapas 1–2 · o TP que decide o resto do semestre, porque é onde o projeto ganha identidade.
+**Entrega: sexta, 13/11/2026** · Etapas 1–2 · leitura em aula em 26/10 · o TP que decide o resto do bloco, porque é onde o projeto ganha identidade. Enunciado, régua e calendário: [TP1](tp1.md).
 
 | Gate | O que tem de estar verdadeiro | Como provar | Evidência no repo | Quando |
 |---|---|---|---|---|
-| **G1.0** | Ambiente ROS 2 Humble operante: `ros2` responde, workspace compila, dois terminais conversam | `ros2 doctor --report \| head -20` e `bash recursos/check-ambiente.sh` | `docs/evidencias/tp1/check-ambiente.txt` | 07/08 |
-| **G1.1** | Projeto **escolhido, derivado e declarado**: domínio, usuário, classes percebidas, trilha S/H/R e plano B | leitura do `PROJETO.md` (marcadores `<!-- PB:PROJETO -->` e `<!-- PB:TRILHA -->` presentes) | `PROJETO.md` | 11/08 |
-| **G1.2** | Grafo mínimo de imagem no ar: um nó publica em `/camera/image_raw`, outro consome — **sem travar** | `ros2 topic hz /camera/image_raw` mostrando taxa estável por 10 s | `docs/evidencias/tp1/topic-hz.txt` | 15/08 |
-| **G1.3** | Segmentação por cor detectando **o objeto do seu projeto** e publicando contagem | `ros2 topic echo /vision/contagem --once` com o valor esperado na cena montada | print/GIF em `docs/evidencias/tp1/segmentacao.png` | 20/08 |
-| **G1.4** | Serviço `/vision/status` respondendo com informação **do seu domínio**, e `rqt_graph` mostrando o grafo completo | `ros2 service call /vision/status std_srvs/srv/Trigger "{}"` | `docs/evidencias/tp1/rqt_graph.png` + saída do serviço | 24/08 |
-| **G1.5** | Relatório fechado: decisões, o experimento de oclusão, limitações conhecidas, uso de IA declarado | revisão de leitura do `docs/relatorio-tp1.md` (todas as seções preenchidas) | `docs/relatorio-tp1.md` | 26/08 |
-| **G1.6** | **Entrega**: `main` atualizado, branch `entrega-tp1` criado, tag `tp1` empurrada, PDF+ZIP no Moodle, link do repositório no Moodle | `git tag --list` mostra `tp1`; a página do GitHub abre em janela anônima | tag `tp1` + postagem no Moodle | 28/08 |
+| **G1.0** | Ambiente ROS 2 Humble operante: `ros2` responde, workspace compila, dois terminais conversam | `ros2 doctor --report \| head -20` e `bash recursos/check-ambiente.sh` | `docs/evidencias/tp1/check-ambiente.txt` | dom 01/11 |
+| **G1.1** | Projeto **escolhido, derivado e declarado**: domínio, usuário, **duas** classes percebidas, trilha S/H/R e plano B | leitura do `PROJETO.md` (marcadores `<!-- PB:PROJETO -->` e `<!-- PB:TRILHA -->` presentes) | `PROJETO.md` | **dom 01/11** |
+| **G1.2** | Grafo mínimo de imagem no ar: um nó publica em `/camera/image_raw`, outro consome — **sem travar** | `ros2 topic hz /camera/image_raw` mostrando taxa estável por 10 s | `docs/evidencias/tp1/topic-hz.txt` | dom 01/11 |
+| **G1.3** | Segmentação por cor detectando **o objeto do seu projeto** (duas classes) e publicando contagem | `ros2 topic echo /vision/contagem --once` com o valor esperado na cena montada | print/GIF em `docs/evidencias/tp1/segmentacao.png` | sex 06/11 |
+| **G1.4** | Serviço `/vision/status` respondendo com informação **do seu domínio**, e `rqt_graph` mostrando o grafo completo | `ros2 service call /vision/status std_srvs/srv/Trigger "{}"` | `docs/evidencias/tp1/rqt_graph.png` + saída do serviço | dom 08/11 |
+| **G1.5** | Relatório fechado: decisões, o experimento de oclusão, limitações conhecidas, uso de IA declarado | revisão de leitura do `docs/relatorios/relatorio-tp1.md` (todas as seções preenchidas) | `docs/relatorios/relatorio-tp1.md` | qua 11/11 |
+| **G1.6** | **Entrega**: `main` atualizado, branch `entrega-tp1` criado, tag `tp1` empurrada, PDF+ZIP no Moodle, link do repositório no Moodle | `git tag --list` mostra `tp1`; a página do GitHub abre em janela anônima | tag `tp1` + postagem no Moodle | **sex 13/11** |
 
 **O gate que mais gente subestima é o G1.1.** Ele parece burocracia e é o oposto disso: sem domínio e classes definidos, o G1.3 não tem o que detectar, e o aluno passa duas semanas afinando HSV de um cubo vermelho genérico que não vai para lugar nenhum. Escolha o domínio antes de escrever a primeira linha de visão.
 
@@ -140,18 +140,18 @@ Um `[!]` não é vergonha nem perda de nota — é informação. O que custa not
 
 ---
 
-## Gates × níveis da rubrica
+## Gates × verificação da entrega
 
-Os gates não substituem a rubrica; eles são o caminho mais curto até ela. A leitura aproximada:
+Os gates não substituem a avaliação; eles são o caminho mais curto para uma entrega completa. Antes de enviar, confira em que degrau a sua entrega está — e, se der tempo, suba um:
 
-| Situação dos gates do TP | Nível provável |
+| Degrau | O que a entrega demonstra |
 |---|---|
-| gates centrais não passaram; entrega parcial ou não reproduzível | **ND** — não desenvolvido |
-| todos os gates passaram, com evidência, sem aprofundamento além do pedido | **D** — desenvolvido |
-| todos os gates + análise crítica, métricas próprias, tratamento de caso difícil | **DL** — desenvolvido com louvor |
-| tudo acima + contribuição original (derivação bem construída, ferramenta reutilizável, comparação que ninguém pediu e que ensina algo) | **DML** — desenvolvido com muito louvor |
+| reproduzível | os gates centrais passaram; qualquer pessoa clona, segue o `reproduzir.sh` e vê o sistema rodar |
+| evidenciado | todos os gates passaram, cada um com o artefato commitado, e o relatório descreve o que foi feito |
+| analisado | além disso, há análise crítica: métricas próprias, um caso difícil tratado e discutido, limitações nomeadas |
+| original | além disso, uma contribuição própria: uma derivação bem construída, uma ferramenta reutilizável, uma comparação que ninguém pediu e que ensina algo |
 
-Repare no que **não** aparece nessa tabela: esforço, tempo gasto, intenção. A régua lê evidência. É por isso que cada gate exige um artefato commitado — sem ele, o trabalho existiu e não pôde ser avaliado, o que na prática é o mesmo que não ter existido.
+Repare no que **não** aparece nessa tabela: esforço, tempo gasto, intenção. A avaliação lê evidência. É por isso que cada gate exige um artefato commitado — sem ele, o trabalho existiu e não pôde ser avaliado, o que na prática é o mesmo que não ter existido. Os conceitos são lançados no Moodle pelo professor; nenhuma tabela deste material antecipa conceito.
 
 ## Escada de recuperação (o que fazer quando um gate vence)
 

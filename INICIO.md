@@ -56,19 +56,20 @@ Aulas às **segundas-feiras à noite, pelo Zoom** (1h30, gravadas) · Prof. Dác
 
 ## Aula mais recente
 
-**Aula 2 — segunda, 19/10/2026 — Primeiros nós: tópicos e serviços** <span class="pb-tag next">atual</span>
+**Aula 3 — segunda, 26/10/2026 — O TP1, lido; e a imagem no grafo** <span class="pb-tag next">atual</span>
 
-**A aula ao vivo tem 1h30: ela mostra, o guia de estudo ensina.** A Aula 2 mostrou os três tijolos de comunicação do ROS 2 — publisher, subscriber e serviço — rodando de ponta a ponta no repositório do professor, e quando usar cada um com o TP1 como régua. O aprendizado desta semana acontece no **guia de estudo** (2h30 a 3h30, em duas ou três sessões), guiado pela tarefa e pelo desafio.
+**A aula ao vivo tem 1h30: ela mostra, o guia de estudo ensina.** A Aula 3 leu o **TP1** com as datas desta turma (entrega **sexta 13/11**; os sete gates estão na [página do TP1](recursos/tp1.md)) e mostrou o pipeline `câmera → segmentação → contagem → serviço` rodando de ponta a ponta no repositório do professor. O aprendizado acontece no **guia de estudo** (3h a 4h em três sessões), guiado pela tarefa em duas partes — e a semana de 02/11, sem aula, existe para a Parte B.
 
-[Conteúdo e slides da aula](aulas/etapa02-aula02/index.md){ .md-button .md-button--primary }
-[Guia de estudo da Aula 2](tutoriais/estudo-aula02-primeiros-nos.md){ .md-button }
-[Tarefa da Aula 2](tutoriais/tarefa-aula02-primeiros-nos.md){ .md-button }
+[Conteúdo e slides da aula](aulas/etapa02-aula03/index.md){ .md-button .md-button--primary }
+[Guia de estudo da Aula 3](tutoriais/estudo-aula03-visao.md){ .md-button }
+[Tarefa da Aula 3](tutoriais/tarefa-aula03-visao.md){ .md-button }
+[TP1 — enunciado, checklist e gates](recursos/tp1.md){ .md-button }
 
-!!! warning "Até domingo 25/10: o esqueleto do seu TP1, no seu repositório"
-    Nesta ordem: **[guia de estudo](tutoriais/estudo-aula02-primeiros-nos.md)** (comece por ele) → **[tarefa da Aula 2](tutoriais/tarefa-aula02-primeiros-nos.md)** (push na `dev` até 25/10, 23h59: pacote com o seu nome, 4 nós, `/contagem` respondendo, `rqt_graph` em `docs/evidencias/aula02/`) → **projeto declarado** no Infnet.Online até 26/10 (a leitura do TP1 é na Aula 3). [Desafio 1](recursos/desafios/desafio-01-comunicacao.md) é opcional. Travou? Seção "Se travar" do guia; depois, o canal da turma (comando + saída completa + `lsb_release -a`).
+!!! warning "Até domingo 01/11 (Parte A) e domingo 08/11 (Parte B): o pipeline de visão do seu projeto"
+    Nesta ordem: **[guia de estudo](tutoriais/estudo-aula03-visao.md)** (comece por ele) → **[tarefa, Parte A](tutoriais/tarefa-aula03-visao.md)** até **01/11, 23h59**: pacote seu compilando, taxa medida nas duas pontas, `PROJETO.md` com o **G1.1** declarado (domínio, usuário, duas classes, trilha, plano B) → **Parte B** até **08/11, 23h59**: duas classes do seu domínio, parâmetros em YAML, `/vision/status` com domínio, oclusão registrada, evidências. [Desafio 2](recursos/desafios/desafio-02-visao.md) é opcional. **Não há aula em 02/11** (feriado); a Aula 4 (09/11) é a clínica do TP1.
 
-!!! note "Ainda sem ambiente ou sem repositório?"
-    A [tarefa da semana 1](tutoriais/tarefa-semana01-ambiente-e-repositorio.md) continua valendo — e vem **antes** da desta semana. Primeiro passo: o **[formulário de cadastro](https://forms.gle/6Lbq37mhYQWJKGxX7)** (é dele que sai o seu `pb-live-<usuario>`; o convite chega por e-mail). Sem conta no GitHub ainda? [Manual do aluno, Parte A](tutoriais/manual-do-aluno-github.md).
+!!! note "Atrasado na Aula 2 ou ainda sem ambiente?"
+    A [tarefa da Aula 2](tutoriais/tarefa-aula02-primeiros-nos.md) e a [tarefa da semana 1](tutoriais/tarefa-semana01-ambiente-e-repositorio.md) continuam valendo — e vêm **antes** da desta semana. Sem repositório ainda? **[Formulário de cadastro](https://forms.gle/6Lbq37mhYQWJKGxX7)** (o convite chega por e-mail).
 
 ## Calendário de entregas
 

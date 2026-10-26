@@ -31,7 +31,7 @@ Todos os guias de setup **validam os pré-requisitos antes de instalar** e fixam
 |---|---|---|
 | [Semana 1 — ambiente pronto e repositório no ar](tarefa-semana01-ambiente-e-repositorio.md) | Aula 1 (semana de 12/10, sem aula) | o G1.0 do TP1: ambiente operante e repositório inicializado |
 | [Primeiros nós — tópicos e serviços](tarefa-aula02-primeiros-nos.md) | Aula 2 | estrutura de pacote e o serviço do TP1 |
-| [Pipeline de visão](tarefa-aula03-visao.md) | Aula 3 | itens 3 e 4 do TP1 |
+| [Pipeline de visão — Parte A (01/11) e Parte B (08/11)](tarefa-aula03-visao.md) · [guia de estudo](estudo-aula03-visao.md) | Aula 3 (+ semana de 02/11, sem aula) | itens 1, 3 e 4 do TP1: gates G1.1 a G1.4 |
 
 ## Uma regra que economiza horas
 

@@ -115,7 +115,7 @@ nav:
       - aulas/index.md
       - "Aula 1 — Abertura, ROS 2 e o projeto": aulas/etapa01-aula01/index.md
       - "Aula 2 — Ambiente conferido; primeiros nós": aulas/etapa02-aula02/index.md
-      - "Aula 3 — Comunicação e visão computacional": aulas/etapa02-aula03/index.md
+      - "Aula 3 — O TP1, lido; imagem no grafo e segmentação": aulas/etapa02-aula03/index.md
       - "Aula 6 — Interfaces próprias e detecção inteligente": aulas/etapa03-aula06/index.md
       - "Aula 7 — Ações: tarefas longas, feedback e cancelamento": aulas/etapa04-aula07/index.md
       - "Aula 8 — Ações a fundo: o ciclo de vida de um objetivo": aulas/etapa04-aula08/index.md
@@ -134,7 +134,8 @@ nav:
       - "Tarefa da semana 1 — ambiente e repositório": tutoriais/tarefa-semana01-ambiente-e-repositorio.md
       - "Guia de estudo — Aula 2: primeiros nós": tutoriais/estudo-aula02-primeiros-nos.md
       - "Tarefa da Aula 2 — primeiros nós": tutoriais/tarefa-aula02-primeiros-nos.md
-      - "Tarefa da Aula 3 — pipeline de visão": tutoriais/tarefa-aula03-visao.md
+      - "Guia de estudo — Aula 3: imagem e segmentação": tutoriais/estudo-aula03-visao.md
+      - "Tarefa da Aula 3 — pipeline de visão (A e B)": tutoriais/tarefa-aula03-visao.md
       - "Tarefa da Aula 6 — interfaces próprias": tutoriais/tarefa-aula06-interfaces.md
       - "Tarefa da Aula 7 — ações": tutoriais/tarefa-aula07-acoes.md
       - "URDF, TF e RViz2": tutoriais/urdf-tf-rviz2.md
@@ -148,6 +149,7 @@ nav:
       - "Derivações e aplicações": recursos/derivacoes-projetos.md
       - "Simulação × hardware real": recursos/simulado-vs-hardware.md
       - "Gates de cada TP": recursos/gates-tps.md
+      - "TP1 — enunciado, checklist e gates": recursos/tp1.md
       - Desafios semanais:
           - recursos/desafios/index.md
           - "Desafio 1 — comunicação": recursos/desafios/desafio-01-comunicacao.md
