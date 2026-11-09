@@ -9,9 +9,9 @@ O bloco tem dez etapas de conteúdo distribuídas em dois trimestres (**26T4**, 
 | [Aula 1](etapa01-aula01/index.md) | 05/10/2026 | 1 | Abertura, ROS 2 e o projeto do semestre | <span class="pb-tag ok">dada</span> |
 | — | 12/10/2026 | 1 | **Feriado.** [Tarefa da semana 1](../tutoriais/tarefa-semana01-ambiente-e-repositorio.md): ambiente e repositório | <span class="pb-tag ok">semana guiada</span> |
 | [Aula 2](etapa02-aula02/index.md) | 19/10/2026 | 2 | Primeiros nós: tópicos e serviços · [guia de estudo](../tutoriais/estudo-aula02-primeiros-nos.md) | <span class="pb-tag ok">dada</span> |
-| [Aula 3](etapa02-aula03/index.md) | 26/10/2026 | 2 | **Leitura do TP1** · imagem no grafo e segmentação por cor · [guia de estudo](../tutoriais/estudo-aula03-visao.md) | <span class="pb-tag next">atual</span> |
+| [Aula 3](etapa02-aula03/index.md) | 26/10/2026 | 2 | **Leitura do TP1** · imagem no grafo e segmentação por cor · [guia de estudo](../tutoriais/estudo-aula03-visao.md) | <span class="pb-tag ok">dada</span> |
 | — | 02/11/2026 | 3 | **Feriado.** [Parte B da tarefa da Aula 3](../tutoriais/tarefa-aula03-visao.md#parte-b-ate-domingo-0811-a-semana-sem-aula): duas classes, YAML, `/vision/status`, evidências (até dom 08/11) | <span class="pb-tag ok">semana guiada</span> |
-| Aula 4 | 09/11/2026 | 3 | Interfaces próprias e clínica do TP1 (entrega sexta 13/11) | planejada |
+| [Aula 4](etapa03-aula04/index.md) | 09/11/2026 | 3 | **Clínica do TP1** (entrega sexta 13/11) · interfaces próprias · [guia de estudo](../tutoriais/estudo-aula04-interfaces.md) | <span class="pb-tag next">atual</span> |
 | Aula 5 | 16/11/2026 | 4 | Ações: tarefas longas, feedback e cancelamento | planejada |
 | Aula 6 | 23/11/2026 | 4 | Ações a fundo · **leitura do TP2** | planejada |
 | Aula 7 | 30/11/2026 | 5 | Detecção treinada e métrica declarada | planejada |
@@ -31,7 +31,7 @@ O bloco tem dez etapas de conteúdo distribuídas em dois trimestres (**26T4**, 
 | Aula 19 | 05/04/2027 | — | **Apresentações** | planejada |
 
 !!! note "Páginas herdadas da turma presencial"
-    As páginas das aulas que ainda não aconteceram nesta turma (Aula 6 em diante) trazem o conteúdo já produzido para a turma presencial 2026.2, com um aviso no topo. Elas valem para estudar adiantado; datas e referências a sala/laboratório são adaptadas antes de cada encontro.
+    As páginas das aulas que ainda não aconteceram nesta turma (Aula 5 em diante) trazem o conteúdo já produzido para a turma presencial 2026.2, com um aviso no topo. Elas valem para estudar adiantado; datas e referências a sala/laboratório são adaptadas antes de cada encontro.
 
 ## As etapas
 

@@ -56,20 +56,20 @@ Aulas às **segundas-feiras à noite, pelo Zoom** (1h30, gravadas) · Prof. Dác
 
 ## Aula mais recente
 
-**Aula 3 — segunda, 26/10/2026 — O TP1, lido; e a imagem no grafo** <span class="pb-tag next">atual</span>
+**Aula 4 — segunda, 09/11/2026 — Clínica do TP1; e as interfaces do seu projeto** <span class="pb-tag next">atual</span>
 
-**A aula ao vivo tem 1h30: ela mostra, o guia de estudo ensina.** A Aula 3 leu o **TP1** com as datas desta turma (entrega **sexta 13/11**; os sete gates estão na [página do TP1](recursos/tp1.md)) e mostrou o pipeline `câmera → segmentação → contagem → serviço` rodando de ponta a ponta no repositório do professor. O aprendizado acontece no **guia de estudo** (3h a 4h em três sessões), guiado pela tarefa em duas partes — e a semana de 02/11, sem aula, existe para a Parte B.
+**O TP1 vence nesta sexta, 13/11.** A Aula 4 teve duas metades: a **clínica do TP1** — censo de gates, os três bloqueios mais comuns, o relatório em cinco perguntas, o ensaio da entrega — e as **interfaces próprias** (`.msg` e `.srv` do seu domínio), que são o começo do TP2. Até sexta existe uma coisa só; o guia de estudo e a tarefa desta aula começam **depois** dela.
 
-[Conteúdo e slides da aula](aulas/etapa02-aula03/index.md){ .md-button .md-button--primary }
-[Guia de estudo da Aula 3](tutoriais/estudo-aula03-visao.md){ .md-button }
-[Tarefa da Aula 3](tutoriais/tarefa-aula03-visao.md){ .md-button }
-[TP1 — enunciado, checklist e gates](recursos/tp1.md){ .md-button }
+[Conteúdo e slides da aula](aulas/etapa03-aula04/index.md){ .md-button .md-button--primary }
+[Checklist de entrega do TP1](tutoriais/checklist-entrega-tp1.md){ .md-button }
+[Guia de estudo da Aula 4](tutoriais/estudo-aula04-interfaces.md){ .md-button }
+[Tarefa da Aula 4](tutoriais/tarefa-aula04-interfaces.md){ .md-button }
 
-!!! warning "Até domingo 01/11 (Parte A) e domingo 08/11 (Parte B): o pipeline de visão do seu projeto"
-    Nesta ordem: **[guia de estudo](tutoriais/estudo-aula03-visao.md)** (comece por ele) → **[tarefa, Parte A](tutoriais/tarefa-aula03-visao.md)** até **01/11, 23h59**: pacote seu compilando, taxa medida nas duas pontas, `PROJETO.md` com o **G1.1** declarado (domínio, usuário, duas classes, trilha, plano B) → **Parte B** até **08/11, 23h59**: duas classes do seu domínio, parâmetros em YAML, `/vision/status` com domínio, oclusão registrada, evidências. [Desafio 2](recursos/desafios/desafio-02-visao.md) é opcional. **Não há aula em 02/11** (feriado); a Aula 4 (09/11) é a clínica do TP1.
+!!! danger "Até sexta 13/11: a entrega do TP1"
+    Relatório fechado até **quarta 11/11** (G1.5: as cinco perguntas estão na [página da aula](aulas/etapa03-aula04/index.md)); na sexta, [checklist de entrega](tutoriais/checklist-entrega-tp1.md) de cima para baixo — `main` atualizada, branch `entrega-tp1`, **tag `tp1`**, ZIP + PDF + links no **Moodle**, tudo testado em janela anônima. Evidências em `docs/evidencias/tp1/` ([o que cada gate pede](recursos/tp1.md)). Não vai dar tempo de tudo? Entregue o que funciona e **declare** o que não funciona — [escada de recuperação](tutoriais/checklist-entrega-tp1.md#escada-de-recuperacao-se-algo-nao-vai-dar-tempo).
 
-!!! note "Atrasado na Aula 2 ou ainda sem ambiente?"
-    A [tarefa da Aula 2](tutoriais/tarefa-aula02-primeiros-nos.md) e a [tarefa da semana 1](tutoriais/tarefa-semana01-ambiente-e-repositorio.md) continuam valendo — e vêm **antes** da desta semana. Sem repositório ainda? **[Formulário de cadastro](https://forms.gle/6Lbq37mhYQWJKGxX7)** (o convite chega por e-mail).
+!!! note "Depois de sexta: interfaces próprias (TP2)"
+    [Guia de estudo da Aula 4](tutoriais/estudo-aula04-interfaces.md) (2h–3h em duas sessões) → [tarefa da Aula 4](tutoriais/tarefa-aula04-interfaces.md) até **domingo 22/11**: o seu `<projeto>_interfaces`, o `/vision/status` migrado para um serviço próprio, `/vision/deteccoes` com classe e confiança. A Aula 5 (16/11) é sobre ações e acrescenta um `.action` a esse pacote.
 
 ## Calendário de entregas
 

@@ -116,7 +116,7 @@ nav:
       - "Aula 1 — Abertura, ROS 2 e o projeto": aulas/etapa01-aula01/index.md
       - "Aula 2 — Ambiente conferido; primeiros nós": aulas/etapa02-aula02/index.md
       - "Aula 3 — O TP1, lido; imagem no grafo e segmentação": aulas/etapa02-aula03/index.md
-      - "Aula 6 — Interfaces próprias e detecção inteligente": aulas/etapa03-aula06/index.md
+      - "Aula 4 — Clínica do TP1; interfaces próprias": aulas/etapa03-aula04/index.md
       - "Aula 7 — Ações: tarefas longas, feedback e cancelamento": aulas/etapa04-aula07/index.md
       - "Aula 8 — Ações a fundo: o ciclo de vida de um objetivo": aulas/etapa04-aula08/index.md
       - "Aula 9 — Detecção treinada e métrica declarada": aulas/etapa05-aula09/index.md
@@ -136,7 +136,8 @@ nav:
       - "Tarefa da Aula 2 — primeiros nós": tutoriais/tarefa-aula02-primeiros-nos.md
       - "Guia de estudo — Aula 3: imagem e segmentação": tutoriais/estudo-aula03-visao.md
       - "Tarefa da Aula 3 — pipeline de visão (A e B)": tutoriais/tarefa-aula03-visao.md
-      - "Tarefa da Aula 6 — interfaces próprias": tutoriais/tarefa-aula06-interfaces.md
+      - "Guia de estudo — Aula 4: interfaces próprias": tutoriais/estudo-aula04-interfaces.md
+      - "Tarefa da Aula 4 — interfaces próprias": tutoriais/tarefa-aula04-interfaces.md
       - "Tarefa da Aula 7 — ações": tutoriais/tarefa-aula07-acoes.md
       - "URDF, TF e RViz2": tutoriais/urdf-tf-rviz2.md
       - "Gazebo para o TP3": tutoriais/gazebo-para-o-tp3.md
@@ -159,7 +160,7 @@ nav:
       - exemplos/index.md
       - "Aula 2 — comunicação": exemplos/aula02-comunicacao/index.md
       - "Aula 3 — visão": exemplos/aula03-visao/index.md
-      - "Aula 6 — interfaces próprias": exemplos/aula06-interfaces/index.md
+      - "Aula 4 — interfaces próprias (exemplo aula06-interfaces)": exemplos/aula06-interfaces/index.md
       - "Aula 7 — demo com webcam": exemplos/aula07-demo-visual/index.md
       - "Aula 7 — ações": exemplos/aula07-acoes/index.md
       - "Aula 9 — URDF e TF": exemplos/aula09-urdf/index.md

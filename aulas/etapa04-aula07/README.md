@@ -57,7 +57,7 @@ Os dois primeiros vocês já sabem fazer. O terceiro é o assunto de hoje, e é 
 
 ## Revisão com o demo na tela: interfaces e percepção
 
-Antes de seguir, vale reler o demo com os olhos da [Aula 6](../etapa03-aula06/index.md), porque ele é um exemplo completo daquilo — e agora com câmera de verdade em vez de cena sintética.
+Antes de seguir, vale reler o demo com os olhos da [Aula 4](../etapa03-aula04/index.md), porque ele é um exemplo completo daquilo — e agora com câmera de verdade em vez de cena sintética.
 
 **O `ComandoMovimento` é uma interface própria, e ela existe por um motivo específico.** O nó poderia simplesmente desenhar a seta e acabou. Publicar a decisão como mensagem separa **perceber** de **agir**: quem enxerga não sabe o que acontece depois, quem age não sabe como foi detectado. Essa fronteira é o que permite trocar qualquer um dos dois lados sem tocar no outro — e é a razão de o ROS 2 existir.
 
