@@ -97,22 +97,42 @@ Esperado no `service call`: `success=True, message='2 objeto(s) no ultimo frame 
 
 **2.4 — O sintoma cruel, de propósito.** Force um subscriber `RELIABLE` contra o publicador `BEST_EFFORT`: `ros2 topic echo /camera/image_raw --once --qos-reliability reliable`. O comando fica mudo — e o `rclpy` imprime um aviso de QoS incompatível, que é o máximo de erro que você vai ver. Sem a flag, o `echo` do Humble **descobre a QoS do publicador sozinho** e mostra o quadro (enorme — `Ctrl+C`); o seu nó, escrito com o `10` padrão do `create_subscription`, **não descobre nada**: é ele que fica mudo. Por isso o segmentador assina com `QOS_SENSOR`. Essa é a cura de "o tópico existe mas não chega nada" para o resto do semestre.
 
-!!! warning "WSL2 e máquina única: duas curas antes de medir qualquer taxa"
-    Numa máquina só, uma imagem de 640×480 (**900 kB**) viaja fragmentada em UDP, e o buffer de rede padrão do Linux (208 kB) é **menor que uma mensagem**: fragmentos se perdem, e com eles o quadro inteiro. Sintomas: `A message was lost!!!`, `/vision/contagem` a 2–8 Hz em vez de 15, `hz` com buracos de 0,5 a 2 s. Cura 1, em **todos** os terminais e no `~/.bashrc`: `export ROS_LOCALHOST_ONLY=1`. Cura 2, uma vez, com `sudo` (aumenta os buffers do kernel — a recomendação oficial de *DDS tuning* do ROS 2):
+!!! warning "Taxa em 5 Hz em vez de 15: o perfil do Fast DDS (substitui a cura por `sysctl` que estava aqui)"
+    Numa máquina só, o ROS 2 Humble entrega as mensagens por **memória compartilhada**. Uma imagem de 640×480 pesa **0,92 MB**, e o segmento de memória padrão é pequeno para ela: quadros caem, sem mensagem de erro. Sintomas: `/vision/contagem` a 5–7 Hz em vez de 15, `hz` com buracos de até 0,8 s, às vezes `A message was lost!!!`. A cura é um arquivo de perfil que aumenta esse segmento. **A cura por `sysctl` (buffers do kernel) que esta página trazia não resolve** — foi testada de novo no Humble e retirada; se você a aplicou, ela não atrapalha, só não ajuda. `ROS_LOCALHOST_ONLY=1` continua sendo boa prática em rede compartilhada, mas também não é ela que cura a taxa.
 
     ```bash
-    sudo tee /etc/sysctl.d/60-ros2-imagem.conf >/dev/null <<'EOF'
-    net.core.rmem_max=2147483647
-    net.core.rmem_default=8388608
-    net.core.wmem_max=2147483647
-    net.core.wmem_default=8388608
-    net.ipv4.ipfrag_time=3
-    net.ipv4.ipfrag_high_thresh=134217728
+    # ── qualquer terminal · uma vez por máquina ──────────
+    mkdir -p "$HOME/.ros"
+    cat > "$HOME/.ros/fastdds-imagem.xml" <<'EOF'
+    <?xml version="1.0" encoding="UTF-8" ?>
+    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+      <transport_descriptors>
+        <transport_descriptor>
+          <transport_id>shm_imagem</transport_id>
+          <type>SHM</type>
+          <segment_size>4194304</segment_size>
+        </transport_descriptor>
+        <transport_descriptor>
+          <transport_id>udp_padrao</transport_id>
+          <type>UDPv4</type>
+        </transport_descriptor>
+      </transport_descriptors>
+      <participant profile_name="pb_imagem" is_default_profile="true">
+        <rtps>
+          <userTransports>
+            <transport_id>shm_imagem</transport_id>
+            <transport_id>udp_padrao</transport_id>
+          </userTransports>
+          <useBuiltinTransports>false</useBuiltinTransports>
+        </rtps>
+      </participant>
+    </profiles>
     EOF
-    sudo sysctl --system >/dev/null && sysctl net.core.rmem_default     # esperado: 8388608
+    grep -q FASTRTPS_DEFAULT_PROFILES_FILE "$HOME/.bashrc" || echo 'export FASTRTPS_DEFAULT_PROFILES_FILE="$HOME/.ros/fastdds-imagem.xml"' >> "$HOME/.bashrc"
+    export FASTRTPS_DEFAULT_PROFILES_FILE="$HOME/.ros/fastdds-imagem.xml"
     ```
 
-    Reinicie o launch e confira `ros2 topic hz /vision/contagem` ≈ 15 Hz. No WSL2, se depois de um `wsl --shutdown` o valor voltar a `212992`, rode `sudo sysctl --system` de novo (ou habilite o systemd em `/etc/wsl.conf`).
+    A variável precisa estar definida **no terminal que sobe o launch** (terminais novos já a recebem do `~/.bashrc`). Suba o launch de novo e confira `ros2 topic hz /vision/contagem`: no ensaio do professor, em Ubuntu 22.04 com ROS 2 Humble, a taxa foi de 5,7 Hz para **15,0 Hz**. Se na sua máquina ela continuar baixa, **meça, registre e explique** no relatório: taxa baixa medida e explicada é resposta válida; taxa baixa escondida, não.
 
 **2.5 — Medir a taxa nas duas pontas.**
 
@@ -224,7 +244,7 @@ Responda sem olhar; depois abra a resposta.
 | webcam não abre | WSL2: falta `usbipd attach` · VirtualBox: Extension Pack + *Dispositivos → Webcams* | [câmera no WSL2](camera-wsl2-usbipd.md) · [VirtualBox](setup-ros2-humble-virtualbox.md#webcam-extension-pack-nao-usbipd) · enquanto isso `fonte:=sintetico` |
 | webcam abre, 3 fps sem erro | YUYV 1080p pela USB/usbipd | o publicador já pede `MJPG` 640×480; confira a linha `webcam negociada:` no log |
 | `hz` com `min:` negativo ou buracos de segundos | relógio do WSL2 saltando | [diagnóstico e cura](setup-ros2-humble-wsl2.md#o-relogio-do-wsl2-pode-saltar-e-isso-estraga-qualquer-medicao) |
-| `A message was lost!!!`, `/vision/contagem` a 2–8 Hz, `hz` com buracos de 0,5–2 s | fragmentação UDP numa máquina só: buffer de rede do kernel (208 kB) menor que uma imagem (900 kB) | as duas curas da seção 2.4: `ROS_LOCALHOST_ONLY=1` em todos os terminais **e** o `sysctl` dos buffers; reinicie o launch; não dê `echo` em tópico de imagem |
+| `/vision/contagem` a 5–7 Hz, `hz` com buracos de até 0,8 s, às vezes `A message was lost!!!` | a imagem (0,92 MB) não cabe no segmento padrão de memória compartilhada do Fast DDS | o perfil do Fast DDS da seção 2.4, com a variável definida no terminal do launch; reinicie o launch; não dê `echo` em tópico de imagem |
 | editou o YAML e nada muda | build sem `--symlink-install` | `colcon build --symlink-install`; edite só em `src/` |
 | `Package not found` / `libexec directory … does not exist` | renomear incompleto (os cinco lugares; `setup.cfg` é o esquecido) | [renomear um pacote ROS 2](renomear-pacote-ros2.md); `rm -rf build install log` |
 | máscara toda preta / toda branca | S/V altos demais · H largo demais ou fundo da cor do objeto | comece frouxo (S≥60, V≥40) e aperte · meça com o amostrador; troque o fundo |

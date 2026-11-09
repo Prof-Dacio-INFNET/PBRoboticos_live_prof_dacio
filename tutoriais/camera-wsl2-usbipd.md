@@ -223,15 +223,9 @@ Se essa marcar a taxa esperada, o pipeline está saudável e quem está lento s�
 
 **3. Desconfie do impossível antes de desconfiar do provável.** Se o `hz` mostrar um `min:` **negativo**, pare tudo: intervalo negativo entre duas mensagens não existe, nada chega antes de ter sido enviado. Isso é o relógio saltando, e ele estraga toda medição feita com ele — [diagnóstico e cura aqui](setup-ros2-humble-wsl2.md#o-relogio-do-wsl2-pode-saltar-e-isso-estraga-qualquer-medicao).
 
-**4. Só então, o transporte.** Imagem crua é mensagem grande, e mensagem grande é fragmentada em datagramas UDP. Perdeu um fragmento, perdeu o quadro inteiro — e aparece o `A message was lost!!!`. Numa máquina só, `export ROS_LOCALHOST_ONLY=1` em todos os terminais costuma resolver sem `sudo`. Se não resolver, aumente os buffers do kernel:
+**4. Só então, o transporte.** Imagem crua é mensagem grande: 0,92 MB em 640×480. Numa máquina só, o ROS 2 Humble a entrega por memória compartilhada, e o segmento padrão é pequeno para ela — quadros caem sem mensagem de erro, e às vezes aparece o `A message was lost!!!`. A cura é o **perfil do Fast DDS** descrito no [guia de estudo da Aula 3, seção 2.4](estudo-aula03-visao.md#2-reproduza-o-exemplo-passo-a-passo-45-min). (Aumentar os buffers do kernel com `sysctl`, que esta página sugeria, foi testado de novo e não resolve.)
 
-```bash
-sudo sysctl -w net.core.rmem_max=2147483647
-sudo sysctl -w net.ipv4.ipfrag_high_thresh=134217728
-sudo sysctl -w net.ipv4.ipfrag_time=3
-```
-
-E, para uma demonstração, o caminho mais seguro é sempre carregar menos: `largura:=320 altura:=240` derruba o quadro de 900 kB para 230 kB.
+E, para uma demonstração, o caminho mais seguro é sempre carregar menos: `largura` e `altura` são parâmetros do nó publicador, e `ros2 run aula03_visao publicador_camera --ros-args -p largura:=320 -p altura:=240` derruba o quadro de 900 kB para 230 kB.
 
 ## Um atalho que vale o esforço
 

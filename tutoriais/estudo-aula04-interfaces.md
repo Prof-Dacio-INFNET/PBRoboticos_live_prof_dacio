@@ -1,6 +1,6 @@
 # Guia de estudo — Aula 4: as interfaces do seu projeto
 
-**Semana de 09/11 a 22/11 · Etapa 3 · turma live.** A aula de 1h30 teve duas metades: a clínica do TP1 e as interfaces próprias, em linhas gerais. **Este guia é só sobre a segunda metade — e começa depois de sexta.** Até **13/11**, o que vale é o [checklist de entrega do TP1](checklist-entrega-tp1.md). Depois, ele é guiado pela [tarefa da Aula 4](tarefa-aula04-interfaces.md) (prazo **domingo 22/11**, push na `dev`). Tempo total: **2h a 3h**, em duas sessões.
+**Semana de 09/11 a 22/11 · Etapa 3 · turma live.** A aula de 1h30 teve duas metades: o TP1 conferido e entregue, e as interfaces próprias. **Este guia é só sobre a segunda metade — e começa depois da entrega do TP1.** Até **13/11**, o que vale é o [checklist de entrega do TP1](checklist-entrega-tp1.md). Depois, ele é guiado pela [tarefa da Aula 4](tarefa-aula04-interfaces.md) (prazo **domingo 22/11**, push na `dev`). Tempo total: **2h a 3h**, em duas sessões.
 
 | Sessão | O quê | Tempo | Resultado |
 |---|---|---|---|
@@ -13,11 +13,17 @@
 
 ---
 
+## Cenas dos últimos episódios
+
+Desde a Aula 2 os seus nós vivem num pacote `ament_python`, todo tópico tem um **tipo**, e cada terminal precisa do `source install/setup.bash`. Na Aula 3 o sistema publicou um `Int32` em `/vision/contagem` e respondeu ao `/vision/status` com um `Trigger` — e sobrou um incômodo: o número ficou preso dentro de uma frase. Na Aula 4 o professor mostrou a saída: um pacote só de definições (`pb_interfaces`) ao lado do pacote dos nós (`aula06_percepcao`). Aqui você reproduz isso no seu repositório.
+
+Sobre os blocos de comando: cada bloco diz, na primeira linha, em qual terminal roda, e pode ser colado inteiro. Comando que ocupa o terminal é o último do bloco.
+
 ## 1. Leia antes (30 min)
 
 | Fonte | O quê | Minutos | Depois você responde |
 |---|---|---|---|
-| [Página da Aula 4](../aulas/etapa03-aula04/index.md) | Parte 2 | 10 | quando vale criar uma interface própria; por que o pacote é separado; o que o `Header` carrega |
+| [Página da Aula 4](../aulas/etapa03-aula04/index.md) | Blocos 2 e 3 | 10 | quando vale criar uma interface própria; por que o pacote é separado; o que o `Header` carrega |
 | [README do exemplo `aula06-interfaces`](../exemplos/aula06-interfaces/index.md) | inteiro | 8 | o que cada um dos dois pacotes contém; o que é a "confiança" do exemplo |
 | Docs do Humble — [Creating custom msg and srv files](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Custom-ROS2-Interfaces.html) | até "Test the new interfaces" | 12 | o que `rosidl_generate_interfaces` faz; por que `ament_cmake`; os tipos primitivos permitidos num `.msg` |
 
@@ -28,10 +34,11 @@ Os dois conceitos que organizam tudo. **Interface é contrato gerado**: o `.msg`
 Você trabalha **no seu repositório**, na branch `dev`, e nunca dentro do repositório do material. Com o TP1 já entregue e a tag `tp1` empurrada:
 
 ```bash
-# ── uma vez por terminal ──────────────────────────────
+# ── Terminal B · uma vez por terminal ─────────────────
 export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
 export PB_DIR="$HOME/pb-live-$PB_USER"
 export PB_WS="$PB_DIR/ros2_ws"
+source /opt/ros/humble/setup.bash
 
 cd "$PB_DIR" && git checkout dev && git pull
 rm -rf /tmp/PBRoboticos_live_prof_dacio
@@ -46,6 +53,8 @@ Esperado: `pb_interfaces/`: `CMakeLists.txt  action  msg  package.xml  srv` — 
 **2.1 — Compilar na ordem certa.**
 
 ```bash
+# ── Terminal B · herda as variáveis do bloco acima · UMA LINHA POR VEZ ──
+: "${PB_WS:?defina PB_USER, PB_DIR e PB_WS — o bloco está no começo da seção 2}"
 cd "$PB_WS"
 colcon build --packages-select pb_interfaces
 source install/setup.bash
@@ -53,11 +62,22 @@ colcon build --packages-select aula06_percepcao --symlink-install
 source install/setup.bash
 ```
 
-Esperado: `Finished <<< pb_interfaces [~20s]` (é CMake gerando código: demora mais que um pacote Python) e depois `Finished <<< aula06_percepcao`. Agora inverta de propósito, uma vez, para conhecer o erro: `rm -rf build install log`, compile só o `aula06_percepcao` e rode o launch — `ModuleNotFoundError: No module named 'pb_interfaces'`. Nada na mensagem diz "compile o outro pacote primeiro". Agora você sabe.
+Esperado: `Finished <<< pb_interfaces [10.5s]` (de dez a quinze segundos, mais em máquina lenta: é o CMake gerando código, e por isso demora mais do que um pacote Python) e depois `Finished <<< aula06_percepcao [1.2s]`.
+
+Agora conheça, de propósito, as **três mensagens** de quando a ordem sai errada — elas dizem o que falta, e vale tê-las visto uma vez:
+
+| A mensagem | Como provocar | O que ela pede |
+|---|---|---|
+| `Check that the following packages have been built: - pb_interfaces` | apague `build/pb_interfaces` e `install/pb_interfaces`, abra um terminal novo e compile só o `aula06_percepcao` | interfaces primeiro, `source`, depois os nós |
+| `Package 'aula06_percepcao' not found ... searching: [...]` | rode o launch num terminal que fez o `source` **antes** do build | `source "$PB_WS/install/setup.bash"` neste terminal — a lista mostra onde ele procurou |
+| `ModuleNotFoundError: No module named 'pb_interfaces'` | rode o nó num terminal antigo, ou tire o `<depend>pb_interfaces</depend>` do `package.xml` dos nós | terminal novo com os dois `source`; confira o `package.xml` |
+
+No dia a dia, `colcon build --symlink-install` sem selecionar nada compila tudo e **acerta a ordem sozinho**, porque o `package.xml` dos nós declara `<depend>pb_interfaces</depend>`.
 
 **2.2 — O teste de fumaça.**
 
 ```bash
+# ── Terminal B · o mesmo do build ─────────────────────
 ros2 interface list | grep pb_interfaces
 ros2 interface show pb_interfaces/msg/Deteccoes
 ros2 interface show pb_interfaces/srv/StatusVisao
@@ -69,26 +89,33 @@ Esperado no `list`: `pb_interfaces/action/VarrerCena`, `pb_interfaces/msg/Comand
 **2.3 — Rodar e ler a mensagem nova.** Antes, **derrube o launch da Aula 3** se ele estiver no ar: os dois servem o mesmo nome `/vision/status` com tipos diferentes, e com ambos rodando o `service call` fica ambíguo (é exatamente a *migração* que a tarefa pede — mesmo nome, outro tipo).
 
 ```bash
+# ── Terminal A · ocupa o terminal ─────────────────────
+export PB_USER=seu-usuario-github          # ← troque pelo seu usuário do GitHub
+export PB_DIR="$HOME/pb-live-$PB_USER"
+export PB_WS="$PB_DIR/ros2_ws"
+source /opt/ros/humble/setup.bash
+source "$PB_WS/install/setup.bash"
 ros2 launch aula06_percepcao percepcao.launch.py classe:=tomate_maduro
 ```
 
 Esperado: `detector no ar - classe='tomate_maduro' - publica pb_interfaces/Deteccoes em /vision/deteccoes - servico /vision/status (pb_interfaces/StatusVisao)` e, do `monitor`, uma linha por quadro:
 
 ```text
-[monitor_deteccoes]: t=12.40  total=2  tomate_maduro(0.97) em (402,258) area=3522 | tomate_maduro(0.95) em (241,310) area=1452
+[monitor_deteccoes]: t=1794265911.67  total=2  tomate_maduro(0.98) em (261,333) area=1450 | tomate_maduro(0.99) em (512,216) area=3524
 ```
 
-Deixe rodando até os dois objetos se encostarem: `total=1` e a confiança **cai junto** (bem abaixo dos ~0,95 de um círculo isolado). É a oclusão da Aula 3 vista pela mensagem nova — antes você via só o número mudar; agora vê o detector perdendo certeza.
+Deixe rodando até os dois objetos se encostarem: `total=1  tomate_maduro(0.89) em (450,290) area=4965` — a contagem cai, a área é a soma das duas, e a confiança **cai junto** (0,85 a 0,96, contra 0,98 e 0,99 dos círculos isolados). É a oclusão da Aula 3 vista pela mensagem nova — antes você via só o número mudar; agora vê o detector perdendo certeza.
 
-**2.4 — Inspecionar (segundo terminal, com `source install/setup.bash`).**
+**2.4 — Inspecionar.**
 
 ```bash
+# ── Terminal B · com o Terminal A no ar ───────────────
 ros2 topic echo /vision/deteccoes --once
 ros2 service type /vision/status                              # pb_interfaces/srv/StatusVisao
 ros2 service call /vision/status pb_interfaces/srv/StatusVisao "{}"
 ```
 
-Esperado no `service call`: `ativo=True, classe_alvo='tomate_maduro', total_detectado=2, confianca_media=0.96…, mensagem="vendo 2 'tomate_maduro' na cena"`. Compare com a resposta do TP1: `success=True, message='2 objeto(s) no ultimo frame …'`. Quem chama o serviço novo não faz *parsing* de string nenhuma.
+Esperado no `service call`: `ativo=True, classe_alvo='tomate_maduro', total_detectado=2, confianca_media=0.98…, mensagem="vendo 2 'tomate_maduro' na cena"`. Compare com a resposta do TP1: `success=True, message='2 objeto(s) no ultimo frame …'`. Quem chama o serviço novo não faz *parsing* de string nenhuma.
 
 **2.5 — Edite um `.msg` e sinta o ciclo.** Acrescente `float32 raio` ao fim de `pb_interfaces/msg/Deteccao.msg`, recompile **só** o `pb_interfaces`, e rode `ros2 interface show pb_interfaces/msg/Deteccao` **neste** terminal e **num terminal antigo** sem `source` novo: num deles o campo existe, no outro não. Esse é o sintoma mais confuso da semana, e agora você o viu de propósito. Desfaça a edição (ou mantenha — o detector não preenche o campo e ele vai como `0.0`).
 
@@ -116,7 +143,7 @@ Responda sem olhar; depois abra a resposta.
     Gerar interface é gerar código, e isso é trabalho do `rosidl` num pacote `ament_cmake`. Um pacote `ament_python` não tem essa maquinaria. Mova o `.msg` para o seu `<projeto>_interfaces` e declare-o no `rosidl_generate_interfaces`.
 
 ??? question "2. `colcon build` passou nos dois pacotes, mas `ros2 launch` dá `ModuleNotFoundError: No module named '<projeto>_interfaces'`. Duas causas, em ordem de probabilidade?"
-    (a) Faltou `source install/setup.bash` **depois** do build, neste terminal — abra um terminal novo. (b) O pacote de interfaces foi compilado **depois** dos nós, ou não foi compilado: interfaces primeiro, `source`, depois os nós.
+    (a) Faltou `source install/setup.bash` **depois** do build, neste terminal — abra um terminal novo. (b) Falta `<depend><projeto>_interfaces</depend>` no `package.xml` do pacote dos nós. Repare que ordem de build errada **não** é uma das causas: nesse caso o `colcon` para antes, com `Check that the following packages have been built`.
 
 ??? question "3. O pacote de interfaces compila sem erro e `ros2 interface list | grep <projeto>` não mostra nada. O que falta?"
     As três linhas do `package.xml` (`rosidl_default_generators`, `rosidl_default_runtime`, `member_of_group rosidl_interface_packages`) ou o arquivo não está listado em `rosidl_generate_interfaces`. O build silencioso é o pior erro: não gera nada e não reclama.
@@ -128,20 +155,22 @@ Responda sem olhar; depois abra a resposta.
     Terminal com `source` antigo: ele enxerga a versão velha da mensagem gerada. Todo build de interface pede `source` novo em **todos** os terminais abertos. Terminal novo resolve.
 
 ??? question "6. O `/vision/status` do TP1 responde `Trigger`. Vale a pena migrar para um `.srv` próprio? E para o TP1?"
-    Vale para o TP2: a resposta ganha campos tipados (total, confiança média, classe) e quem chama deixa de fazer *parsing* de string. Para o TP1, **não** — mudar o tipo de um serviço a dias da entrega é uma péssima ideia; o `Trigger` fecha o gate.
+    Vale para o TP2: a resposta ganha campos tipados (total, confiança média, classe) e quem chama deixa de fazer *parsing* de string. Para o TP1, **não** — mudar o tipo de um serviço a dias da entrega é uma péssima ideia; o `Trigger` atende ao que o TP1 pede.
 
 ## 5. Se travar
 
 | Sintoma | Causa provável | Cura |
 |---|---|---|
-| `ModuleNotFoundError: No module named 'pb_interfaces'` (ou do seu pacote) | faltou `source install/setup.bash` depois do build, ou ordem de build invertida | terminal novo com `source`; interfaces primeiro, nós depois |
+| `Check that the following packages have been built: - pb_interfaces` | os nós foram compilados antes das interfaces | interfaces primeiro, `source`, depois os nós |
+| `Package '...' not found ... searching: [...]` | este terminal fez o `source` antes do build | `source "$PB_WS/install/setup.bash"` neste terminal |
+| `ModuleNotFoundError: No module named 'pb_interfaces'` (ou do seu pacote) | terminal antigo, ou falta o `<depend>` no `package.xml` dos nós | terminal novo com os dois `source`; confira o `package.xml` |
 | erro de CMake num pacote onde você não escreveu CMake | `msg/` dentro do pacote `ament_python` | mova para o pacote de interfaces (`ament_cmake`) |
 | compila, `ros2 interface list` não mostra nada | faltam as três linhas de `rosidl` no `package.xml`, ou o arquivo não está no `rosidl_generate_interfaces` | acrescente e recompile |
 | `Header` não resolve / `std_msgs` desconhecido | `std_msgs` só num dos dois lugares | `<depend>std_msgs</depend>` **e** `DEPENDENCIES std_msgs` |
 | campo novo "não existe" | terminal com `source` velho | `source` em todos os terminais; ou terminal novo |
 | `ros2 service call` reclama do tipo, ou `service type` mostra dois tipos | o tipo mudou — ou o launch da Aula 3 ainda está no ar servindo o mesmo `/vision/status` | `ros2 service type /vision/status`; derrube o launch antigo |
-| `colcon build` do pacote de interfaces demora 20–40 s | normal: é geração de código C++ e Python | nada — só não interrompa |
+| `colcon build` do pacote de interfaces demora 10–40 s | normal: é geração de código C++ e Python | nada — só não interrompa |
 | `rosidl` reclama de nome de campo | nomes em `snake_case` minúsculo, sem acento; tipos primitivos válidos (`int32`, `float32`, `string`, `bool`, `uint32`…) | corrija o `.msg` |
 | nome do pacote de interfaces não bate | renomeou a pasta e esqueceu `<name>` ou `project(...)` | os **três** lugares: pasta, `package.xml`, `CMakeLists.txt`; `rm -rf build install log` |
 | o nó dos seus pacotes não compila na ordem certa com `colcon build` (tudo) | falta `<depend><seuprojeto>_interfaces</depend>` no `package.xml` dos nós | acrescente; é isso que ordena o build |
-| `/vision/contagem` a 2–8 Hz, `A message was lost!!!` | fragmentação UDP numa máquina só | [guia da Aula 3, §2.4](estudo-aula03-visao.md#2-reproduza-o-exemplo-passo-a-passo-45-min): `ROS_LOCALHOST_ONLY=1` + buffers do kernel |
+| `/vision/contagem` a 5–7 Hz, com buracos | a imagem (0,92 MB) não cabe no segmento padrão de memória compartilhada do Fast DDS | o perfil do Fast DDS, na [página da Aula 4](../aulas/etapa03-aula04/index.md#pegar-o-material) |

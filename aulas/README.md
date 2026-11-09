@@ -11,7 +11,7 @@ O bloco tem dez etapas de conteúdo distribuídas em dois trimestres (**26T4**, 
 | [Aula 2](etapa02-aula02/index.md) | 19/10/2026 | 2 | Primeiros nós: tópicos e serviços · [guia de estudo](../tutoriais/estudo-aula02-primeiros-nos.md) | <span class="pb-tag ok">dada</span> |
 | [Aula 3](etapa02-aula03/index.md) | 26/10/2026 | 2 | **Leitura do TP1** · imagem no grafo e segmentação por cor · [guia de estudo](../tutoriais/estudo-aula03-visao.md) | <span class="pb-tag ok">dada</span> |
 | — | 02/11/2026 | 3 | **Feriado.** [Parte B da tarefa da Aula 3](../tutoriais/tarefa-aula03-visao.md#parte-b-ate-domingo-0811-a-semana-sem-aula): duas classes, YAML, `/vision/status`, evidências (até dom 08/11) | <span class="pb-tag ok">semana guiada</span> |
-| [Aula 4](etapa03-aula04/index.md) | 09/11/2026 | 3 | **Clínica do TP1** (entrega sexta 13/11) · interfaces próprias · [guia de estudo](../tutoriais/estudo-aula04-interfaces.md) | <span class="pb-tag next">atual</span> |
+| [Aula 4](etapa03-aula04/index.md) | 09/11/2026 | 3 | **O TP1, conferido e entregue** (entrega sexta 13/11) · interfaces próprias · [guia de estudo](../tutoriais/estudo-aula04-interfaces.md) | <span class="pb-tag next">atual</span> |
 | Aula 5 | 16/11/2026 | 4 | Ações: tarefas longas, feedback e cancelamento | planejada |
 | Aula 6 | 23/11/2026 | 4 | Ações a fundo · **leitura do TP2** | planejada |
 | Aula 7 | 30/11/2026 | 5 | Detecção treinada e métrica declarada | planejada |

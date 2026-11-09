@@ -85,7 +85,7 @@ ros2 launch aula03_visao visao.launch.py          # fonte sintética: não preci
 Em outro terminal (com `source install/setup.bash`):
 
 ```bash
-ros2 topic hz /vision/contagem                    # a régua leve — ≈ 15 Hz; se vier 2–4 Hz, leia o aviso abaixo
+ros2 topic hz /vision/contagem                    # a régua leve — ≈ 15 Hz; se vier 5–7 Hz, leia o aviso abaixo
 ros2 service call /vision/status std_srvs/srv/Trigger "{}"
 ros2 param set /segmentador_hsv h_min 100
 ros2 param set /segmentador_hsv h_max 130         # agora ele caça azul — nada recompilado
@@ -94,22 +94,42 @@ ros2 param set /segmentador_hsv h_max 130         # agora ele caça azul — nad
 !!! tip "Rode antes de modificar"
     Compile e rode o exemplo **como ele veio**, antes da sua primeira alteração. Parece perda de tempo e é o contrário: quando algo quebrar depois, você sabe que o problema é seu e não do exemplo.
 
-!!! warning "WSL2 e máquina única: duas curas antes de medir qualquer taxa"
-    Numa máquina só, uma imagem de 640×480 (**900 kB**) viaja fragmentada em UDP, e o buffer de rede padrão do Linux (208 kB) é **menor que uma mensagem**: fragmentos se perdem, e com eles o quadro inteiro. Sintomas: `A message was lost!!!`, `/vision/contagem` a 2–8 Hz em vez de 15, `hz` com buracos de 0,5 a 2 s. Cura 1, em **todos** os terminais e no `~/.bashrc`: `export ROS_LOCALHOST_ONLY=1`. Cura 2, uma vez, com `sudo` (aumenta os buffers do kernel — a recomendação oficial de *DDS tuning* do ROS 2):
+!!! warning "Taxa em 5 Hz em vez de 15: o perfil do Fast DDS (substitui a cura por `sysctl` que estava aqui)"
+    Numa máquina só, o ROS 2 Humble entrega as mensagens por **memória compartilhada**. Uma imagem de 640×480 pesa **0,92 MB**, e o segmento de memória padrão é pequeno para ela: quadros caem, sem mensagem de erro. Sintomas: `/vision/contagem` a 5–7 Hz em vez de 15, `hz` com buracos de até 0,8 s, às vezes `A message was lost!!!`. A cura é um arquivo de perfil que aumenta esse segmento. **A cura por `sysctl` (buffers do kernel) que esta página trazia não resolve** — foi testada de novo no Humble e retirada; se você a aplicou, ela não atrapalha, só não ajuda. `ROS_LOCALHOST_ONLY=1` continua sendo boa prática em rede compartilhada, mas também não é ela que cura a taxa.
 
     ```bash
-    sudo tee /etc/sysctl.d/60-ros2-imagem.conf >/dev/null <<'EOF'
-    net.core.rmem_max=2147483647
-    net.core.rmem_default=8388608
-    net.core.wmem_max=2147483647
-    net.core.wmem_default=8388608
-    net.ipv4.ipfrag_time=3
-    net.ipv4.ipfrag_high_thresh=134217728
+    # ── qualquer terminal · uma vez por máquina ──────────
+    mkdir -p "$HOME/.ros"
+    cat > "$HOME/.ros/fastdds-imagem.xml" <<'EOF'
+    <?xml version="1.0" encoding="UTF-8" ?>
+    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+      <transport_descriptors>
+        <transport_descriptor>
+          <transport_id>shm_imagem</transport_id>
+          <type>SHM</type>
+          <segment_size>4194304</segment_size>
+        </transport_descriptor>
+        <transport_descriptor>
+          <transport_id>udp_padrao</transport_id>
+          <type>UDPv4</type>
+        </transport_descriptor>
+      </transport_descriptors>
+      <participant profile_name="pb_imagem" is_default_profile="true">
+        <rtps>
+          <userTransports>
+            <transport_id>shm_imagem</transport_id>
+            <transport_id>udp_padrao</transport_id>
+          </userTransports>
+          <useBuiltinTransports>false</useBuiltinTransports>
+        </rtps>
+      </participant>
+    </profiles>
     EOF
-    sudo sysctl --system >/dev/null && sysctl net.core.rmem_default     # esperado: 8388608
+    grep -q FASTRTPS_DEFAULT_PROFILES_FILE "$HOME/.bashrc" || echo 'export FASTRTPS_DEFAULT_PROFILES_FILE="$HOME/.ros/fastdds-imagem.xml"' >> "$HOME/.bashrc"
+    export FASTRTPS_DEFAULT_PROFILES_FILE="$HOME/.ros/fastdds-imagem.xml"
     ```
 
-    Reinicie o launch e confira `ros2 topic hz /vision/contagem` ≈ 15 Hz. No WSL2, se depois de um `wsl --shutdown` o valor voltar a `212992`, rode `sudo sysctl --system` de novo (ou habilite o systemd em `/etc/wsl.conf`).
+    A variável precisa estar definida **no terminal que sobe o launch** (terminais novos já a recebem do `~/.bashrc`). Suba o launch de novo e confira `ros2 topic hz /vision/contagem`: no ensaio do professor, em Ubuntu 22.04 com ROS 2 Humble, a taxa foi de 5,7 Hz para **15,0 Hz**. Se na sua máquina ela continuar baixa, **meça, registre e explique** no relatório: taxa baixa medida e explicada é resposta válida; taxa baixa escondida, não.
 
 ## Esta semana e a próxima: estudo guiado, tarefa em duas partes, desafio
 
@@ -120,7 +140,7 @@ ros2 param set /segmentador_hsv h_max 130         # agora ele caça azul — nad
 
 ## Os erros que mais vão aparecer
 
-**"O tópico existe e não chega nada"** é QoS: `ros2 topic info /camera/image_raw --verbose` mostra os dois perfis; no seu nó, assine com o perfil de sensor (o `QOS_SENSOR` do exemplo). **`A message was lost!!!` / contagem a 2–8 Hz** é fragmentação UDP numa máquina só: `ROS_LOCALHOST_ONLY=1` + buffers do kernel (aviso acima). **`KeyError: 16`** na conversão é OpenCV ou NumPy de `pip` por baixo do `cv_bridge` — o exemplo não trava (cai no modo manual); a cura está no guia, seção 7, e **não passa pelo venv**. **Vermelho detectado pela metade** é a segunda faixa (170–179) esquecida. **Contagem oscilando** é `area_min` baixo ou falta de `OPEN`; se os objetos se tocam, é oclusão — registre, não "conserte". **Janela do `rqt_image_view` não abre** no WSL2 é WSLg (`wsl --update`); no VirtualBox é aceleração 3D ligada ou Guest Additions ausente. **Webcam não abre**: WSL2 precisa do [usbipd](../../tutoriais/camera-wsl2-usbipd.md); VirtualBox usa o Extension Pack; e enquanto isso `fonte:=sintetico` **vale para a tarefa inteira**.
+**"O tópico existe e não chega nada"** é QoS: `ros2 topic info /camera/image_raw --verbose` mostra os dois perfis; no seu nó, assine com o perfil de sensor (o `QOS_SENSOR` do exemplo). **Contagem a 5–7 Hz, às vezes com `A message was lost!!!`**, são quadros caindo na memória compartilhada: o perfil do Fast DDS (aviso acima). **`KeyError: 16`** na conversão é OpenCV ou NumPy de `pip` por baixo do `cv_bridge` — o exemplo não trava (cai no modo manual); a cura está no guia, seção 7, e **não passa pelo venv**. **Vermelho detectado pela metade** é a segunda faixa (170–179) esquecida. **Contagem oscilando** é `area_min` baixo ou falta de `OPEN`; se os objetos se tocam, é oclusão — registre, não "conserte". **Janela do `rqt_image_view` não abre** no WSL2 é WSLg (`wsl --update`); no VirtualBox é aceleração 3D ligada ou Guest Additions ausente. **Webcam não abre**: WSL2 precisa do [usbipd](../../tutoriais/camera-wsl2-usbipd.md); VirtualBox usa o Extension Pack; e enquanto isso `fonte:=sintetico` **vale para a tarefa inteira**.
 
 Quem replicou durante a aula: `git add . && git commit -m "Aula 3: pipeline de visão compilando" && git push` antes de sair. Quem não, o push vem com a Parte A — até domingo 01/11.
 

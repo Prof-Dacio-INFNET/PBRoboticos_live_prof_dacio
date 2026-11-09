@@ -116,7 +116,7 @@ nav:
       - "Aula 1 — Abertura, ROS 2 e o projeto": aulas/etapa01-aula01/index.md
       - "Aula 2 — Ambiente conferido; primeiros nós": aulas/etapa02-aula02/index.md
       - "Aula 3 — O TP1, lido; imagem no grafo e segmentação": aulas/etapa02-aula03/index.md
-      - "Aula 4 — Clínica do TP1; interfaces próprias": aulas/etapa03-aula04/index.md
+      - "Aula 4 — O TP1 entregue; interfaces próprias": aulas/etapa03-aula04/index.md
       - "Aula 7 — Ações: tarefas longas, feedback e cancelamento": aulas/etapa04-aula07/index.md
       - "Aula 8 — Ações a fundo: o ciclo de vida de um objetivo": aulas/etapa04-aula08/index.md
       - "Aula 9 — Detecção treinada e métrica declarada": aulas/etapa05-aula09/index.md

@@ -44,11 +44,11 @@ Aulas às **segundas-feiras à noite, pelo Zoom** (1h30, gravadas) · Prof. Dác
 
     [:octicons-arrow-right-24: Simulação × hardware real](recursos/simulado-vs-hardware.md)
 
--   :material-flag-checkered:{ .lg .middle } **4. Marque os seus gates**
+-   :material-flag-checkered:{ .lg .middle } **4. Consulte os gates**
 
     ---
 
-    Cada TP tem checkpoints verificáveis por comando, com data. Copie o checklist para o seu `PROJETO.md` e faça um commit por gate. A versão com as datas desta turma sai com cada enunciado.
+    Cada TP tem pontos de verificação que se conferem com um comando. Eles são **referência para você se localizar**, e não prazos rígidos: o único prazo formal de cada TP é a entrega no Moodle. Copie a lista para o seu `PROJETO.md` e marque o que já tem evidência.
 
     [:octicons-arrow-right-24: Gates de cada TP](recursos/gates-tps.md)
 
@@ -56,20 +56,23 @@ Aulas às **segundas-feiras à noite, pelo Zoom** (1h30, gravadas) · Prof. Dác
 
 ## Aula mais recente
 
-**Aula 4 — segunda, 09/11/2026 — Clínica do TP1; e as interfaces do seu projeto** <span class="pb-tag next">atual</span>
+**Aula 4 — segunda, 09/11/2026 — O seu TP1, conferido e entregue; e as interfaces do seu projeto** <span class="pb-tag next">atual</span>
 
-**O TP1 vence nesta sexta, 13/11.** A Aula 4 teve duas metades: a **clínica do TP1** — censo de gates, os três bloqueios mais comuns, o relatório em cinco perguntas, o ensaio da entrega — e as **interfaces próprias** (`.msg` e `.srv` do seu domínio), que são o começo do TP2. Até sexta existe uma coisa só; o guia de estudo e a tarefa desta aula começam **depois** dela.
+**A entrega do TP1 é nesta sexta, 13/11, no Moodle.** A Aula 4 teve duas metades. Na primeira, o TP1: quatro perguntas ao sistema, os três casos que mais travam uma entrega (o projeto sem domínio, o `/vision/status` genérico, a evidência que ficou no terminal), o relatório em cinco perguntas e a entrega em quatro linhas. Na segunda, as **interfaces próprias** — o `.msg` e o `.srv` do seu domínio —, que são o começo do TP2. A tarefa da semana tem duas partes, nesta ordem: a entrega, e depois as interfaces.
 
 [Conteúdo e slides da aula](aulas/etapa03-aula04/index.md){ .md-button .md-button--primary }
 [Checklist de entrega do TP1](tutoriais/checklist-entrega-tp1.md){ .md-button }
 [Guia de estudo da Aula 4](tutoriais/estudo-aula04-interfaces.md){ .md-button }
 [Tarefa da Aula 4](tutoriais/tarefa-aula04-interfaces.md){ .md-button }
 
-!!! danger "Até sexta 13/11: a entrega do TP1"
-    Relatório fechado até **quarta 11/11** (G1.5: as cinco perguntas estão na [página da aula](aulas/etapa03-aula04/index.md)); na sexta, [checklist de entrega](tutoriais/checklist-entrega-tp1.md) de cima para baixo — `main` atualizada, branch `entrega-tp1`, **tag `tp1`**, ZIP + PDF + links no **Moodle**, tudo testado em janela anônima. Evidências em `docs/evidencias/tp1/` ([o que cada gate pede](recursos/tp1.md)). Não vai dar tempo de tudo? Entregue o que funciona e **declare** o que não funciona — [escada de recuperação](tutoriais/checklist-entrega-tp1.md#escada-de-recuperacao-se-algo-nao-vai-dar-tempo).
+!!! danger "Parte 1 da tarefa: a entrega do TP1 (sexta, 13/11)"
+    Os cinco passos, com os comandos e o terminal de cada bloco, estão em [A tarefa da semana](aulas/etapa03-aula04/index.md#a-tarefa-da-semana): as quatro perguntas com as respostas guardadas em `docs/evidencias/tp1/`, os três casos conferidos, a oclusão, o relatório e a entrega — `main`, `entrega-tp1`, **tag `tp1`**, e PDF + ZIP + links no **Moodle**, testados em janela anônima. O [checklist de entrega](tutoriais/checklist-entrega-tp1.md) é a conferência final. Não vai dar tempo de tudo? Entregue o que funciona e **declare** o que não funciona — [escada de recuperação](tutoriais/checklist-entrega-tp1.md#escada-de-recuperacao-se-algo-nao-vai-dar-tempo).
 
-!!! note "Depois de sexta: interfaces próprias (TP2)"
-    [Guia de estudo da Aula 4](tutoriais/estudo-aula04-interfaces.md) (2h–3h em duas sessões) → [tarefa da Aula 4](tutoriais/tarefa-aula04-interfaces.md) até **domingo 22/11**: o seu `<projeto>_interfaces`, o `/vision/status` migrado para um serviço próprio, `/vision/deteccoes` com classe e confiança. A Aula 5 (16/11) é sobre ações e acrescenta um `.action` a esse pacote.
+!!! warning "Sua taxa está em 5 Hz em vez de 15?"
+    A cura que a página da Aula 3 trazia (`sysctl`) **não resolve** e foi substituída: é um perfil do Fast DDS, um arquivo que você cria uma vez. O bloco está em [Pegar o material](aulas/etapa03-aula04/index.md#pegar-o-material), na página da Aula 4.
+
+!!! note "Parte 2, depois da entrega: as interfaces do seu projeto"
+    [Guia de estudo da Aula 4](tutoriais/estudo-aula04-interfaces.md) (2h–3h em duas sessões) → [tarefa da Aula 4](tutoriais/tarefa-aula04-interfaces.md), com push na `dev` até **domingo 22/11**: o seu pacote de interfaces, o `/vision/status` migrado para um serviço próprio, `/vision/deteccoes` com classe e confiança. A Aula 5 (16/11) é sobre ações, e acrescenta uma ação a esse pacote.
 
 ## Calendário de entregas
 
