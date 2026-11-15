@@ -1,11 +1,11 @@
 # Guia de estudo — Aula 4: as interfaces do seu projeto
 
-**Semana de 09/11 a 22/11 · Etapa 3 · turma live.** A aula de 1h30 teve duas metades: o TP1 conferido e entregue, e as interfaces próprias. **Este guia é só sobre a segunda metade — e começa depois da entrega do TP1.** Até **13/11**, o que vale é o [checklist de entrega do TP1](checklist-entrega-tp1.md). Depois, ele é guiado pela [tarefa da Aula 4](tarefa-aula04-interfaces.md) (prazo **domingo 22/11**, push na `dev`). Tempo total: **2h a 3h**, em duas sessões.
+**Semana de 16/11 a 22/11 · Etapas 3–4 · turma live.** As interfaces próprias não couberam na Aula 4 (09/11): foram apresentadas na [Aula 5](../aulas/etapa04-aula05/index.md), em 16/11, e este guia reproduz no seu repositório o que o professor rodou lá. Depois dele vem a [tarefa da Aula 4](tarefa-aula04-interfaces.md) (prazo **domingo 22/11**, push na `dev`), e só então o [guia de estudo da Aula 5](estudo-aula05-acoes.md), sobre ações. Tempo total: **2h a 3h**, em duas sessões.
 
 | Sessão | O quê | Tempo | Resultado |
 |---|---|---|---|
-| 1 (fim de semana 14–15/11) | Seções 1 e 2 — ler, reproduzir os dois pacotes do exemplo com as saídas esperadas | 60–80 min | `pb_interfaces` e `aula06_percepcao` compilando no **seu** repositório; `interface show` funcionando |
-| 2 (semana de 16/11) | Seção 3 (anatomia dos dois pacotes) + passos 1–5 da tarefa | 60–90 min | o seu `<projeto>_interfaces`; `/vision/status` migrado; `/vision/deteccoes` publicando |
+| 1 (logo depois da Aula 5) | Seções 1 e 2 — ler, reproduzir os dois pacotes do exemplo com as saídas esperadas | 60–80 min | `pb_interfaces` e `aula06_percepcao` compilando no **seu** repositório; `interface show` funcionando |
+| 2 (até o fim de semana) | Seção 3 (anatomia dos dois pacotes) + passos 1–5 da tarefa | 60–90 min | o seu `<projeto>_interfaces`; `/vision/status` migrado; `/vision/deteccoes` publicando |
 | — | Seção 4 (autoavaliação) antes do push | 10 min | commit na `dev` até 22/11 |
 
 !!! tip "Como pedir ajuda"
@@ -15,7 +15,7 @@
 
 ## Cenas dos últimos episódios
 
-Desde a Aula 2 os seus nós vivem num pacote `ament_python`, todo tópico tem um **tipo**, e cada terminal precisa do `source install/setup.bash`. Na Aula 3 o sistema publicou um `Int32` em `/vision/contagem` e respondeu ao `/vision/status` com um `Trigger` — e sobrou um incômodo: o número ficou preso dentro de uma frase. Na Aula 4 o professor mostrou a saída: um pacote só de definições (`pb_interfaces`) ao lado do pacote dos nós (`aula06_percepcao`). Aqui você reproduz isso no seu repositório.
+Desde a Aula 2 os seus nós vivem num pacote `ament_python`, todo tópico tem um **tipo**, e cada terminal precisa do `source install/setup.bash`. Na Aula 3 o sistema publicou um `Int32` em `/vision/contagem` e respondeu ao `/vision/status` com um `Trigger` — e sobrou um incômodo: o número ficou preso dentro de uma frase. Na Aula 5 o professor mostrou a saída: um pacote só de definições (`pb_interfaces`) ao lado do pacote dos nós (`aula06_percepcao`). Aqui você reproduz isso no seu repositório.
 
 Sobre os blocos de comando: cada bloco diz, na primeira linha, em qual terminal roda, e pode ser colado inteiro. Comando que ocupa o terminal é o último do bloco.
 
@@ -23,7 +23,7 @@ Sobre os blocos de comando: cada bloco diz, na primeira linha, em qual terminal 
 
 | Fonte | O quê | Minutos | Depois você responde |
 |---|---|---|---|
-| [Página da Aula 4](../aulas/etapa03-aula04/index.md) | Blocos 2 e 3 | 10 | quando vale criar uma interface própria; por que o pacote é separado; o que o `Header` carrega |
+| [Página da Aula 5](../aulas/etapa04-aula05/index.md) | Bloco 1 | 10 | quando vale criar uma interface própria; por que o pacote é separado; o que o `Header` carrega |
 | [README do exemplo `aula06-interfaces`](../exemplos/aula06-interfaces/index.md) | inteiro | 8 | o que cada um dos dois pacotes contém; o que é a "confiança" do exemplo |
 | Docs do Humble — [Creating custom msg and srv files](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Custom-ROS2-Interfaces.html) | até "Test the new interfaces" | 12 | o que `rosidl_generate_interfaces` faz; por que `ament_cmake`; os tipos primitivos permitidos num `.msg` |
 

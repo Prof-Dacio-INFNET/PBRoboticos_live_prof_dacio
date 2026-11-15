@@ -262,6 +262,9 @@ Entregue o que funciona e **declare** o que não funciona. Reduza o escopo sem a
 
 ## Bloco 2 — Quando a mensagem pronta acaba
 
+!!! note "Os blocos 2 e 3 não couberam na aula de 09/11"
+    A aula ficou inteira no TP1. O conteúdo destes dois blocos foi apresentado na [Aula 5](../etapa04-aula05/index.md), em 16/11, junto com as ações; o texto continua valendo como referência.
+
 ### Dois. Dois o quê?
 
 ```bash

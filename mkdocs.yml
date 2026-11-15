@@ -117,7 +117,7 @@ nav:
       - "Aula 2 — Ambiente conferido; primeiros nós": aulas/etapa02-aula02/index.md
       - "Aula 3 — O TP1, lido; imagem no grafo e segmentação": aulas/etapa02-aula03/index.md
       - "Aula 4 — O TP1 entregue; interfaces próprias": aulas/etapa03-aula04/index.md
-      - "Aula 7 — Ações: tarefas longas, feedback e cancelamento": aulas/etapa04-aula07/index.md
+      - "Aula 5 — Interfaces próprias; ações pelo lado de quem usa": aulas/etapa04-aula05/index.md
       - "Aula 8 — Ações a fundo: o ciclo de vida de um objetivo": aulas/etapa04-aula08/index.md
       - "Aula 9 — Detecção treinada e métrica declarada": aulas/etapa05-aula09/index.md
       - "Aula 10 — Aterrissagem do TP2: o sistema sobe com um comando": aulas/etapa05-aula10/index.md
@@ -138,7 +138,8 @@ nav:
       - "Tarefa da Aula 3 — pipeline de visão (A e B)": tutoriais/tarefa-aula03-visao.md
       - "Guia de estudo — Aula 4: interfaces próprias": tutoriais/estudo-aula04-interfaces.md
       - "Tarefa da Aula 4 — interfaces próprias": tutoriais/tarefa-aula04-interfaces.md
-      - "Tarefa da Aula 7 — ações": tutoriais/tarefa-aula07-acoes.md
+      - "Guia de estudo — Aula 5: ações": tutoriais/estudo-aula05-acoes.md
+      - "Tarefa da Aula 5 — a ação do seu projeto": tutoriais/tarefa-aula05-acoes.md
       - "URDF, TF e RViz2": tutoriais/urdf-tf-rviz2.md
       - "Gazebo para o TP3": tutoriais/gazebo-para-o-tp3.md
       - "Checklist de entrega do TP1": tutoriais/checklist-entrega-tp1.md
@@ -160,9 +161,9 @@ nav:
       - exemplos/index.md
       - "Aula 2 — comunicação": exemplos/aula02-comunicacao/index.md
       - "Aula 3 — visão": exemplos/aula03-visao/index.md
-      - "Aula 4 — interfaces próprias (exemplo aula06-interfaces)": exemplos/aula06-interfaces/index.md
+      - "Aulas 4 e 5 — interfaces próprias (exemplo aula06-interfaces)": exemplos/aula06-interfaces/index.md
       - "Aula 7 — demo com webcam": exemplos/aula07-demo-visual/index.md
-      - "Aula 7 — ações": exemplos/aula07-acoes/index.md
+      - "Aulas 5 e 6 — ações (exemplo aula07-acoes)": exemplos/aula07-acoes/index.md
       - "Aula 9 — URDF e TF": exemplos/aula09-urdf/index.md
       - "Aula 9 — métrica de detector": exemplos/aula09-metrica/index.md
       - "Aula 10 — bringup e parâmetros": exemplos/aula10-bringup/index.md

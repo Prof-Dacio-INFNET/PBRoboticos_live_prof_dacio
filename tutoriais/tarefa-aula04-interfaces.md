@@ -10,14 +10,14 @@ vira_no_tp: "TP2 — pacote de interfaces, .msg e .srv do domínio"
 
 # Tarefa da Aula 4 — as interfaces do seu projeto
 
-**Publicada em 09/11/2026 · prazo domingo 22/11, 23h59 · push na `dev`**
+**Publicada em 09/11/2026 · apresentada na Aula 5 (16/11) · prazo domingo 22/11, 23h59 · push na `dev`**
 
-!!! danger "Primeiro o TP1"
-    Esta é a **parte 2** da tarefa da semana; a parte 1 é a entrega do TP1, e está na [página da Aula 4](../aulas/etapa03-aula04/index.md#a-tarefa-da-semana). Volte aqui com a tag `tp1` empurrada. Trabalhe na `dev`: nada daqui entra na `entrega-tp1`.
+!!! note "Parte 1 da tarefa da semana de 16/11"
+    As interfaces próprias não couberam na Aula 4 (09/11): foram apresentadas na [Aula 5](../aulas/etapa04-aula05/index.md), em 16/11. Esta tarefa é a **parte 1** da tarefa daquela semana; a parte 2 é a [tarefa da Aula 5 — a ação do seu projeto](tarefa-aula05-acoes.md), que usa o pacote criado aqui. Trabalhe na `dev`.
 
 ## Cenas dos últimos episódios
 
-Na Aula 3 o seu sistema passou a publicar um `Int32` em `/vision/contagem` e a responder ao `/vision/status` com um `Trigger`. Na Aula 4 você viu o limite disso — "dois o quê?" — e os dois pacotes do exemplo rodando: `pb_interfaces` (só definições) e `aula06_percepcao` (os nós). O [guia de estudo da Aula 4](estudo-aula04-interfaces.md) reproduz esse exemplo no seu repositório; **faça o guia antes desta tarefa**.
+Na Aula 3 o seu sistema passou a publicar um `Int32` em `/vision/contagem` e a responder ao `/vision/status` com um `Trigger`. Na Aula 4 sobrou um incômodo — o número preso dentro da frase do serviço —, e na Aula 5 (16/11) você viu a saída: o limite do tipo pronto ("dois o quê?") e os dois pacotes do exemplo rodando, `pb_interfaces` (só definições) e `aula06_percepcao` (os nós). O [guia de estudo da Aula 4](estudo-aula04-interfaces.md) reproduz esse exemplo no seu repositório; **faça o guia antes desta tarefa**.
 
 ## As quatro perguntas
 
@@ -189,7 +189,7 @@ Quantas vezes a banda de um tópico é maior do que a do outro? O que isso muda 
 
 ## O que esta tarefa adianta
 
-O TP2 (leitura na Aula 6, 23/11) começa exatamente por aqui: o pacote de interfaces compilando, e o `.msg` e o `.srv` do domínio visíveis no ambiente. A Aula 5 (16/11) acrescenta uma ação a **este mesmo pacote** — por isso ele precisa existir. As datas do TP2 saem com o enunciado.
+O TP2 (leitura na Aula 6, 23/11) começa exatamente por aqui: o pacote de interfaces compilando, e o `.msg` e o `.srv` do domínio visíveis no ambiente. A [tarefa da Aula 5](tarefa-aula05-acoes.md) acrescenta uma ação a **este mesmo pacote** — por isso ele precisa existir antes. As datas do TP2 saem com o enunciado.
 
 ## Se der errado
 

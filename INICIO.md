@@ -56,23 +56,22 @@ Aulas às **segundas-feiras à noite, pelo Zoom** (1h30, gravadas) · Prof. Dác
 
 ## Aula mais recente
 
-**Aula 4 — segunda, 09/11/2026 — O seu TP1, conferido e entregue; e as interfaces do seu projeto** <span class="pb-tag next">atual</span>
+**Aula 5 — segunda, 16/11/2026 — A mensagem do seu projeto; e a tarefa que demora, avisa e pode ser cancelada** <span class="pb-tag next">atual</span>
 
-**A entrega do TP1 é nesta sexta, 13/11, no Moodle.** A Aula 4 teve duas metades. Na primeira, o TP1: quatro perguntas ao sistema, os três casos que mais travam uma entrega (o projeto sem domínio, o `/vision/status` genérico, a evidência que ficou no terminal), o relatório em cinco perguntas e a entrega em quatro linhas. Na segunda, as **interfaces próprias** — o `.msg` e o `.srv` do seu domínio —, que são o começo do TP2. A tarefa da semana tem duas partes, nesta ordem: a entrega, e depois as interfaces.
+A Aula 5 teve dois blocos. No primeiro, as **interfaces próprias**, que não couberam na Aula 4: o limite do tipo pronto ("dois o quê?"), o pacote só de definições ao lado do pacote dos nós, e o `/vision/status` respondendo com campos em vez de uma frase. No segundo, as **ações**, pelo lado de quem usa: as três partes de um `.action`, e três casos pela linha de comando — pedir e acompanhar, ser rejeitado e parar cedo, cancelar no meio. A tarefa da semana tem duas partes, nesta ordem.
 
-[Conteúdo e slides da aula](aulas/etapa03-aula04/index.md){ .md-button .md-button--primary }
-[Checklist de entrega do TP1](tutoriais/checklist-entrega-tp1.md){ .md-button }
-[Guia de estudo da Aula 4](tutoriais/estudo-aula04-interfaces.md){ .md-button }
-[Tarefa da Aula 4](tutoriais/tarefa-aula04-interfaces.md){ .md-button }
+[Conteúdo e slides da aula](aulas/etapa04-aula05/index.md){ .md-button .md-button--primary }
+[Guia de estudo: interfaces](tutoriais/estudo-aula04-interfaces.md){ .md-button }
+[Guia de estudo: ações](tutoriais/estudo-aula05-acoes.md){ .md-button }
 
-!!! danger "Parte 1 da tarefa: a entrega do TP1 (sexta, 13/11)"
-    Os cinco passos, com os comandos e o terminal de cada bloco, estão em [A tarefa da semana](aulas/etapa03-aula04/index.md#a-tarefa-da-semana): as quatro perguntas com as respostas guardadas em `docs/evidencias/tp1/`, os três casos conferidos, a oclusão, o relatório e a entrega — `main`, `entrega-tp1`, **tag `tp1`**, e PDF + ZIP + links no **Moodle**, testados em janela anônima. O [checklist de entrega](tutoriais/checklist-entrega-tp1.md) é a conferência final. Não vai dar tempo de tudo? Entregue o que funciona e **declare** o que não funciona — [escada de recuperação](tutoriais/checklist-entrega-tp1.md#escada-de-recuperacao-se-algo-nao-vai-dar-tempo).
+!!! note "Parte 1: as interfaces do seu projeto (push na `dev` até domingo, 22/11)"
+    [Guia de estudo da Aula 4](tutoriais/estudo-aula04-interfaces.md) → [tarefa da Aula 4](tutoriais/tarefa-aula04-interfaces.md): o seu pacote de interfaces, com um `.msg` e um `.srv` do seu domínio, e o `/vision/status` migrado para o tipo novo.
 
-!!! warning "Sua taxa está em 5 Hz em vez de 15?"
-    A cura que a página da Aula 3 trazia (`sysctl`) **não resolve** e foi substituída: é um perfil do Fast DDS, um arquivo que você cria uma vez. O bloco está em [Pegar o material](aulas/etapa03-aula04/index.md#pegar-o-material), na página da Aula 4.
+!!! note "Parte 2: a ação do seu projeto, usada e depois definida (push na `dev` até domingo, 29/11)"
+    [Guia de estudo da Aula 5](tutoriais/estudo-aula05-acoes.md) → [tarefa da Aula 5](tutoriais/tarefa-aula05-acoes.md): os três casos da aula rodados no seu ambiente, e o `.action` do **seu** projeto no pacote da parte 1. Vale chegar à Aula 6 (23/11) com os três casos já rodados. O servidor da sua ação fica para depois dela.
 
-!!! note "Parte 2, depois da entrega: as interfaces do seu projeto"
-    [Guia de estudo da Aula 4](tutoriais/estudo-aula04-interfaces.md) (2h–3h em duas sessões) → [tarefa da Aula 4](tutoriais/tarefa-aula04-interfaces.md), com push na `dev` até **domingo 22/11**: o seu pacote de interfaces, o `/vision/status` migrado para um serviço próprio, `/vision/deteccoes` com classe e confiança. A Aula 5 (16/11) é sobre ações, e acrescenta uma ação a esse pacote.
+!!! warning "TP1: entregou, ou não entregou?"
+    A devolutiva do TP1 sai pelo Moodle. Quem não entregou, ou entregou pela metade, escreve no **Infnet.Online** com o que existe: o TP2 é construído em cima do TP1, e o caminho se combina por lá.
 
 ## Calendário de entregas
 

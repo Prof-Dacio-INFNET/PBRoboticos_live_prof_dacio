@@ -8,9 +8,12 @@ Use para ver os tres momentos que so a action tem:
     ros2 run aula07_acoes cliente_varredura
     ros2 run aula07_acoes cliente_varredura --ros-args -p duracao_s:=20.0
 """
+import signal
+
 import rclpy
 from rclpy.action import ActionClient
 from rclpy.node import Node
+from rclpy.signals import SignalHandlerOptions
 
 from pb_interfaces.action import VarrerCena
 
@@ -74,20 +77,39 @@ class ClienteVarredura(Node):
 
 
 def main():
-    rclpy.init()
+    # Por padrao o rclpy DESLIGA o contexto ao receber SIGINT (Ctrl+C) -- e um
+    # cliente desligado nao consegue acompanhar o cancelamento: ele morre com um
+    # traceback e nunca mostra o resultado parcial. Com SignalHandlerOptions.NO
+    # o Ctrl+C fica por nossa conta: o primeiro pede o cancelamento e continua
+    # ouvindo ate o resultado chegar; o segundo desiste de esperar.
+    rclpy.init(signal_handler_options=SignalHandlerOptions.NO)
     no = ClienteVarredura()
     if not no.enviar():
         no.destroy_node()
         if rclpy.ok():
             rclpy.shutdown()
         return
+
+    ctrl_c = {'vezes': 0}
+
+    def ao_ctrl_c(signum, frame):
+        ctrl_c['vezes'] += 1
+        if ctrl_c['vezes'] > 1:
+            raise KeyboardInterrupt
+
+    signal.signal(signal.SIGINT, ao_ctrl_c)
+    cancelamento_pedido = False
     try:
-        rclpy.spin(no)
+        # ao_terminar() e ao_responder() chamam rclpy.shutdown(): e o que encerra o laco.
+        while rclpy.ok():
+            rclpy.spin_once(no, timeout_sec=0.1)
+            if ctrl_c['vezes'] and not cancelamento_pedido and no.goal_handle is not None:
+                # Ctrl+C aqui NAO mata a tarefa la: manda cancelar e espera a
+                # confirmacao, com o resultado parcial.
+                no.cancelar()
+                cancelamento_pedido = True
     except KeyboardInterrupt:
-        # Ctrl+C aqui NAO mata a tarefa la: manda cancelar e espera a confirmacao.
-        # E essa diferenca que o gate G2.3 procura.
-        no.cancelar()
-        rclpy.spin_once(no, timeout_sec=2.0)
+        pass
     finally:
         no.destroy_node()
         if rclpy.ok():

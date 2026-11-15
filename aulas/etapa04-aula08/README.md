@@ -8,7 +8,7 @@
 
 [:material-file-pdf-box: Slides da Aula 8 (PDF)](apresentacao-aula08.pdf){ .md-button .md-button--primary }
 [:material-code-tags: Exemplo `aula07-acoes`](../../exemplos/aula07-acoes/index.md){ .md-button }
-[:material-clipboard-check: Tarefa da semana](../../tutoriais/tarefa-aula07-acoes.md){ .md-button }
+[:material-clipboard-check: Tarefa da semana](../../tutoriais/tarefa-aula05-acoes.md){ .md-button }
 
 !!! warning "Os dois gates mais reprovadores do TP2 fecham nesta aula"
     **G2.2** vence em 12/09 e **G2.3** em 16/09. O G2.3 não pede código de cancelamento escrito — pede cancelamento **demonstrado**, e a diferença entre as duas coisas é o assunto da Parte 4.
@@ -273,7 +273,7 @@ No resto do semestre, ação deixa de ser assunto e vira infraestrutura. O `Navi
 
 ## Tarefa da semana
 
-[Tarefa da Aula 7 — a ação do seu projeto](../../tutoriais/tarefa-aula07-acoes.md) continua valendo, e agora com dois itens a mais que saem desta aula: o seu servidor deve **rejeitar** um objetivo inválido e **abortar** quando a tarefa deixar de ser possível. Grave a evidência dos três desfechos — sucesso, cancelamento e abort.
+[Tarefa da Aula 7 — a ação do seu projeto](../../tutoriais/tarefa-aula05-acoes.md) continua valendo, e agora com dois itens a mais que saem desta aula: o seu servidor deve **rejeitar** um objetivo inválido e **abortar** quando a tarefa deixar de ser possível. Grave a evidência dos três desfechos — sucesso, cancelamento e abort.
 
 ## Socorro rápido
 
