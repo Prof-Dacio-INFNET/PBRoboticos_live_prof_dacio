@@ -423,7 +423,7 @@ from pb_interfaces.srv import StatusVisao
         self.srv = self.create_service(StatusVisao, '/vision/status', self.responder_status)
 ```
 
-A confiança deste exemplo é a **solidez** do contorno (a área dividida pela área do fecho convexo): não é probabilidade, e o código diz isso no comentário. Quando os objetos se encostam, o monitor mostra `total=1  tomate_maduro(0.89) em (450,290) area=4965`: a contagem cai, **e a confiança cai junto**. Um detector treinado produz esse sinal de forma direta — e usa a **mesma** mensagem. Trocar o miolo sem trocar o contrato: é por isso que a interface vem antes do detector.
+A confiança deste exemplo é a **solidez** do contorno (a área dividida pela área do fecho convexo): não é probabilidade, e o código diz isso no comentário. Quando os dois objetos vermelhos se encostam, o monitor mostra `total=1  tomate_maduro(0.89) em (450,290) area=4965`: a contagem cai e a área é a soma das duas; a confiança costuma cair (fica entre 0,85 e 0,98, conforme o quanto eles se sobrepõem). Há uma segunda oclusão na cena, que o `Int32` **não mostrava**: quando o objeto azul passa na frente de um vermelho, a contagem continua `total=2`, mas a linha vira `tomate_maduro(0.75) ... area=2167` — a área encolhe e a confiança cai, e quem recebe a mensagem sabe que um objeto está encoberto. Um detector treinado produz esse sinal de forma direta — e usa a **mesma** mensagem. Trocar o miolo sem trocar o contrato: é por isso que a interface vem antes do detector.
 
 ## A tarefa da semana
 

@@ -58,7 +58,7 @@ ros2 service call /vision/status pb_interfaces/srv/StatusVisao "{}"
 
 ## O que observar
 
-Deixe o `monitor` rodando e acompanhe a linha impressa. Os dois objetos vermelhos orbitam e, periodicamente, se encostam: **a contagem cai de 2 para 1 e a confiança cai junto**. Esse é o experimento de oclusão da Aula 3 visto pela mensagem nova — antes você via só o número mudar; agora vê o detector perdendo certeza, o que é uma informação diferente e mais útil.
+Deixe o `monitor` rodando e acompanhe a linha impressa. Os dois objetos vermelhos orbitam e, periodicamente, se encostam: **a contagem cai de 2 para 1**, a área passa a ser a soma das duas, e a confiança costuma cair (de 0,85 a 0,98). E há um terceiro objeto, azul, que de vez em quando passa na frente de um vermelho: aí a contagem **continua 2**, mas a área encolhe e a confiança cai bastante (0,75 no ensaio, e pode ir abaixo disso). O primeiro caso é o experimento de oclusão da Aula 3 visto pela mensagem nova; o segundo era invisível com um `Int32` — só a mensagem com área e confiança o denuncia, o que é uma informação diferente e mais útil.
 
 A `confianca` aqui é a **solidez** do contorno (área ÷ área do fecho convexo), não uma probabilidade. O código diz isso no comentário, de propósito: um substituto honesto e declarado vale mais do que um número inventado com cara de probabilidade. Trocar esse miolo por um detector treinado, mantendo a mesma mensagem, é o assunto da Etapa 4.
 

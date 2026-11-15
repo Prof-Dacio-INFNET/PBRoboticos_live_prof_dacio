@@ -84,7 +84,7 @@ ros2 topic echo /vision/contagem --once
 ros2 interface show std_msgs/msg/Int32
 ```
 
-**Tem de aparecer:** `data: 2`; e quatro linhas de comentário — a terceira diz *"It is recommended to create your own semantically meaningful message"* — seguidas de `int32 data`.
+**Tem de aparecer:** `data: 2` (ou `data: 1`, se cair no instante em que os dois objetos se encostam: repita); e quatro linhas de comentário — a terceira diz *"It is recommended to create your own semantically meaningful message"* — seguidas de `int32 data`.
 
 Dois de que classe? Com que certeza? Onde na imagem? De que instante? O segmentador conhece a posição, a área e o contorno de cada objeto — e joga tudo fora na hora de publicar, porque o tipo só tem lugar para um inteiro. Não é limite do ROS 2: é escolha de tipo.
 
@@ -201,7 +201,7 @@ ros2 service call /vision/status pb_interfaces/srv/StatusVisao "{}"
 
 **Tem de aparecer:** o `header`, o array `deteccoes` com dois itens e `total: 2`; depois `pb_interfaces/srv/StatusVisao`; e por fim `ativo=True, classe_alvo='tomate_maduro', total_detectado=2, confianca_media=0.98..., mensagem="vendo 2 'tomate_maduro' na cena"`. O **nome** do serviço é o mesmo do TP1; o que mudou foi o **tipo**. Isso é uma migração, e é o coração da parte 1 da tarefa.
 
-Quando os objetos se encostam, o monitor mostra `total=1  tomate_maduro(0.89) em (450,290) area=4965`: a contagem cai, **e a confiança cai junto**. A confiança deste exemplo é a solidez do contorno (a área dividida pela área do fecho convexo), e não uma probabilidade. Um detector treinado usa a **mesma** mensagem: trocar o miolo sem trocar o contrato é a razão de a interface vir antes do detector.
+Quando os dois objetos vermelhos se encostam, o monitor mostra `total=1  tomate_maduro(0.89) em (450,290) area=4965`: a contagem cai e a área é a soma das duas; a confiança costuma cair (fica entre 0,85 e 0,98, conforme o quanto eles se sobrepõem). Há uma segunda oclusão na cena, que o `Int32` **não mostrava**: quando o objeto azul passa na frente de um vermelho, a contagem continua `total=2`, mas a linha vira `tomate_maduro(0.75) ... area=2167` — a área encolhe e a confiança cai, e quem recebe a mensagem sabe que um objeto está encoberto. A confiança deste exemplo é a solidez do contorno (a área dividida pela área do fecho convexo), e não uma probabilidade. Um detector treinado usa a **mesma** mensagem: trocar o miolo sem trocar o contrato é a razão de a interface vir antes do detector.
 
 ## Bloco 2 — Quando a resposta demora: ações
 

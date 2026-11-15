@@ -104,7 +104,7 @@ Esperado: `detector no ar - classe='tomate_maduro' - publica pb_interfaces/Detec
 [monitor_deteccoes]: t=1794265911.67  total=2  tomate_maduro(0.98) em (261,333) area=1450 | tomate_maduro(0.99) em (512,216) area=3524
 ```
 
-Deixe rodando até os dois objetos se encostarem: `total=1  tomate_maduro(0.89) em (450,290) area=4965` — a contagem cai, a área é a soma das duas, e a confiança **cai junto** (0,85 a 0,96, contra 0,98 e 0,99 dos círculos isolados). É a oclusão da Aula 3 vista pela mensagem nova — antes você via só o número mudar; agora vê o detector perdendo certeza.
+Deixe rodando uns vinte segundos e procure dois tipos de linha. **(1)** Os dois vermelhos se encostam: `total=1  tomate_maduro(0.89) em (450,290) area=4965` — a contagem cai, a área é a soma das duas, e a confiança costuma cair (de 0,85 a 0,98, contra 0,98 e 0,99 dos círculos isolados; quando eles se sobrepõem muito, quase não cai). **(2)** O objeto azul passa na frente de um vermelho: `total=2  ... | tomate_maduro(0.75) em (130,209) area=2167` — a contagem **não muda**, mas a área encolhe e a confiança cai. A primeira oclusão o `Int32` da Aula 3 ainda mostrava, pelo número; a segunda era invisível — só a mensagem nova a denuncia.
 
 **2.4 — Inspecionar.**
 
@@ -133,7 +133,7 @@ Esperado no `service call`: `ativo=True, classe_alvo='tomate_maduro', total_dete
 
 **`aula06_percepcao/monitor.py`.** Assina `/vision/deteccoes` e imprime uma linha legível — é o "cliente" que mostra por que a mensagem nova vale o trabalho. **`cena.py`** desenha a cena sintética e converte `Image → numpy` sem `cv_bridge`. **`launch/percepcao.launch.py`** declara `fonte` (`sintetico | topico`) e `classe`; com `fonte:=topico` o detector assina o `/camera/image_raw` do seu publicador da Aula 3 — é assim que o pipeline do TP1 ganha a mensagem nova sem trocar a câmera.
 
-**A ponte para a Etapa 4.** Quando os objetos se encostam, a contagem cai **e a confiança cai junto**: o detector tem um sinal interno de que algo saiu do esperado. Um detector treinado produz esse sinal de forma direta e calibrada — é a Aula 7 (30/11). O que **não** muda é a mensagem: classe, confiança e posição servem para os dois. Trocar o miolo sem trocar o contrato é a razão de esta aula vir antes daquela.
+**A ponte para a Etapa 4.** Quando um objeto é encoberto — por outro da mesma classe, ou pelo distrator azul —, a área e a confiança mudam: o detector tem um sinal interno de que algo saiu do esperado. Um detector treinado produz esse sinal de forma direta e calibrada — é a Aula 7 (30/11). O que **não** muda é a mensagem: classe, confiança e posição servem para os dois. Trocar o miolo sem trocar o contrato é a razão de esta aula vir antes daquela.
 
 ## 4. Autoavaliação (10 min)
 
