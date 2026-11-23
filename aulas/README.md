@@ -12,8 +12,8 @@ O bloco tem dez etapas de conteúdo distribuídas em dois trimestres (**26T4**, 
 | [Aula 3](etapa02-aula03/index.md) | 26/10/2026 | 2 | **Leitura do TP1** · imagem no grafo e segmentação por cor · [guia de estudo](../tutoriais/estudo-aula03-visao.md) | <span class="pb-tag ok">dada</span> |
 | — | 02/11/2026 | 3 | **Feriado.** [Parte B da tarefa da Aula 3](../tutoriais/tarefa-aula03-visao.md#parte-b-ate-domingo-0811-a-semana-sem-aula): duas classes, YAML, `/vision/status`, evidências (até dom 08/11) | <span class="pb-tag ok">semana guiada</span> |
 | [Aula 4](etapa03-aula04/index.md) | 09/11/2026 | 3 | **O TP1, conferido e entregue** (entrega sexta 13/11) | <span class="pb-tag ok">dada</span> |
-| [Aula 5](etapa04-aula05/index.md) | 16/11/2026 | 4 | **Interfaces próprias** · ações pelo lado de quem usa · [guia das interfaces](../tutoriais/estudo-aula04-interfaces.md) · [guia das ações](../tutoriais/estudo-aula05-acoes.md) | <span class="pb-tag next">atual</span> |
-| Aula 6 | 23/11/2026 | 4 | Ações a fundo: o servidor por dentro · **leitura do TP2** | planejada |
+| [Aula 5](etapa04-aula05/index.md) | 16/11/2026 | 4 | **Interfaces próprias** · ações pelo lado de quem usa · [guia das interfaces](../tutoriais/estudo-aula04-interfaces.md) · [guia das ações](../tutoriais/estudo-aula05-acoes.md) | <span class="pb-tag ok">dada</span> |
+| [Aula 6](etapa04-aula06/index.md) | 23/11/2026 | 4 | O servidor da ação, por dentro · **leitura do TP2** · [guia de estudo](../tutoriais/estudo-aula06-servidor-acao.md) | <span class="pb-tag next">atual</span> |
 | Aula 7 | 30/11/2026 | 5 | Detecção treinada e métrica declarada | planejada |
 | Aula 8 | 07/12/2026 | 5 | Aterrissagem do TP2: URDF e bringup (entrega sexta 11/12) | planejada |
 | Aula 9 | 14/12/2026 | 6 | O mundo, a deriva e o mapa que corrige | planejada |
@@ -31,7 +31,7 @@ O bloco tem dez etapas de conteúdo distribuídas em dois trimestres (**26T4**, 
 | Aula 19 | 05/04/2027 | — | **Apresentações** | planejada |
 
 !!! note "Páginas herdadas da turma presencial"
-    As páginas das aulas que ainda não aconteceram nesta turma (Aula 6 em diante) trazem o conteúdo já produzido para a turma presencial 2026.2, com um aviso no topo. Elas valem para estudar adiantado; datas e referências a sala/laboratório são adaptadas antes de cada encontro.
+    As páginas das aulas que ainda não aconteceram nesta turma (Aula 7 em diante) trazem o conteúdo já produzido para a turma presencial 2026.2, com um aviso no topo. Elas valem para estudar adiantado; datas e referências a sala/laboratório são adaptadas antes de cada encontro.
 
 ## As etapas
 

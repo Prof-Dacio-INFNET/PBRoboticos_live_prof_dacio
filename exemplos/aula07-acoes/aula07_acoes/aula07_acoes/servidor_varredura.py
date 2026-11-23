@@ -9,11 +9,11 @@ A parte que a maioria erra esta em duas linhas deste arquivo, e nao no .action:
   1. ReentrantCallbackGroup no ActionServer
   2. MultiThreadedExecutor no main()
 
-Sem as duas, o execute_callback ocupa a unica thread do executor e o pedido de
-cancelamento NUNCA chega a ser processado -- o cliente pede cancel, o servidor
-nao ouve, e a tarefa vai ate o fim. O sintoma e cruel porque nao ha erro: tudo
-"funciona", so nao cancela. E o cancelamento e exatamente o que o gate G2.3
-testa.
+Sem as duas, o execute_callback ocupa a unica thread do executor: o pedido de
+cancelamento NUNCA chega a ser processado, e as mensagens da percepcao tambem
+nao -- o cliente pede cancel, o servidor nao ouve, e a tarefa segue ate abortar
+ou ate o prazo. O sintoma e cruel porque nao ha erro: tudo "funciona", so nao
+cancela. E o cancelamento funcionando e a evidencia que o TP2 pede.
 """
 import time
 
@@ -40,8 +40,8 @@ class ServidorVarredura(Node):
         self.declare_parameter('timeout_percepcao_s', 3.0)
         self.declare_parameter('carencia_s', 3.0)
 
-        # Assina a percepcao da Aula 6. Se ela nao estiver no ar, a varredura
-        # roda mesmo assim e relata zero -- degradar, nao quebrar.
+        # Assina a percepcao (pacote aula06_percepcao). Sem ela no ar, a varredura
+        # comeca e ABORTA depois da carencia (item 1b de _executar) -- e diz por que.
         self.create_subscription(Deteccoes, '/vision/deteccoes', self._ao_receber, 10)
 
         # ReentrantCallbackGroup: permite que callbacks deste no rodem em

@@ -56,19 +56,22 @@ Aulas às **segundas-feiras à noite, pelo Zoom** (1h30, gravadas) · Prof. Dác
 
 ## Aula mais recente
 
-**Aula 5 — segunda, 16/11/2026 — A mensagem do seu projeto; e a tarefa que demora, avisa e pode ser cancelada** <span class="pb-tag next">atual</span>
+**Aula 6 — segunda, 23/11/2026 — O servidor da ação, por dentro; e o TP2, lido** <span class="pb-tag next">atual</span>
 
-A Aula 5 teve dois blocos. No primeiro, as **interfaces próprias**, que não couberam na Aula 4: o limite do tipo pronto ("dois o quê?"), o pacote só de definições ao lado do pacote dos nós, e o `/vision/status` respondendo com campos em vez de uma frase. No segundo, as **ações**, pelo lado de quem usa: as três partes de um `.action`, e três casos pela linha de comando — pedir e acompanhar, ser rejeitado e parar cedo, cancelar no meio. A tarefa da semana tem duas partes, nesta ordem.
+A Aula 6 teve três blocos. No primeiro, o **servidor da ação por dentro**: as três decisões (aceitar o pedido, aceitar parar, executar), a ordem dentro do laço, os três verbos de término — e três casos ao vivo: o servidor que aborta, o servidor surdo (duas linhas a menos, e nenhum erro) e a cura. No segundo, o caminho **do exemplo ao servidor do seu projeto**. No terceiro, a **leitura do TP2**: o que ele pede, e quanto disso as tarefas das Aulas 4, 5 e 6 já entregam.
 
-[Conteúdo e slides da aula](aulas/etapa04-aula05/index.md){ .md-button .md-button--primary }
-[Guia de estudo: interfaces](tutoriais/estudo-aula04-interfaces.md){ .md-button }
-[Guia de estudo: ações](tutoriais/estudo-aula05-acoes.md){ .md-button }
+[Conteúdo e slides da aula](aulas/etapa04-aula06/index.md){ .md-button .md-button--primary }
+[Guia de estudo](tutoriais/estudo-aula06-servidor-acao.md){ .md-button }
+[TP2 — enunciado, checklist e gates](recursos/tp2.md){ .md-button }
 
-!!! note "Parte 1: as interfaces do seu projeto (push na `dev` até domingo, 22/11)"
-    [Guia de estudo da Aula 4](tutoriais/estudo-aula04-interfaces.md) → [tarefa da Aula 4](tutoriais/tarefa-aula04-interfaces.md): o seu pacote de interfaces, com um `.msg` e um `.srv` do seu domínio, e o `/vision/status` migrado para o tipo novo.
+!!! note "Tarefa da semana: o servidor da sua ação (push na `dev` até domingo, 06/12)"
+    [Guia de estudo da Aula 6](tutoriais/estudo-aula06-servidor-acao.md) → [tarefa da Aula 6](tutoriais/tarefa-aula06-servidor-acao.md): o servidor e o cliente da ação do **seu** projeto, respondendo e cancelando, com a evidência em `docs/evidencias/tp2/`.
 
-!!! note "Parte 2: a ação do seu projeto, usada e depois definida (push na `dev` até domingo, 29/11)"
-    [Guia de estudo da Aula 5](tutoriais/estudo-aula05-acoes.md) → [tarefa da Aula 5](tutoriais/tarefa-aula05-acoes.md): os três casos da aula rodados no seu ambiente, e o `.action` do **seu** projeto no pacote da parte 1. Vale chegar à Aula 6 (23/11) com os três casos já rodados. O servidor da sua ação fica para depois dela.
+!!! note "Antes dela: as duas partes anteriores (a segunda vence domingo, 29/11)"
+    [Tarefa da Aula 4](tutoriais/tarefa-aula04-interfaces.md) — o seu pacote de interfaces, com a mensagem e o serviço — e [tarefa da Aula 5](tutoriais/tarefa-aula05-acoes.md) — o arquivo da sua ação. Sem as duas, não há o que servir.
+
+!!! tip "TP2: entrega na sexta, 11/12"
+    O enunciado oficial está no Moodle. A página [TP2 — enunciado, checklist e gates](recursos/tp2.md) traz a versão lida em aula, com o calendário desta turma e o bloco para o seu `PROJETO.md`.
 
 !!! warning "TP1: entregou, ou não entregou?"
     A devolutiva do TP1 sai pelo Moodle. Quem não entregou, ou entregou pela metade, escreve no **Infnet.Online** com o que existe: o TP2 é construído em cima do TP1, e o caminho se combina por lá.

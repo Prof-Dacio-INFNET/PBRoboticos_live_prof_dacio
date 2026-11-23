@@ -38,6 +38,8 @@ Tudo o que estrutura **o seu projeto do semestre**: o que fazer, em que aplicaç
 
     [:octicons-arrow-right-24: TP1 — enunciado, checklist e gates desta turma](tp1.md)
 
+    [:octicons-arrow-right-24: TP2 — enunciado, checklist e gates desta turma](tp2.md)
+
 </div>
 
 ## Desafios semanais

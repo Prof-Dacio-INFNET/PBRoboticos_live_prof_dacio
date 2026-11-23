@@ -1,7 +1,7 @@
 # Gates de cada TP — o mapa de checkpoints da implementação
 
-!!! warning "Datas: o TP1 já está na versão da turma live; TP2 em diante ainda são as datas da presencial"
-    O bloco do **TP1** abaixo tem as datas desta turma (entrega **13/11**), publicadas com a [leitura do TP1](tp1.md) em 26/10. Os blocos do TP2 ao TP5 ainda trazem as datas da turma presencial 2026.2; a versão da turma live (TP2 11/12, TP3 12/02, TP4 12/03, TP5 19/03, final 26/03) sai com cada enunciado. Os *conteúdos* dos gates não mudam.
+!!! warning "Datas: o TP1 e o TP2 já estão na versão da turma live; TP3 em diante ainda são as datas da presencial"
+    Os blocos do **TP1** (entrega **13/11**, lido em 26/10) e do **TP2** (entrega **11/12**, lido em 23/11) têm as datas desta turma. Os blocos do TP3 ao TP5 ainda trazem as datas da turma presencial 2026.2; a versão da turma live (TP3 12/02, TP4 12/03, TP5 19/03, final 26/03) sai com cada enunciado. Os *conteúdos* dos gates não mudam. As datas dos gates são **referência para você se localizar**: o único prazo formal de cada TP é a entrega no Moodle.
 
 Um **gate** é um ponto de controle: um estado do projeto que ou **é verdade** ou **não é**, verificável por um comando e provado por um artefato no repositório. Não é uma etapa de cronograma ("estudar SLAM"), não é uma intenção ("começar o mapa"). É uma porta: você passou, ou você ainda não passou.
 
@@ -51,19 +51,19 @@ Um `[!]` não é vergonha nem perda de nota — é informação. O que custa not
 
 ## TP2 — Interfaces Próprias, Ações e Parametrização
 
-**Entrega: sexta, 25/09/2026** · Etapa 3 · o TP em que o projeto deixa de usar só mensagens prontas e passa a **falar a própria língua**.
+**Entrega: sexta, 11/12/2026** · Etapas 3–5 · leitura em aula em 23/11 · o TP em que o projeto deixa de usar só mensagens prontas e passa a **falar a própria língua**. Enunciado, checklist de verificação e calendário: [TP2](tp2.md).
 
 | Gate | O que tem de estar verdadeiro | Como provar | Evidência no repo | Quando |
 |---|---|---|---|---|
-| **G2.0** | Pacote de interfaces separado (`<projeto>_interfaces`) compilando com `rosidl` | `colcon build --packages-select <projeto>_interfaces` sem erro | log de build em `docs/evidencias/tp2/build.txt` | 04/09 |
-| **G2.1** | `.msg` e `.srv` do **domínio** definidos e visíveis no ambiente | `ros2 interface show <projeto>_interfaces/msg/<SuaMsg>` | arquivos `.msg`/`.srv` versionados | 08/09 |
-| **G2.2** | Action definida e servidor respondendo goal → resultado | `ros2 action list` e `ros2 action send_goal ...` completando | `docs/evidencias/tp2/action-goal.txt` | 12/09 |
-| **G2.3** | Action com **feedback periódico** e **cancelamento** funcionando de verdade | `ros2 action send_goal ... --feedback` e cancelamento com `Ctrl-C` no cliente, com log do servidor tratando o cancel | GIF/asciinema em `docs/evidencias/tp2/` | 16/09 |
-| **G2.4** | Detecção/rastreamento evoluída (YOLO ou equivalente) com **métrica declarada** (ex.: % de frames com alvo mantido) | script/notebook que imprime a métrica sobre um vídeo fixo | `docs/evidencias/tp2/metrica-tracking.md` | 19/09 |
-| **G2.5** | Parametrização em YAML + URDF carregando no RViz2 com TF coerente | `ros2 param dump /<no>` e `ros2 run rviz2 rviz2` mostrando o modelo | `config/*.yaml`, `urdf/*.urdf`, print do RViz2 | 22/09 |
-| **G2.6** | **Entrega**: relatório, branch `entrega-tp2`, tag `tp2`, Moodle | `git tag --list` mostra `tp2` | tag + postagem | 25/09 |
+| **G2.0** | Pacote de interfaces separado (o seu `<projeto>_interfaces`) compilando com `rosidl` | `ros2 interface list` mostra o seu pacote | `docs/evidencias/tp2/interface.txt` | dom 22/11 |
+| **G2.1** | `.msg` e `.srv` do **domínio** definidos e visíveis no ambiente; `/vision/status` migrado para o tipo novo | `ros2 interface show` da sua mensagem; `ros2 service type /vision/status` | `docs/evidencias/tp2/interface.txt` | dom 22/11 |
+| **G2.2** | Ação definida, e servidor respondendo do objetivo ao resultado | `ros2 action list -t` e `ros2 action send_goal ...` completando | `docs/evidencias/tp2/acao-projeto.txt` e `acao-servidor.txt` | qua 02/12 |
+| **G2.3** | Ação com **feedback periódico** e **cancelamento** funcionando de verdade | `ros2 action send_goal ... --feedback`, e o cancelamento com `Ctrl+C` no **seu cliente**, com o log do servidor tratando o pedido | `docs/evidencias/tp2/acao-servidor.txt` + captura de servidor e cliente juntos | dom 06/12 |
+| **G2.4** | Detecção e rastreamento (YOLO ou equivalente) sobre o seu objeto, com filtro de suavização, trilha e **métrica declarada** (ex.: % de quadros com o alvo mantido) | script ou nó que imprime a métrica sobre um vídeo fixo | `docs/evidencias/tp2/metrica-tracking.md` | dom 06/12 |
+| **G2.5** | Parametrização em YAML, com troca ao vivo, e URDF carregando no RViz2 com TF coerente | `ros2 param set` com efeito visível; o modelo no RViz2 | `config/*.yaml`, `urdf/*.urdf`, print do RViz2 | qua 09/12 |
+| **G2.6** | **Entrega**: relatório, branch `entrega-tp2`, tag `tp2`, Moodle | `git ls-remote --tags origin` mostra `tp2` | tag + postagem no Moodle | **sex 11/12** |
 
-**Armadilha clássica do TP2:** implementar a Action como um "publisher com nome bonito". Se o seu servidor não consegue ser cancelado no meio, o G2.3 não passou — e o G2.3 é o gate que a correção efetivamente testa.
+**Armadilha clássica do TP2:** implementar a Action como um "publisher com nome bonito". Se o seu servidor não consegue ser cancelado no meio, o G2.3 não passou: um servidor que não cancela é um serviço lento com mais código.
 
 ---
 
